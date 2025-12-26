@@ -1,0 +1,30 @@
+.yt-notebook-checkbox {
+    position: absolute;
+    z-index: 10;
+    top: 8px;
+    left: 8px;
+    width: 26px;
+    height: 26px;
+    background: rgba(5, 12, 22, 0.86);
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.yt-notebook-checkbox:hover {
+    transform: translateY(-1px) scale(1.05);
+    background: rgba(125, 248, 198, 0.25);
+    border-color: #7df8c6;
+    box-shadow: 0 12px 26px rgba(125, 248, 198, 0.24);
+}
+
+.yt-notebook-checkbox svg {
+    pointer-events: none;
+}
