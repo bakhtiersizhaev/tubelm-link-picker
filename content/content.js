@@ -10,7 +10,7 @@
 (function () {
     'use strict';
 
-    const SCRIPT_VERSION = 'v6';
+    const SCRIPT_VERSION = 'v7';
     if (window.__ytNotebookHelperVersion === SCRIPT_VERSION) {
         console.log('YT Notebook Helper: already active, skipping duplicate load');
         return;
@@ -27,23 +27,32 @@
 
     window.__ytNotebookHelperVersion = SCRIPT_VERSION;
 
-    // Clean up any stale checkboxes from a previous inject
+    // Clean up any stale checkboxes/overlays from a previous inject
     document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => cb.remove());
+    const existingOverlay = document.getElementById('yt-notebook-overlay');
+    if (existingOverlay) existingOverlay.remove();
 
     console.log('%c YT Notebook Helper: Content script loaded (v4) ',
         'background: #3ea6ff; color: black; font-size: 14px; padding: 4px;');
 
     // ================== STATE ==================
     const selectedUrls = new Set();
-    const checkboxMap = new WeakMap(); // mount element -> checkbox element
-    const anchorMap = new WeakMap(); // mount element -> anchor element
-    const processedThumbnails = new WeakSet();
+    const checkboxMap = new Map(); // anchor element -> checkbox element
+    const overlayRoot = document.createElement('div');
 
     // Visual system (shared by inline styles + optional CSS)
     const ACCENT = '#7df8c6';
     const ACCENT_HOVER = '#9bfad8';
     const BASE_BG = 'rgba(5, 12, 22, 0.86)';
     const BORDER_IDLE = 'rgba(255, 255, 255, 0.55)';
+
+    overlayRoot.id = 'yt-notebook-overlay';
+    overlayRoot.style.cssText = `
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        pointer-events: none;
+    `;
 
     // ================== UTILITIES ==================
 
@@ -98,32 +107,16 @@
         return preferred || null;
     }
 
-    function getCardElement(anchor) {
-        if (!anchor) return null;
-        return anchor.closest(
-            'yt-lockup-view-model,' +
-            'ytd-rich-item-renderer,' +
-            'ytd-grid-video-renderer,' +
-            'ytd-video-renderer,' +
-            'ytd-compact-video-renderer,' +
-            'ytd-rich-grid-slim-media,' +
-            'ytd-reel-item-renderer,' +
-            'ytm-shorts-lockup-view-model'
-        );
-    }
-
-    function getMountElementFromAnchor(anchor) {
-        if (!anchor) return null;
-        // Mount on the card container to survive thumbnail hover re-renders.
-        return getCardElement(anchor) || anchor;
+    function ensureOverlayMounted() {
+        if (!document.body.contains(overlayRoot)) {
+            document.body.appendChild(overlayRoot);
+        }
     }
 
     // ================== CHECKBOX CREATION ==================
 
-    function createCheckbox(mountElement, videoUrl, anchorElement) {
-        // Skip if already processed
-        if (processedThumbnails.has(mountElement)) return null;
-        processedThumbnails.add(mountElement);
+    function createCheckbox(anchorElement, videoUrl) {
+        if (!anchorElement || checkboxMap.has(anchorElement)) return null;
 
         const finalUrl = cleanUrl(videoUrl);
 
@@ -204,58 +197,49 @@
         }, true);
 
         // Store reference for updates
-        checkboxMap.set(mountElement, checkbox);
-        anchorMap.set(mountElement, anchorElement || mountElement);
+        checkboxMap.set(anchorElement, checkbox);
 
-        // Ensure container is a positioning context
-        const computed = window.getComputedStyle(mountElement);
-        if (computed.position === 'static') {
-            mountElement.style.position = 'relative';
-        }
-
-        // Append inside the mount element to avoid floating on virtualized scroll
-        mountElement.appendChild(checkbox);
+        // Mount to overlay so hover previews do not remove the checkbox
+        ensureOverlayMounted();
+        overlayRoot.appendChild(checkbox);
 
         // Initial positioning relative to anchor
-        updateCheckboxPosition(mountElement, checkbox);
+        updateCheckboxPosition(anchorElement, checkbox);
 
         return checkbox;
     }
 
     // ================== POSITIONING ==================
 
-    function updateCheckboxPosition(mountElement, checkbox, anchorElement) {
-        // If the mount was removed from DOM, clean up the checkbox to avoid ghosts
-        if (!document.body.contains(mountElement)) {
-            checkboxMap.delete(mountElement);
-            anchorMap.delete(mountElement);
-            checkbox.remove();
+    function updateCheckboxPosition(anchorElement, checkbox) {
+        if (!anchorElement || !anchorElement.isConnected) {
+            checkbox?.remove();
+            checkboxMap.delete(anchorElement);
             return;
         }
 
-        if (anchorElement) {
-            anchorMap.set(mountElement, anchorElement);
+        const rect = anchorElement.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) {
+            checkbox.style.display = 'none';
+            return;
         }
 
-        // Ensure the parent is a positioning context
-        const computed = window.getComputedStyle(mountElement);
-        if (computed.position === 'static') {
-            mountElement.style.position = 'relative';
-        }
-
-        const anchor = anchorMap.get(mountElement);
-        if (anchor && anchor !== mountElement && document.body.contains(anchor)) {
-            const mountRect = mountElement.getBoundingClientRect();
-            const anchorRect = anchor.getBoundingClientRect();
-            if (mountRect.width > 0 && mountRect.height > 0 && anchorRect.width > 0 && anchorRect.height > 0) {
-                const top = anchorRect.top - mountRect.top + 8;
-                const left = anchorRect.left - mountRect.left + 8;
-                checkbox.style.top = `${top}px`;
-                checkbox.style.left = `${left}px`;
-            }
+        // Hide when far off-screen to reduce clutter
+        if (rect.bottom < -120 || rect.top > window.innerHeight + 120 ||
+            rect.right < -120 || rect.left > window.innerWidth + 120) {
+            checkbox.style.display = 'none';
+            return;
         }
 
         checkbox.style.display = 'flex';
+        checkbox.style.top = `${rect.top + 8}px`;
+        checkbox.style.left = `${rect.left + 8}px`;
+    }
+
+    function updateAllPositions() {
+        checkboxMap.forEach((checkbox, anchor) => {
+            updateCheckboxPosition(anchor, checkbox);
+        });
     }
 
     // ================== SCANNING ==================
@@ -280,19 +264,17 @@
             const url = anchor.href;
             if (!isValidVideoUrl(url)) return;
 
-            const positioningElement = getMountElementFromAnchor(anchor);
-            if (!positioningElement) return;
-            if (processedThumbnails.has(positioningElement)) {
-                const checkbox = checkboxMap.get(positioningElement);
+            if (checkboxMap.has(anchor)) {
+                const checkbox = checkboxMap.get(anchor);
                 if (checkbox) {
                     checkbox.dataset.url = cleanUrl(url);
                     applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
-                    updateCheckboxPosition(positioningElement, checkbox, anchor);
+                    updateCheckboxPosition(anchor, checkbox);
                 }
                 return;
             }
 
-            const checkbox = createCheckbox(positioningElement, url, anchor);
+            const checkbox = createCheckbox(anchor, url);
             if (checkbox) newCount++;
         });
 
@@ -304,22 +286,18 @@
                 const url = anchor.href;
                 if (!isValidVideoUrl(url)) return;
 
-                const positioningElement = getMountElementFromAnchor(anchor);
-                if (!positioningElement) return;
-
-                // Skip already processed
-                if (processedThumbnails.has(positioningElement)) {
+                if (checkboxMap.has(anchor)) {
                     // Just update position for existing
-                    const checkbox = checkboxMap.get(positioningElement);
+                    const checkbox = checkboxMap.get(anchor);
                     if (checkbox) {
                         checkbox.dataset.url = cleanUrl(url);
                         applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
-                        updateCheckboxPosition(positioningElement, checkbox, anchor);
+                        updateCheckboxPosition(anchor, checkbox);
                     }
                     return;
                 }
 
-                const checkbox = createCheckbox(positioningElement, url, anchor);
+                const checkbox = createCheckbox(anchor, url);
                 if (checkbox) newCount++;
             });
         });
@@ -415,6 +393,8 @@
     // ================== INITIALIZATION ==================
 
     function init() {
+        ensureOverlayMounted();
+
         // Start observing
         observer.observe(document.body, {
             childList: true,
@@ -423,6 +403,14 @@
 
         // Periodic scan to catch virtualized updates where nodes are reused
         const periodicScan = setInterval(scanForVideos, 1500);
+
+        // Keep overlay positions synced even during hover previews
+        let positionRaf = null;
+        const positionLoop = () => {
+            updateAllPositions();
+            positionRaf = requestAnimationFrame(positionLoop);
+        };
+        positionRaf = requestAnimationFrame(positionLoop);
 
         // Initial scan
         scanForVideos();
@@ -436,6 +424,8 @@
             cleanup() {
                 observer.disconnect();
                 clearInterval(periodicScan);
+                if (positionRaf) cancelAnimationFrame(positionRaf);
+                overlayRoot.remove();
                 document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => cb.remove());
             }
         };
