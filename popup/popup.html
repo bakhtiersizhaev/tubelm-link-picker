@@ -7,83 +7,40 @@
   <link rel="stylesheet" href="popup.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="glow"></div>
-  <div class="container">
-    <header class="hero">
+  <div class="frame">
+    <header class="top">
       <div class="brand">
-        <div class="logo-dot">URL</div>
-        <div class="brand-text">
-          <p class="eyebrow">URLTube</p>
-          <h1>Collect links fast</h1>
-          <p class="subhead">Tick YouTube thumbnails, then copy clean links for NotebookLM or notes.</p>
+        <div class="logo">URL</div>
+        <div>
+          <p class="name">URLTube</p>
+          <p class="tag">YouTube link collector</p>
         </div>
       </div>
-      <div class="status-pill" id="tabStatus" aria-live="polite">Checking tab…</div>
+      <span class="status" id="tabStatus" aria-live="polite">Checking tab…</span>
     </header>
 
-    <section class="card selection-card" aria-live="polite">
-      <div class="stat">
+    <section class="metric" aria-live="polite">
+      <div>
         <p class="label">Selected</p>
-        <p class="count" id="statCount">0</p>
+        <p class="value" id="statCount">0</p>
       </div>
-      <p class="muted" id="statNote">Use on-video checkboxes or “Select visible” to add items.</p>
+      <p class="note" id="statNote">Select videos to build a clean list.</p>
     </section>
 
+    <button id="copySelectedBtn" class="btn primary" disabled>
+      <span class="btn-label" id="copyLabel">Copy selection</span>
+      <span class="btn-hint" id="copyHint">Newline list for NotebookLM</span>
+    </button>
+
     <div class="actions">
-      <button id="copySelectedBtn" class="btn primary" disabled>
-        <span class="icon icon-clipboard" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 4h6a2 2 0 0 1 2 2v1h-2.2a1.8 1.8 0 0 0-1.8 1.8V18H9a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/>
-            <path d="M14 4V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1"/>
-            <path d="M14 8h2.5A1.5 1.5 0 0 1 18 9.5V18a2 2 0 0 1-2 2h-6.5A1.5 1.5 0 0 1 8 18.5V18"/>
-          </svg>
-        </span>
-        <div class="btn-text">
-          <span class="btn-label" id="copyLabel">Copy selection</span>
-          <span class="btn-hint" id="copyHint">Creates a newline list for NotebookLM</span>
-        </div>
-      </button>
-
-      <div class="button-group">
-        <button id="selectAllBtn" class="btn ghost">
-          <span class="icon icon-scan" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="4" width="16" height="16" rx="3"></rect>
-              <path d="M8 9h8"></path>
-              <path d="M8 12h5"></path>
-            </svg>
-          </span>
-          Select visible
-        </button>
-        <button id="clearBtn" class="btn subtle">
-          <span class="icon icon-eraser" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 17 14 6a2.8 2.8 0 0 1 4 0l1 1a2.8 2.8 0 0 1 0 4L7 22H3z"></path>
-              <path d="m14 6 4 4"></path>
-            </svg>
-          </span>
-          Clear
-        </button>
-      </div>
+      <button id="selectAllBtn" class="btn ghost">Select visible</button>
+      <button id="clearBtn" class="btn ghost subtle">Clear</button>
     </div>
 
-    <div class="card tips">
-      <div class="tip-row">
-        <span class="chip">1</span>
-        <p>Hover any thumbnail to reveal its checkbox, then tap to select.</p>
-      </div>
-      <div class="tip-row">
-        <span class="chip">2</span>
-        <p>Use “Select visible” after scrolling to sweep all videos in view.</p>
-      </div>
-      <div class="tip-row">
-        <span class="chip">3</span>
-        <p>Copied URLs are cleaned to standard watch/shorts links for NotebookLM.</p>
-      </div>
-    </div>
+    <p class="footer">Tip: hover a thumbnail to reveal its checkbox.</p>
   </div>
   <script src="popup.js"></script>
 </body>
