@@ -37,7 +37,7 @@
 
     // ================== STATE ==================
     const selectedUrls = new Set();
-    const checkboxMap = new Map(); // anchor element -> checkbox element
+    const checkboxMap = new Map(); // card element -> checkbox element
     const overlayRoot = document.createElement('div');
 
     // Visual system (shared by inline styles + optional CSS)
@@ -97,26 +97,29 @@
         }
     }
 
-    function pickLockupThumbnailAnchor(lockup) {
-        if (!lockup) return null;
-        const preferred =
-            lockup.querySelector('a#thumbnail') ||
-            Array.from(lockup.querySelectorAll('a[href]')).find(a =>
-                a.querySelector('ytd-thumbnail, yt-image, img')
-            );
-        return preferred || null;
-    }
-
     function ensureOverlayMounted() {
         if (!document.body.contains(overlayRoot)) {
             document.body.appendChild(overlayRoot);
         }
     }
 
+    function findVideoAnchor(card) {
+        if (!card) return null;
+        const preferred = card.querySelector('a#thumbnail');
+        if (preferred && isValidVideoUrl(preferred.href)) return preferred;
+
+        const candidates = Array.from(card.querySelectorAll('a[href]'))
+            .filter(a => isValidVideoUrl(a.href));
+        if (candidates.length === 0) return null;
+
+        const rich = candidates.find(a => a.querySelector('ytd-thumbnail, yt-image, img'));
+        return rich || candidates[0];
+    }
+
     // ================== CHECKBOX CREATION ==================
 
-    function createCheckbox(anchorElement, videoUrl) {
-        if (!anchorElement || checkboxMap.has(anchorElement)) return null;
+    function createCheckbox(cardElement, videoUrl) {
+        if (!cardElement || checkboxMap.has(cardElement)) return null;
 
         const finalUrl = cleanUrl(videoUrl);
 
@@ -197,28 +200,33 @@
         }, true);
 
         // Store reference for updates
-        checkboxMap.set(anchorElement, checkbox);
+        checkboxMap.set(cardElement, checkbox);
 
         // Mount to overlay so hover previews do not remove the checkbox
         ensureOverlayMounted();
         overlayRoot.appendChild(checkbox);
 
         // Initial positioning relative to anchor
-        updateCheckboxPosition(anchorElement, checkbox);
+        updateCheckboxPosition(cardElement, checkbox);
 
         return checkbox;
     }
 
     // ================== POSITIONING ==================
 
-    function updateCheckboxPosition(anchorElement, checkbox) {
-        if (!anchorElement || !anchorElement.isConnected) {
+    function updateCheckboxPosition(cardElement, checkbox) {
+        if (!cardElement || !cardElement.isConnected) {
             checkbox?.remove();
-            checkboxMap.delete(anchorElement);
+            checkboxMap.delete(cardElement);
             return;
         }
 
-        const rect = anchorElement.getBoundingClientRect();
+        const anchor = findVideoAnchor(cardElement);
+        if (!anchor) {
+            return; // keep last position if anchor temporarily disappears
+        }
+
+        const rect = anchor.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) {
             checkbox.style.display = 'none';
             return;
@@ -237,69 +245,45 @@
     }
 
     function updateAllPositions() {
-        checkboxMap.forEach((checkbox, anchor) => {
-            updateCheckboxPosition(anchor, checkbox);
+        checkboxMap.forEach((checkbox, card) => {
+            updateCheckboxPosition(card, checkbox);
         });
     }
 
     // ================== SCANNING ==================
 
     function scanForVideos() {
-        // Use a#thumbnail for classic layouts and a dedicated pass for new lockup view model.
-        const selectors = [
-            'a#thumbnail',
-            'ytd-reel-item-renderer a#thumbnail',
-            'ytd-rich-grid-slim-media a#thumbnail',
-            'ytd-grid-video-renderer a#thumbnail',
-            'ytd-video-renderer a#thumbnail',
-            'ytd-compact-video-renderer a#thumbnail'
+        const cardSelectors = [
+            'yt-lockup-view-model',
+            'ytd-rich-item-renderer',
+            'ytd-grid-video-renderer',
+            'ytd-video-renderer',
+            'ytd-compact-video-renderer',
+            'ytd-rich-grid-slim-media',
+            'ytd-reel-item-renderer',
+            'ytm-shorts-lockup-view-model'
         ];
 
         let newCount = 0;
 
-        // Pass 1: New YouTube 2024 lockup model
-        document.querySelectorAll('yt-lockup-view-model').forEach(lockup => {
-            const anchor = pickLockupThumbnailAnchor(lockup);
+        document.querySelectorAll(cardSelectors.join(',')).forEach(card => {
+            const anchor = findVideoAnchor(card);
             if (!anchor) return;
             const url = anchor.href;
             if (!isValidVideoUrl(url)) return;
 
-            if (checkboxMap.has(anchor)) {
-                const checkbox = checkboxMap.get(anchor);
+            if (checkboxMap.has(card)) {
+                const checkbox = checkboxMap.get(card);
                 if (checkbox) {
                     checkbox.dataset.url = cleanUrl(url);
                     applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
-                    updateCheckboxPosition(anchor, checkbox);
+                    updateCheckboxPosition(card, checkbox);
                 }
                 return;
             }
 
-            const checkbox = createCheckbox(anchor, url);
+            const checkbox = createCheckbox(card, url);
             if (checkbox) newCount++;
-        });
-
-        selectors.forEach(selector => {
-            const anchors = document.querySelectorAll(selector);
-
-            anchors.forEach(anchor => {
-                if (anchor.closest('yt-lockup-view-model')) return;
-                const url = anchor.href;
-                if (!isValidVideoUrl(url)) return;
-
-                if (checkboxMap.has(anchor)) {
-                    // Just update position for existing
-                    const checkbox = checkboxMap.get(anchor);
-                    if (checkbox) {
-                        checkbox.dataset.url = cleanUrl(url);
-                        applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
-                        updateCheckboxPosition(anchor, checkbox);
-                    }
-                    return;
-                }
-
-                const checkbox = createCheckbox(anchor, url);
-                if (checkbox) newCount++;
-            });
         });
 
         if (newCount > 0) {
