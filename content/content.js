@@ -73,18 +73,14 @@
         }
     }
 
-    function getCardElement(anchor) {
-        if (!anchor) return null;
-        return anchor.closest(
-            'yt-lockup-view-model,' +
-            'ytd-rich-item-renderer,' +
-            'ytd-grid-video-renderer,' +
-            'ytd-video-renderer,' +
-            'ytd-compact-video-renderer,' +
-            'ytd-rich-grid-slim-media,' +
-            'ytd-reel-item-renderer,' +
-            'ytm-shorts-lockup-view-model'
-        );
+    function pickLockupThumbnailAnchor(lockup) {
+        if (!lockup) return null;
+        const preferred =
+            lockup.querySelector('a#thumbnail') ||
+            Array.from(lockup.querySelectorAll('a[href]')).find(a =>
+                a.querySelector('ytd-thumbnail, yt-image, img')
+            );
+        return preferred || null;
     }
 
     // ================== CHECKBOX CREATION ==================
@@ -228,30 +224,12 @@
 
         // Pass 1: New YouTube 2024 lockup model
         document.querySelectorAll('yt-lockup-view-model').forEach(lockup => {
-            const candidateAnchors = Array.from(lockup.querySelectorAll('a[href]'))
-                .filter(a => isValidVideoUrl(a.href));
-            if (candidateAnchors.length === 0) return;
-
-            let anchor = null;
-            let bestArea = 0;
-            candidateAnchors.forEach(a => {
-                const target =
-                    a.querySelector('ytd-thumbnail') ||
-                    a.querySelector('yt-image') ||
-                    a.querySelector('img') ||
-                    a;
-                const rect = target.getBoundingClientRect();
-                const area = rect.width * rect.height;
-                if (area > bestArea) {
-                    bestArea = area;
-                    anchor = a;
-                }
-            });
-
+            const anchor = pickLockupThumbnailAnchor(lockup);
             if (!anchor) return;
             const url = anchor.href;
+            if (!isValidVideoUrl(url)) return;
 
-            const positioningElement = lockup;
+            const positioningElement = anchor;
             if (processedThumbnails.has(positioningElement)) {
                 const checkbox = checkboxMap.get(positioningElement);
                 if (checkbox) {
@@ -273,10 +251,7 @@
                 const url = anchor.href;
                 if (!isValidVideoUrl(url)) return;
 
-                const cardElement = getCardElement(anchor);
-                const positioningElement = cardElement || anchor;
-
-                if (!positioningElement) return;
+                const positioningElement = anchor;
 
                 // Skip already processed
                 if (processedThumbnails.has(positioningElement)) {
@@ -295,7 +270,8 @@
         });
 
         if (newCount > 0) {
-            console.log('YT Helper: Created', newCount, 'new checkboxes. Total:', reverseMap.size);
+            const total = document.querySelectorAll('.yt-notebook-checkbox').length;
+            console.log('YT Helper: Created', newCount, 'new checkboxes. Total:', total);
         }
     }
 
@@ -390,6 +366,9 @@
             subtree: true
         });
 
+        // Periodic scan to catch virtualized updates where nodes are reused
+        const periodicScan = setInterval(scanForVideos, 1500);
+
         // Initial scan
         scanForVideos();
 
@@ -401,6 +380,7 @@
         window.__ytNotebookHelperState = {
             cleanup() {
                 observer.disconnect();
+                clearInterval(periodicScan);
                 document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => cb.remove());
             }
         };
