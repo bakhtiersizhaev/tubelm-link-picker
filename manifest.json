@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Notebook LLM Helper",
+  "name": "URLTube",
   "version": "1.1",
-  "description": "Select and copy YouTube video URLs for NotebookLM.",
+  "description": "Collect YouTube video and Shorts links in one click for NotebookLM or notes.",
   "permissions": [
     "activeTab",
     "scripting",
