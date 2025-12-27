@@ -35,7 +35,8 @@
 
     // ================== STATE ==================
     const selectedUrls = new Set();
-    const checkboxMap = new WeakMap(); // thumbnail element -> checkbox element
+    const checkboxMap = new WeakMap(); // mount element -> checkbox element
+    const anchorMap = new WeakMap(); // mount element -> anchor element
     const processedThumbnails = new WeakSet();
 
     // Visual system (shared by inline styles + optional CSS)
@@ -97,28 +98,32 @@
         return preferred || null;
     }
 
+    function getCardElement(anchor) {
+        if (!anchor) return null;
+        return anchor.closest(
+            'yt-lockup-view-model,' +
+            'ytd-rich-item-renderer,' +
+            'ytd-grid-video-renderer,' +
+            'ytd-video-renderer,' +
+            'ytd-compact-video-renderer,' +
+            'ytd-rich-grid-slim-media,' +
+            'ytd-reel-item-renderer,' +
+            'ytm-shorts-lockup-view-model'
+        );
+    }
+
     function getMountElementFromAnchor(anchor) {
         if (!anchor) return null;
-
-        const thumbnail = anchor.closest('ytd-thumbnail') || anchor.querySelector('ytd-thumbnail');
-        if (thumbnail) return thumbnail;
-
-        const lockup = anchor.closest('yt-lockup-view-model');
-        if (lockup) {
-            const lockupThumb = lockup.querySelector('ytd-thumbnail');
-            if (lockupThumb) return lockupThumb;
-            return lockup;
-        }
-
-        return anchor;
+        // Mount on the card container to survive thumbnail hover re-renders.
+        return getCardElement(anchor) || anchor;
     }
 
     // ================== CHECKBOX CREATION ==================
 
-    function createCheckbox(thumbnailElement, videoUrl) {
+    function createCheckbox(mountElement, videoUrl, anchorElement) {
         // Skip if already processed
-        if (processedThumbnails.has(thumbnailElement)) return null;
-        processedThumbnails.add(thumbnailElement);
+        if (processedThumbnails.has(mountElement)) return null;
+        processedThumbnails.add(mountElement);
 
         const finalUrl = cleanUrl(videoUrl);
 
@@ -199,34 +204,55 @@
         }, true);
 
         // Store reference for updates
-        checkboxMap.set(thumbnailElement, checkbox);
+        checkboxMap.set(mountElement, checkbox);
+        anchorMap.set(mountElement, anchorElement || mountElement);
 
         // Ensure container is a positioning context
-        const computed = window.getComputedStyle(thumbnailElement);
+        const computed = window.getComputedStyle(mountElement);
         if (computed.position === 'static') {
-            thumbnailElement.style.position = 'relative';
+            mountElement.style.position = 'relative';
         }
 
-        // Append inside the thumbnail to avoid floating on virtualized scroll
-        thumbnailElement.appendChild(checkbox);
+        // Append inside the mount element to avoid floating on virtualized scroll
+        mountElement.appendChild(checkbox);
+
+        // Initial positioning relative to anchor
+        updateCheckboxPosition(mountElement, checkbox);
 
         return checkbox;
     }
 
     // ================== POSITIONING ==================
 
-    function updateCheckboxPosition(thumbnailElement, checkbox) {
-        // If the thumbnail was removed from DOM, clean up the checkbox to avoid ghosts
-        if (!document.body.contains(thumbnailElement)) {
-            checkboxMap.delete(thumbnailElement);
+    function updateCheckboxPosition(mountElement, checkbox, anchorElement) {
+        // If the mount was removed from DOM, clean up the checkbox to avoid ghosts
+        if (!document.body.contains(mountElement)) {
+            checkboxMap.delete(mountElement);
+            anchorMap.delete(mountElement);
             checkbox.remove();
             return;
         }
 
+        if (anchorElement) {
+            anchorMap.set(mountElement, anchorElement);
+        }
+
         // Ensure the parent is a positioning context
-        const computed = window.getComputedStyle(thumbnailElement);
+        const computed = window.getComputedStyle(mountElement);
         if (computed.position === 'static') {
-            thumbnailElement.style.position = 'relative';
+            mountElement.style.position = 'relative';
+        }
+
+        const anchor = anchorMap.get(mountElement);
+        if (anchor && anchor !== mountElement && document.body.contains(anchor)) {
+            const mountRect = mountElement.getBoundingClientRect();
+            const anchorRect = anchor.getBoundingClientRect();
+            if (mountRect.width > 0 && mountRect.height > 0 && anchorRect.width > 0 && anchorRect.height > 0) {
+                const top = anchorRect.top - mountRect.top + 8;
+                const left = anchorRect.left - mountRect.left + 8;
+                checkbox.style.top = `${top}px`;
+                checkbox.style.left = `${left}px`;
+            }
         }
 
         checkbox.style.display = 'flex';
@@ -261,12 +287,12 @@
                 if (checkbox) {
                     checkbox.dataset.url = cleanUrl(url);
                     applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
-                    updateCheckboxPosition(positioningElement, checkbox);
+                    updateCheckboxPosition(positioningElement, checkbox, anchor);
                 }
                 return;
             }
 
-            const checkbox = createCheckbox(positioningElement, url);
+            const checkbox = createCheckbox(positioningElement, url, anchor);
             if (checkbox) newCount++;
         });
 
@@ -288,12 +314,12 @@
                     if (checkbox) {
                         checkbox.dataset.url = cleanUrl(url);
                         applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
-                        updateCheckboxPosition(positioningElement, checkbox);
+                        updateCheckboxPosition(positioningElement, checkbox, anchor);
                     }
                     return;
                 }
 
-                const checkbox = createCheckbox(positioningElement, url);
+                const checkbox = createCheckbox(positioningElement, url, anchor);
                 if (checkbox) newCount++;
             });
         });
