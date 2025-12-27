@@ -1,6 +1,6 @@
 .yt-notebook-checkbox {
     position: absolute;
-    z-index: 10;
+    z-index: 999;
     top: 8px;
     left: 8px;
     width: 26px;

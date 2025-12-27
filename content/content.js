@@ -73,6 +73,20 @@
         }
     }
 
+    function applyCheckboxVisualState(checkbox, isSelected) {
+        if (!checkbox) return;
+        checkbox.style.background = isSelected ? ACCENT : BASE_BG;
+        checkbox.style.borderColor = isSelected ? ACCENT : BORDER_IDLE;
+        checkbox.style.boxShadow = isSelected
+            ? '0 10px 24px rgba(125, 248, 198, 0.3)'
+            : '0 8px 18px rgba(0, 0, 0, 0.35)';
+        const checkmark = checkbox.querySelector('svg');
+        if (checkmark) {
+            checkmark.style.stroke = isSelected ? '#06121f' : '#ffffff';
+            checkmark.style.display = isSelected ? 'block' : 'none';
+        }
+    }
+
     function pickLockupThumbnailAnchor(lockup) {
         if (!lockup) return null;
         const preferred =
@@ -81,6 +95,22 @@
                 a.querySelector('ytd-thumbnail, yt-image, img')
             );
         return preferred || null;
+    }
+
+    function getMountElementFromAnchor(anchor) {
+        if (!anchor) return null;
+
+        const thumbnail = anchor.closest('ytd-thumbnail') || anchor.querySelector('ytd-thumbnail');
+        if (thumbnail) return thumbnail;
+
+        const lockup = anchor.closest('yt-lockup-view-model');
+        if (lockup) {
+            const lockupThumb = lockup.querySelector('ytd-thumbnail');
+            if (lockupThumb) return lockupThumb;
+            return lockup;
+        }
+
+        return anchor;
     }
 
     // ================== CHECKBOX CREATION ==================
@@ -101,7 +131,7 @@
         // This completely bypasses YouTube's overflow:hidden
         checkbox.style.cssText = `
             position: absolute;
-            z-index: 10;
+            z-index: 999;
             top: 8px;
             left: 8px;
             width: 26px;
@@ -128,18 +158,12 @@
             </svg>
         `;
 
-        const checkmark = checkbox.querySelector('svg');
+        const getCurrentUrl = () => checkbox.dataset.url || finalUrl;
 
         // State management
         const updateVisualState = () => {
-            const isSelected = selectedUrls.has(finalUrl);
-            checkbox.style.background = isSelected ? ACCENT : BASE_BG;
-            checkbox.style.borderColor = isSelected ? ACCENT : BORDER_IDLE;
-            checkbox.style.boxShadow = isSelected
-                ? '0 10px 24px rgba(125, 248, 198, 0.3)'
-                : '0 8px 18px rgba(0, 0, 0, 0.35)';
-            checkmark.style.stroke = isSelected ? '#06121f' : '#ffffff';
-            checkmark.style.display = isSelected ? 'block' : 'none';
+            const isSelected = selectedUrls.has(getCurrentUrl());
+            applyCheckboxVisualState(checkbox, isSelected);
         };
 
         // Initialize state
@@ -148,8 +172,8 @@
         // Hover effects
         checkbox.addEventListener('mouseenter', () => {
             checkbox.style.transform = 'translateY(-1px) scale(1.05)';
-            checkbox.style.background = selectedUrls.has(finalUrl) ? ACCENT_HOVER : 'rgba(125, 248, 198, 0.25)';
-            checkbox.style.borderColor = selectedUrls.has(finalUrl) ? ACCENT_HOVER : ACCENT;
+            checkbox.style.background = selectedUrls.has(getCurrentUrl()) ? ACCENT_HOVER : 'rgba(125, 248, 198, 0.25)';
+            checkbox.style.borderColor = selectedUrls.has(getCurrentUrl()) ? ACCENT_HOVER : ACCENT;
             checkbox.style.boxShadow = '0 12px 26px rgba(125, 248, 198, 0.24)';
         });
 
@@ -164,13 +188,14 @@
             e.stopPropagation();
             e.stopImmediatePropagation();
 
-            if (selectedUrls.has(finalUrl)) {
-                selectedUrls.delete(finalUrl);
+            const currentUrl = getCurrentUrl();
+            if (selectedUrls.has(currentUrl)) {
+                selectedUrls.delete(currentUrl);
             } else {
-                selectedUrls.add(finalUrl);
+                selectedUrls.add(currentUrl);
             }
             updateVisualState();
-            console.log('YT Helper: Selection toggled', finalUrl, 'Total:', selectedUrls.size);
+            console.log('YT Helper: Selection toggled', currentUrl, 'Total:', selectedUrls.size);
         }, true);
 
         // Store reference for updates
@@ -229,11 +254,13 @@
             const url = anchor.href;
             if (!isValidVideoUrl(url)) return;
 
-            const positioningElement = anchor;
+            const positioningElement = getMountElementFromAnchor(anchor);
+            if (!positioningElement) return;
             if (processedThumbnails.has(positioningElement)) {
                 const checkbox = checkboxMap.get(positioningElement);
                 if (checkbox) {
                     checkbox.dataset.url = cleanUrl(url);
+                    applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
                     updateCheckboxPosition(positioningElement, checkbox);
                 }
                 return;
@@ -251,7 +278,8 @@
                 const url = anchor.href;
                 if (!isValidVideoUrl(url)) return;
 
-                const positioningElement = anchor;
+                const positioningElement = getMountElementFromAnchor(anchor);
+                if (!positioningElement) return;
 
                 // Skip already processed
                 if (processedThumbnails.has(positioningElement)) {
@@ -259,6 +287,7 @@
                     const checkbox = checkboxMap.get(positioningElement);
                     if (checkbox) {
                         checkbox.dataset.url = cleanUrl(url);
+                        applyCheckboxVisualState(checkbox, selectedUrls.has(checkbox.dataset.url));
                         updateCheckboxPosition(positioningElement, checkbox);
                     }
                     return;
