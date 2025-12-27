@@ -50,7 +50,7 @@
     overlayRoot.style.cssText = `
         position: fixed;
         inset: 0;
-        z-index: 2147483647;
+        z-index: 1500;
         pointer-events: none;
     `;
 
@@ -221,12 +221,7 @@
             return;
         }
 
-        const anchor = findVideoAnchor(cardElement);
-        if (!anchor) {
-            return; // keep last position if anchor temporarily disappears
-        }
-
-        const rect = anchor.getBoundingClientRect();
+        const rect = cardElement.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) {
             checkbox.style.display = 'none';
             return;
@@ -261,6 +256,8 @@
             'ytd-compact-video-renderer',
             'ytd-rich-grid-slim-media',
             'ytd-reel-item-renderer',
+            'ytd-reel-video-renderer',
+            'ytd-shorts',
             'ytm-shorts-lockup-view-model'
         ];
 
