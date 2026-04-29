@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URLTube</title>
+  <meta name="description" content="TubeLM Link Picker copies selected YouTube video and Shorts URLs for NotebookLM, AI notes, and research workflows.">
+  <title>TubeLM Link Picker - YouTube links for NotebookLM</title>
+  <link rel="icon" href="../docs/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="popup.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="frame">
+  <main class="frame" aria-labelledby="appTitle">
     <header class="top">
       <div class="brand">
-        <div class="logo">URL</div>
+        <div class="logo" aria-hidden="true">TL</div>
         <div>
-          <p class="name">URLTube</p>
-          <p class="tag">YouTube link collector</p>
+          <h1 class="name" id="appTitle">TubeLM</h1>
+          <p class="tag">YouTube links for NotebookLM</p>
         </div>
       </div>
       <span class="status" id="tabStatus" aria-live="polite">Checking tab…</span>
@@ -30,18 +29,18 @@
       <p class="note" id="statNote">Select videos to build a clean list.</p>
     </section>
 
-    <button id="copySelectedBtn" class="btn primary" disabled>
+    <button id="copySelectedBtn" class="btn primary" type="button" disabled>
       <span class="btn-label" id="copyLabel">Copy selection</span>
       <span class="btn-hint" id="copyHint">Newline list for NotebookLM</span>
     </button>
 
     <div class="actions">
-      <button id="selectAllBtn" class="btn ghost">Select visible</button>
-      <button id="clearBtn" class="btn ghost subtle">Clear</button>
+      <button id="selectAllBtn" class="btn ghost" type="button">Select visible</button>
+      <button id="clearBtn" class="btn ghost subtle" type="button">Clear</button>
     </div>
 
-    <p class="footer">Tip: hover a thumbnail to reveal its checkbox.</p>
-  </div>
+    <p class="footer">Built for channel pages, playlists, search results, and Shorts grids.</p>
+  </main>
   <script src="popup.js"></script>
 </body>
 </html>

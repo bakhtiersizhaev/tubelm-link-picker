@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TubeLM Link Picker - Batch Copy YouTube Links for NotebookLM</title>
+  <meta name="description" content="TubeLM Link Picker is a Chrome extension that lets you select YouTube videos and Shorts, copy clean URLs in bulk, and paste them into NotebookLM or AI research notes.">
+  <meta name="keywords" content="NotebookLM, YouTube, Chrome extension, YouTube links, batch copy URLs, YouTube Shorts, AI notes, research workflow, LLM tools">
+  <meta name="author" content="Bakhtier Sizhaev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bakhtiersizhaev.github.io/urltube/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bakhtiersizhaev.github.io/urltube/">
+  <meta property="og:title" content="TubeLM Link Picker - YouTube Links for NotebookLM">
+  <meta property="og:description" content="Batch-select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM or any AI research notebook.">
+  <meta property="og:image" content="https://bakhtiersizhaev.github.io/urltube/assets/tubelm-github-banner.svg">
+  <meta property="og:image:alt" content="TubeLM Link Picker product banner">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TubeLM Link Picker - YouTube Links for NotebookLM">
+  <meta name="twitter:description" content="Select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM, AI notes, or research notebooks.">
+  <meta name="twitter:image" content="https://bakhtiersizhaev.github.io/urltube/assets/tubelm-github-banner.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TubeLM Link Picker",
+    "description": "Chrome extension for selecting YouTube videos and Shorts, copying clean URLs in bulk, and pasting them into NotebookLM or AI research notes.",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Chrome, Chromium, Edge, Brave",
+    "url": "https://github.com/bakhtiersizhaev/urltube",
+    "codeRepository": "https://github.com/bakhtiersizhaev/urltube",
+    "isAccessibleForFree": true,
+    "keywords": [
+      "NotebookLM",
+      "YouTube",
+      "Chrome extension",
+      "YouTube links",
+      "batch copy URLs",
+      "AI notes",
+      "research workflow"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Bakhtier Sizhaev"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --ink: #121417;
+      --paper: #f4f6f8;
+      --muted: #65717e;
+      --line: rgba(18, 20, 23, 0.12);
+      --accent: #10b981;
+      --youtube: #ff0033;
+      --card: #ffffff;
+      color-scheme: light;
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: inset 0 -4px 0 var(--youtube);
+      font-size: 13px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 48px;
+      align-items: center;
+      padding: 76px 0 56px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 680px;
+      font-size: clamp(44px, 5.8vw, 78px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 24px 0 0;
+      max-width: 680px;
+      color: #39424e;
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.45;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(30, 39, 50, 0.15);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--youtube);
+      box-shadow: 16px 0 0 #ffbe0b, 32px 0 0 var(--accent);
+    }
+
+    .video-list {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .video-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background: #fff;
+      padding: 14px;
+    }
+
+    .thumb {
+      height: 44px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #1a1d22, #303844);
+      position: relative;
+    }
+
+    .thumb::after {
+      content: "";
+      position: absolute;
+      left: 27px;
+      top: 13px;
+      border-left: 17px solid #fff;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+    }
+
+    .row-title {
+      height: 12px;
+      width: min(100%, 260px);
+      background: #20252c;
+      border-radius: 999px;
+      margin-bottom: 9px;
+    }
+
+    .row-meta {
+      height: 9px;
+      width: 54%;
+      background: #cbd2dc;
+      border-radius: 999px;
+    }
+
+    .check {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      border: 2px solid var(--accent);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .copy {
+      padding: 18px;
+      background: #121417;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-weight: 800;
+    }
+
+    .copy span {
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin: 0 0 72px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    section {
+      background: #fff;
+      padding: 28px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    footer {
+      padding: 28px 0 48px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 820px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 48px;
+      }
+
+      .sections {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <a class="brand" href="https://github.com/bakhtiersizhaev/urltube" aria-label="TubeLM Link Picker on GitHub">
+      <span class="mark" aria-hidden="true">TL</span>
+      <span>TubeLM</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/bakhtiersizhaev/urltube">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Chrome extension for NotebookLM research</p>
+        <h1 id="hero-title">YouTube links for NotebookLM.</h1>
+        <p class="lede">Select videos and Shorts directly on YouTube, copy clean URLs in bulk, and paste a source-ready list into NotebookLM, AI notes, or your research archive.</p>
+        <div class="actions" aria-label="Project links">
+          <a class="button primary" href="https://github.com/bakhtiersizhaev/urltube">View on GitHub</a>
+          <a class="button" href="#install">Install unpacked</a>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="TubeLM popup preview">
+        <div class="panel-head">
+          <span>TubeLM Link Picker</span>
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <div class="video-list">
+          <div class="video-row">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <div class="row-title"></div>
+              <div class="row-meta"></div>
+            </div>
+            <div class="check" aria-hidden="true">&#10003;</div>
+          </div>
+          <div class="video-row">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <div class="row-title"></div>
+              <div class="row-meta"></div>
+            </div>
+            <div class="check" aria-hidden="true">&#10003;</div>
+          </div>
+          <div class="video-row">
+            <div class="thumb" aria-hidden="true"></div>
+            <div>
+              <div class="row-title"></div>
+              <div class="row-meta"></div>
+            </div>
+            <div class="check" aria-hidden="true">&#10003;</div>
+          </div>
+        </div>
+        <div class="copy">
+          <strong>Copy 18 URLs</strong>
+          <span>newline list</span>
+        </div>
+      </aside>
+    </section>
+
+    <div class="sections" id="features">
+      <section>
+        <h2>Pick</h2>
+        <p>Checkboxes appear on YouTube thumbnails, including videos, Shorts, playlists, channel grids, search results, and feeds.</p>
+      </section>
+      <section>
+        <h2>Clean</h2>
+        <p>TubeLM strips noisy URL parts and copies canonical YouTube watch and Shorts links that are easy to paste into NotebookLM.</p>
+      </section>
+      <section id="install">
+        <h2>Install</h2>
+        <p>Clone the repository, open <code>chrome://extensions</code>, enable Developer mode, and load the project folder as an unpacked extension.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="shell">
+    Independent open-source project. Not affiliated with Google, YouTube, or NotebookLM.
+  </footer>
+</body>
+</html>

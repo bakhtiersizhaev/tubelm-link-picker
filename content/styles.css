@@ -1,10 +1,11 @@
-.yt-notebook-checkbox {
+.tubelm-checkbox {
     position: absolute;
     z-index: 999;
     top: 8px;
     left: 8px;
     width: 26px;
     height: 26px;
+    padding: 0;
     background: rgba(5, 12, 22, 0.86);
     border: 2px solid rgba(255, 255, 255, 0.55);
     border-radius: 8px;
@@ -16,15 +17,16 @@
     cursor: pointer;
     pointer-events: auto;
     transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+    appearance: none;
 }
 
-.yt-notebook-checkbox:hover {
+.tubelm-checkbox:hover {
     transform: translateY(-1px) scale(1.05);
     background: rgba(125, 248, 198, 0.25);
     border-color: #7df8c6;
     box-shadow: 0 12px 26px rgba(125, 248, 198, 0.24);
 }
 
-.yt-notebook-checkbox svg {
+.tubelm-checkbox svg {
     pointer-events: none;
 }

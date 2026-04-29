@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statNote = document.getElementById('statNote');
     const copyLabel = document.getElementById('copyLabel');
     const copyHint = document.getElementById('copyHint');
+    const hasExtensionApi = typeof chrome !== 'undefined' && chrome.tabs && chrome.runtime;
 
     // Helper to query active tab
     async function getActiveTab() {
@@ -69,11 +70,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (reason === 'not_youtube') {
             tabStatus.textContent = 'Open a YouTube tab';
-            statNote.textContent = 'Head to youtube.com, then reopen this popup to start selecting.';
+            statNote.textContent = 'Open youtube.com, then use TubeLM to pick videos from the page.';
         } else {
-            tabStatus.textContent = 'Helper can’t reach this tab';
+            tabStatus.textContent = 'TubeLM cannot reach this tab';
             statNote.textContent = 'Reload the tab or try again on a standard YouTube page.';
         }
+    }
+
+    function setPreviewState() {
+        tabStatus.dataset.intent = 'error';
+        tabStatus.textContent = 'Load as extension';
+        copySelectedBtn.disabled = true;
+        selectAllBtn.disabled = true;
+        clearBtn.disabled = true;
+        statCount.textContent = '0';
+        statNote.textContent = 'Install TubeLM from chrome://extensions to use it on YouTube.';
     }
 
     // Update UI based on selection status
@@ -89,19 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const count = response.count;
 
             tabStatus.dataset.intent = 'ok';
-            tabStatus.textContent = 'Watching this YouTube tab';
+            tabStatus.textContent = 'Ready on YouTube';
             selectAllBtn.disabled = false;
             clearBtn.disabled = false;
             copySelectedBtn.disabled = count === 0;
 
             statCount.textContent = count;
             statNote.textContent = count === 0
-                ? 'Use on-video checkboxes or “Select visible” to add items.'
-                : 'Ready to copy. Clean watch/shorts URLs only.';
+                ? 'Use on-video checkboxes or “Select visible” to add links.'
+                : 'Ready to copy clean watch and Shorts URLs.';
 
             copyLabel.textContent = count > 0 ? `Copy ${count} ${count === 1 ? 'URL' : 'URLs'}` : 'Copy selection';
-            copyHint.textContent = count > 5 ? 'Creates a newline list for NotebookLM' : 'Copies clean YouTube links';
+            copyHint.textContent = count > 5 ? 'Newline list for NotebookLM import' : 'Clean YouTube links';
         }
+    }
+
+    if (!hasExtensionApi) {
+        setPreviewState();
+        return;
     }
 
     // 1. Copy Action

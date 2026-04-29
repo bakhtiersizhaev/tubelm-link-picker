@@ -1,5 +1,5 @@
 /**
- * YouTube Notebook LLM Helper - Content Script
+ * TubeLM Link Picker - Content Script
  * Adds selection checkboxes to YouTube video thumbnails
  * 
  * Key learnings from research:
@@ -10,30 +10,30 @@
 (function () {
     'use strict';
 
-    const SCRIPT_VERSION = 'v7';
-    if (window.__ytNotebookHelperVersion === SCRIPT_VERSION) {
-        console.log('YT Notebook Helper: already active, skipping duplicate load');
+    const SCRIPT_VERSION = 'v8';
+    if (window.__tubeLmLinkPickerVersion === SCRIPT_VERSION) {
+        console.log('TubeLM Link Picker: already active, skipping duplicate load');
         return;
     }
 
     // Try to clean up a previous instance if it exposed a cleanup hook
-    if (window.__ytNotebookHelperState?.cleanup) {
+    if (window.__tubeLmLinkPickerState?.cleanup) {
         try {
-            window.__ytNotebookHelperState.cleanup();
+            window.__tubeLmLinkPickerState.cleanup();
         } catch {
             // Ignore cleanup errors from older versions
         }
     }
 
-    window.__ytNotebookHelperVersion = SCRIPT_VERSION;
+    window.__tubeLmLinkPickerVersion = SCRIPT_VERSION;
 
     // Clean up any stale checkboxes/overlays from a previous inject
-    document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => cb.remove());
-    const existingOverlay = document.getElementById('yt-notebook-overlay');
-    if (existingOverlay) existingOverlay.remove();
+    document.querySelectorAll('.tubelm-checkbox, .yt-notebook-checkbox').forEach(cb => cb.remove());
+    document.getElementById('tubelm-overlay')?.remove();
+    document.getElementById('yt-notebook-overlay')?.remove();
 
-    console.log('%c YT Notebook Helper: Content script loaded (v4) ',
-        'background: #3ea6ff; color: black; font-size: 14px; padding: 4px;');
+    console.log('%c TubeLM Link Picker: Content script loaded (v8) ',
+        'background: #10b981; color: black; font-size: 14px; padding: 4px;');
 
     // ================== STATE ==================
     const selectedUrls = new Set();
@@ -46,7 +46,7 @@
     const BASE_BG = 'rgba(5, 12, 22, 0.86)';
     const BORDER_IDLE = 'rgba(255, 255, 255, 0.55)';
 
-    overlayRoot.id = 'yt-notebook-overlay';
+    overlayRoot.id = 'tubelm-overlay';
     overlayRoot.style.cssText = `
         position: fixed;
         inset: 0;
@@ -87,6 +87,11 @@
         if (!checkbox) return;
         checkbox.style.background = isSelected ? ACCENT : BASE_BG;
         checkbox.style.borderColor = isSelected ? ACCENT : BORDER_IDLE;
+        checkbox.setAttribute('aria-pressed', String(isSelected));
+        checkbox.setAttribute(
+            'aria-label',
+            isSelected ? 'Remove YouTube URL from TubeLM selection' : 'Add YouTube URL to TubeLM selection'
+        );
         checkbox.style.boxShadow = isSelected
             ? '0 10px 24px rgba(125, 248, 198, 0.3)'
             : '0 8px 18px rgba(0, 0, 0, 0.35)';
@@ -124,8 +129,9 @@
         const finalUrl = cleanUrl(videoUrl);
 
         // Create checkbox container
-        const checkbox = document.createElement('div');
-        checkbox.className = 'yt-notebook-checkbox';
+        const checkbox = document.createElement('button');
+        checkbox.type = 'button';
+        checkbox.className = 'tubelm-checkbox';
         checkbox.dataset.url = finalUrl;
 
         // CRITICAL: Use position:fixed and append to BODY
@@ -137,6 +143,7 @@
             left: 8px;
             width: 26px;
             height: 26px;
+            padding: 0;
             background: ${BASE_BG};
             border: 2px solid ${BORDER_IDLE};
             border-radius: 8px;
@@ -148,6 +155,7 @@
             justify-content: center;
             transition: transform 0.15s ease, background 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
             pointer-events: auto;
+            appearance: none;
         `;
 
         // Checkmark SVG
@@ -196,7 +204,7 @@
                 selectedUrls.add(currentUrl);
             }
             updateVisualState();
-            console.log('YT Helper: Selection toggled', currentUrl, 'Total:', selectedUrls.size);
+            console.log('TubeLM: Selection toggled', currentUrl, 'Total:', selectedUrls.size);
         }, true);
 
         // Store reference for updates
@@ -284,8 +292,8 @@
         });
 
         if (newCount > 0) {
-            const total = document.querySelectorAll('.yt-notebook-checkbox').length;
-            console.log('YT Helper: Created', newCount, 'new checkboxes. Total:', total);
+            const total = document.querySelectorAll('.tubelm-checkbox').length;
+            console.log('TubeLM: Created', newCount, 'new checkboxes. Total:', total);
         }
     }
 
@@ -314,7 +322,7 @@
     // ================== MESSAGING ==================
 
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        console.log('YT Helper: Message received:', request.action);
+        console.log('TubeLM: Message received:', request.action);
 
         try {
             switch (request.action) {
@@ -328,9 +336,11 @@
 
                 case 'clearSelection':
                     selectedUrls.clear();
-                    document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => {
+                    document.querySelectorAll('.tubelm-checkbox').forEach(cb => {
                         cb.style.background = BASE_BG;
                         cb.style.borderColor = BORDER_IDLE;
+                        cb.setAttribute('aria-pressed', 'false');
+                        cb.setAttribute('aria-label', 'Add YouTube URL to TubeLM selection');
                         cb.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.35)';
                         const svg = cb.querySelector('svg');
                         if (svg) {
@@ -343,12 +353,14 @@
 
                 case 'selectAllVisible':
                     scanForVideos();
-                    document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => {
+                    document.querySelectorAll('.tubelm-checkbox').forEach(cb => {
                         const url = cb.dataset.url;
                         if (url && cb.style.display !== 'none') {
                             selectedUrls.add(url);
                             cb.style.background = ACCENT;
                             cb.style.borderColor = ACCENT;
+                            cb.setAttribute('aria-pressed', 'true');
+                            cb.setAttribute('aria-label', 'Remove YouTube URL from TubeLM selection');
                             cb.style.boxShadow = '0 10px 24px rgba(125, 248, 198, 0.3)';
                             const svg = cb.querySelector('svg');
                             if (svg) {
@@ -364,7 +376,7 @@
                     sendResponse({ error: 'Unknown action' });
             }
         } catch (error) {
-            console.error('YT Helper: Error:', error);
+            console.error('TubeLM: Error:', error);
             sendResponse({ error: error.message });
         }
 
@@ -401,17 +413,17 @@
         setTimeout(scanForVideos, 3000);
         setTimeout(scanForVideos, 5000);
 
-        window.__ytNotebookHelperState = {
+        window.__tubeLmLinkPickerState = {
             cleanup() {
                 observer.disconnect();
                 clearInterval(periodicScan);
                 if (positionRaf) cancelAnimationFrame(positionRaf);
                 overlayRoot.remove();
-                document.querySelectorAll('.yt-notebook-checkbox').forEach(cb => cb.remove());
+                document.querySelectorAll('.tubelm-checkbox').forEach(cb => cb.remove());
             }
         };
 
-        console.log('YT Helper: Initialized successfully');
+        console.log('TubeLM: Initialized successfully');
     }
 
     // Start when DOM is ready

@@ -1,87 +1,115 @@
-# URLTube
+<p align="center">
+  <img src="docs/assets/tubelm-github-banner.svg" alt="TubeLM Link Picker - batch copy YouTube URLs for NotebookLM" width="100%">
+</p>
 
-Collect YouTube video and Shorts links in one click, then paste them into NotebookLM, notes, or any research workflow. URLTube is a lightweight Chrome extension for fast multi‑select and clean URL copy.
+<h1 align="center">TubeLM Link Picker</h1>
 
-## English
+<p align="center">
+  <strong>Batch-select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM or any AI research notebook.</strong>
+</p>
 
-**What it does**
-URLTube lets you select multiple YouTube videos/Shorts directly on the page and copy a clean, newline-separated list of URLs to your clipboard. It is built for NotebookLM, research notes, study workflows, and LLM knowledge capture.
+<p align="center">
+  <a href="https://bakhtiersizhaev.github.io/urltube/">GitHub Pages</a>
+  |
+  <a href="https://notebooklm.google.com/">NotebookLM</a>
+  |
+  <a href="#install">Install</a>
+  |
+  <a href="#privacy">Privacy</a>
+</p>
 
-**Install (Chrome)**
+## What It Is
+
+TubeLM Link Picker is a lightweight Chrome extension for collecting YouTube links in bulk.
+
+Open a YouTube channel, playlist, search results page, feed, or Shorts grid. TubeLM adds clean checkboxes to video thumbnails, lets you select the videos you need, and copies a newline-separated list of canonical YouTube URLs to your clipboard.
+
+The main workflow is simple: pick videos on YouTube, copy the links, then paste them into NotebookLM as sources.
+
+## Why It Exists
+
+NotebookLM can work with YouTube sources, but collecting many video URLs by hand is slow. TubeLM removes the repetitive part: no opening each video, no copying one URL at a time, no cleaning tracking parameters before import.
+
+## Features
+
+- Select multiple YouTube videos and Shorts directly on the page.
+- Copy clean `youtube.com/watch?v=...` and `youtube.com/shorts/...` URLs.
+- Use **Select visible** to grab all loaded videos in the current view.
+- Works on channel pages, playlists, search results, home feeds, related videos, and Shorts surfaces.
+- Keeps everything local in your browser. No backend, no account, no analytics.
+- Designed for NotebookLM, LLM notes, research workflows, study plans, content curation, and knowledge bases.
+
+## Install
+
 1. Download or clone this repository.
 2. Open `chrome://extensions`.
-3. Enable **Developer mode** (top right).
-4. Click **Load unpacked** and select the project folder.
-5. Pin URLTube to the toolbar (optional).
+3. Enable **Developer mode**.
+4. Click **Load unpacked**.
+5. Select this project folder.
+6. Open YouTube and pin **TubeLM** if you want faster access.
 
-**Keywords**
-YouTube link collector, batch copy URLs, NotebookLM helper, Chrome extension, research workflow, video links, Shorts links, clipboard copy, LLM notes, knowledge base, study notes, content curation.
+## Usage
 
-**Use**
-1. Open a YouTube page.
-2. Click the checkbox on video thumbnails.
-3. Click “Copy” in the popup to get a clean URL list.
+1. Open a YouTube page with videos.
+2. Use the checkboxes on video thumbnails to select the videos you need.
+3. Open the extension popup.
+4. Click **Copy URLs**.
+5. Paste the newline-separated list into NotebookLM, notes, docs, or another AI workflow.
 
-## 中文
+## Naming
 
-**功能简介**
-URLTube 是一个轻量级 Chrome 扩展，用于在 YouTube 页面上批量选择视频/Shorts，并一键复制干净的 URL 列表。适合 NotebookLM、研究资料整理、学习笔记、LLM 知识收集与内容归档。
+The original working name was **URLTube**. The product name is now **TubeLM Link Picker**:
 
-**安装方法（Chrome）**
-1. 下载或克隆此仓库。
-2. 打开 `chrome://extensions`。
-3. 启用 **开发者模式**。
-4. 点击 **加载已解压的扩展程序**，选择项目文件夹。
-5. 可选：将 URLTube 固定到工具栏。
+- **TubeLM** is short, memorable, and distinct enough to brand.
+- **Link Picker** says what the extension actually does.
+- The README, manifest, page title, and descriptions still include the important search phrases: YouTube links, NotebookLM, Chrome extension, batch copy, Shorts, playlists, channels, and research workflow.
 
-**关键词**
-YouTube 链接收集, 批量复制 URL, NotebookLM 辅助, Chrome 扩展, 研究工作流, 视频链接, Shorts 链接, 剪贴板复制, LLM 笔记, 知识库, 学习笔记, 内容整理.
+## SEO Positioning
 
-**使用方法**
-1. 打开 YouTube 页面。
-2. 点击缩略图上的复选框选择视频。
-3. 打开扩展并复制链接列表。
+Primary phrase:
 
-## Русский
+`YouTube link picker for NotebookLM`
 
-**Описание**
-URLTube — это лёгкое расширение для Chrome, которое позволяет отмечать несколько видео/Shorts на YouTube и копировать чистый список ссылок одним кликом. Идеально для NotebookLM, исследований, конспектов, базы знаний и работы с LLM.
+Secondary phrases:
 
-**Установка (Chrome)**
-1. Скачайте или клонируйте репозиторий.
-2. Откройте `chrome://extensions`.
-3. Включите **Режим разработчика**.
-4. Нажмите **Загрузить распакованное** и выберите папку проекта.
-5. По желанию закрепите URLTube на панели.
+- batch copy YouTube URLs
+- YouTube links for NotebookLM
+- NotebookLM YouTube source helper
+- Chrome extension for YouTube research
+- copy YouTube Shorts links
+- collect YouTube video links
+- AI research notes from YouTube
 
-**Ключевые слова**
-сборщик ссылок YouTube, массовое копирование URL, помощник NotebookLM, расширение Chrome, исследовательский процесс, ссылки на видео, ссылки на Shorts, копирование в буфер, заметки LLM, база знаний, учебные заметки, курирование контента.
+Suggested GitHub topics:
 
-**Как пользоваться**
-1. Откройте страницу YouTube.
-2. Отметьте видео чекбоксами на миниатюрах.
-3. Нажмите “Copy” в попапе, чтобы получить список ссылок.
-
-## Español
-
-**Descripción**
-URLTube es una extensión ligera de Chrome para seleccionar varios videos/Shorts en YouTube y copiar una lista limpia de URLs con un solo clic. Ideal para NotebookLM, investigación, notas de estudio, base de conocimiento y flujos con LLM.
-
-**Instalación (Chrome)**
-1. Descarga o clona este repositorio.
-2. Abre `chrome://extensions`.
-3. Activa el **Modo desarrollador**.
-4. Haz clic en **Cargar descomprimida** y selecciona la carpeta del proyecto.
-5. Opcional: fija URLTube en la barra de herramientas.
-
-**Palabras clave**
-colector de enlaces YouTube, copiar URLs en lote, ayuda NotebookLM, extensión Chrome, flujo de investigación, enlaces de video, enlaces Shorts, copiar al portapapeles, notas LLM, base de conocimiento, notas de estudio, curación de contenido.
-
-**Uso**
-1. Abre una página de YouTube.
-2. Marca los videos con los checkboxes en las miniaturas.
-3. Usa el popup para copiar la lista de enlaces.
+`notebooklm`, `youtube`, `chrome-extension`, `browser-extension`, `youtube-links`, `shorts`, `research-tool`, `ai-notes`, `llm-tools`, `knowledge-base`, `clipboard`, `productivity`
 
 ## Privacy
 
-URLTube runs locally in your browser and does not send data to any server. Clipboard access is used only when you click “Copy”.
+TubeLM runs locally in your browser. It does not send YouTube links, page data, selections, or clipboard contents to any server. Clipboard access is used only when you click the copy button.
+
+## Roadmap
+
+- Optional auto-scroll collection mode for long channel and playlist pages.
+- Export selected links as Markdown, CSV, or plain text.
+- Saved selection sets per tab.
+- Chrome Web Store listing assets and screenshots.
+- Localization files for the extension popup.
+
+## Other Languages
+
+### Русский
+
+TubeLM Link Picker - это расширение Chrome, которое помогает быстро выбрать несколько роликов или Shorts на YouTube, скопировать чистые ссылки и вставить их в NotebookLM. Оно полезно для исследований, конспектов, баз знаний, обучения и работы с LLM.
+
+### 中文
+
+TubeLM Link Picker 是一个轻量级 Chrome 扩展，可在 YouTube 页面上批量选择视频或 Shorts，并复制干净的 URL 列表，方便导入 NotebookLM、AI 笔记和研究工作流。
+
+### Español
+
+TubeLM Link Picker es una extensión ligera de Chrome para seleccionar varios videos o Shorts de YouTube, copiar URLs limpias y pegarlas en NotebookLM, notas de IA o flujos de investigación.
+
+## Disclaimer
+
+TubeLM Link Picker is an independent open-source project. It is not affiliated with Google, YouTube, or NotebookLM.

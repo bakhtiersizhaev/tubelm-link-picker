@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="TubeLM">
+  <rect width="64" height="64" rx="14" fill="#121417"/>
+  <rect y="52" width="64" height="12" fill="#ff0033"/>
+  <path d="M24 23h10a9 9 0 0 1 0 18H24a9 9 0 0 1 0-18Z" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+  <path d="M31 23h9a9 9 0 0 1 0 18h-9a9 9 0 0 1 0-18Z" fill="none" stroke="#7df8c6" stroke-width="5" stroke-linecap="round"/>
+</svg>
