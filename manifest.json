@@ -4,7 +4,7 @@
   "short_name": "TubeLM",
   "version": "1.2",
   "description": "Select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM or AI research notes.",
-  "homepage_url": "https://github.com/bakhtiersizhaev/urltube",
+  "homepage_url": "https://github.com/bakhtiersizhaev/tubelm-link-picker",
   "permissions": [
     "activeTab",
     "scripting",
