@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TubeLM Link Picker - Batch Copy YouTube Links for NotebookLM</title>
-  <meta name="description" content="TubeLM Link Picker is a Chrome extension that lets you select YouTube videos and Shorts, copy clean URLs in bulk, and paste them into NotebookLM or AI research notes.">
-  <meta name="keywords" content="NotebookLM, YouTube, Chrome extension, YouTube links, batch copy URLs, YouTube Shorts, AI notes, research workflow, LLM tools">
+  <meta name="description" content="TubeLM Link Picker is a Chrome extension that lets beginners download, install, and use a YouTube link picker for NotebookLM in English, Russian, Chinese, and Spanish.">
+  <meta name="keywords" content="NotebookLM, YouTube, Chrome extension, YouTube links, batch copy URLs, install unpacked extension, YouTube Shorts, AI notes, research workflow, LLM tools">
   <meta name="author" content="Bakhtier Sizhaev">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bakhtiersizhaev.github.io/urltube/">
@@ -14,13 +14,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bakhtiersizhaev.github.io/urltube/">
   <meta property="og:title" content="TubeLM Link Picker - YouTube Links for NotebookLM">
-  <meta property="og:description" content="Batch-select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM or any AI research notebook.">
+  <meta property="og:description" content="Beginner-friendly multilingual guide: download TubeLM from GitHub, load it in Chrome, pick YouTube videos, and paste clean links into NotebookLM.">
   <meta property="og:image" content="https://bakhtiersizhaev.github.io/urltube/assets/tubelm-github-banner.svg">
   <meta property="og:image:alt" content="TubeLM Link Picker product banner">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TubeLM Link Picker - YouTube Links for NotebookLM">
-  <meta name="twitter:description" content="Select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM, AI notes, or research notebooks.">
+  <meta name="twitter:description" content="Install TubeLM, select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM.">
   <meta name="twitter:image" content="https://bakhtiersizhaev.github.io/urltube/assets/tubelm-github-banner.svg">
 
   <script type="application/ld+json">
@@ -41,7 +41,8 @@
       "YouTube links",
       "batch copy URLs",
       "AI notes",
-      "research workflow"
+      "research workflow",
+      "unpacked extension"
     ],
     "author": {
       "@type": "Person",
@@ -59,12 +60,17 @@
       --accent: #10b981;
       --youtube: #ff0033;
       --card: #ffffff;
+      --soft: #e8edf2;
       color-scheme: light;
       font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -78,6 +84,14 @@
       color: inherit;
       text-decoration-thickness: 1px;
       text-underline-offset: 4px;
+    }
+
+    code {
+      background: rgba(18, 20, 23, 0.07);
+      border: 1px solid rgba(18, 20, 23, 0.08);
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 0.92em;
     }
 
     .shell {
@@ -117,18 +131,20 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 16px;
       color: var(--muted);
       font-size: 14px;
     }
 
     .hero {
-      min-height: 72vh;
+      min-height: 68vh;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.78fr);
       gap: 48px;
       align-items: center;
-      padding: 76px 0 56px;
+      padding: 72px 0 56px;
     }
 
     .eyebrow {
@@ -142,15 +158,15 @@
 
     h1 {
       margin: 0;
-      max-width: 680px;
-      font-size: clamp(44px, 5.8vw, 78px);
+      max-width: 720px;
+      font-size: clamp(42px, 5.8vw, 78px);
       line-height: 1;
       letter-spacing: 0;
     }
 
     .lede {
       margin: 24px 0 0;
-      max-width: 680px;
+      max-width: 710px;
       color: #39424e;
       font-size: clamp(18px, 2vw, 23px);
       line-height: 1.45;
@@ -173,6 +189,7 @@
       border: 1px solid var(--line);
       font-weight: 750;
       text-decoration: none;
+      background: #fff;
     }
 
     .button.primary {
@@ -181,7 +198,7 @@
       border-color: var(--ink);
     }
 
-    .panel {
+    .preview {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -189,7 +206,7 @@
       overflow: hidden;
     }
 
-    .panel-head {
+    .preview-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -282,31 +299,85 @@
       font-weight: 600;
     }
 
-    .sections {
+    .language-nav {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
-      margin: 0 0 72px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+
+    .language-nav a {
+      background: #fff;
+      padding: 18px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .language {
+      padding: 44px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .language h2 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .language .intro {
+      max-width: 820px;
+      color: #39424e;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 24px;
       background: var(--line);
       border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
     }
 
-    section {
+    .guide-block {
       background: #fff;
-      padding: 28px;
+      padding: 26px;
     }
 
-    h2 {
-      margin: 0 0 12px;
-      font-size: 22px;
-      letter-spacing: 0;
+    .guide-block h3 {
+      margin: 0 0 14px;
+      font-size: 20px;
     }
 
-    p {
+    .guide-block ol,
+    .guide-block ul {
+      margin: 0;
+      padding-left: 22px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
+    }
+
+    .guide-block li + li {
+      margin-top: 7px;
+    }
+
+    .refs {
+      padding: 40px 0 56px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .refs h2 {
+      margin-top: 0;
+      color: var(--ink);
     }
 
     footer {
@@ -316,18 +387,28 @@
       font-size: 14px;
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 900px) {
       nav {
-        display: none;
+        justify-content: flex-start;
+      }
+
+      header,
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .hero {
-        grid-template-columns: 1fr;
         min-height: auto;
         padding-top: 48px;
       }
 
-      .sections {
+      .language-nav,
+      .guide-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -340,8 +421,10 @@
       <span>TubeLM</span>
     </a>
     <nav aria-label="Primary navigation">
-      <a href="#features">Features</a>
-      <a href="#install">Install</a>
+      <a href="#english">English</a>
+      <a href="#russian">Русский</a>
+      <a href="#chinese">中文</a>
+      <a href="#spanish">Español</a>
       <a href="https://github.com/bakhtiersizhaev/urltube">GitHub</a>
     </nav>
   </header>
@@ -351,15 +434,16 @@
       <div>
         <p class="eyebrow">Chrome extension for NotebookLM research</p>
         <h1 id="hero-title">YouTube links for NotebookLM.</h1>
-        <p class="lede">Select videos and Shorts directly on YouTube, copy clean URLs in bulk, and paste a source-ready list into NotebookLM, AI notes, or your research archive.</p>
+        <p class="lede">TubeLM helps you select YouTube videos and Shorts, copy clean URLs in bulk, and paste them into NotebookLM. Full beginner installation guide is available in English, Russian, Chinese, and Spanish.</p>
         <div class="actions" aria-label="Project links">
-          <a class="button primary" href="https://github.com/bakhtiersizhaev/urltube">View on GitHub</a>
-          <a class="button" href="#install">Install unpacked</a>
+          <a class="button primary" href="https://github.com/bakhtiersizhaev/urltube/archive/refs/heads/main.zip">Download ZIP</a>
+          <a class="button" href="https://github.com/bakhtiersizhaev/urltube">View GitHub</a>
+          <a class="button" href="https://notebooklm.google.com/">Open NotebookLM</a>
         </div>
       </div>
 
-      <aside class="panel" aria-label="TubeLM popup preview">
-        <div class="panel-head">
+      <aside class="preview" aria-label="TubeLM popup preview">
+        <div class="preview-head">
           <span>TubeLM Link Picker</span>
           <span class="dot" aria-hidden="true"></span>
         </div>
@@ -396,20 +480,198 @@
       </aside>
     </section>
 
-    <div class="sections" id="features">
-      <section>
-        <h2>Pick</h2>
-        <p>Checkboxes appear on YouTube thumbnails, including videos, Shorts, playlists, channel grids, search results, and feeds.</p>
-      </section>
-      <section>
-        <h2>Clean</h2>
-        <p>TubeLM strips noisy URL parts and copies canonical YouTube watch and Shorts links that are easy to paste into NotebookLM.</p>
-      </section>
-      <section id="install">
-        <h2>Install</h2>
-        <p>Clone the repository, open <code>chrome://extensions</code>, enable Developer mode, and load the project folder as an unpacked extension.</p>
-      </section>
+    <div class="language-nav" aria-label="Language shortcuts">
+      <a href="#english">English guide</a>
+      <a href="#russian">Русская инструкция</a>
+      <a href="#chinese">中文教程</a>
+      <a href="#spanish">Guía en español</a>
     </div>
+
+    <section class="language" id="english" lang="en">
+      <h2>English: install for beginners</h2>
+      <p class="intro">Install TubeLM as an unpacked Chrome extension: download the ZIP from GitHub, unzip it, load the extracted folder in Chrome, then use it on YouTube.</p>
+      <div class="guide-grid">
+        <div class="guide-block">
+          <h3>1. Download and unzip</h3>
+          <ol>
+            <li>Open <a href="https://github.com/bakhtiersizhaev/urltube">the TubeLM GitHub page</a>.</li>
+            <li>Click <strong>Code</strong>, then <strong>Download ZIP</strong>, or use the <a href="https://github.com/bakhtiersizhaev/urltube/archive/refs/heads/main.zip">direct ZIP link</a>.</li>
+            <li>Find <code>urltube-main.zip</code> in Downloads.</li>
+            <li>Extract the ZIP file.</li>
+            <li>Open the extracted folder and make sure it contains <code>manifest.json</code>.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>2. Load in Chrome</h3>
+          <ol>
+            <li>Open Chrome and go to <code>chrome://extensions</code>.</li>
+            <li>Turn on <strong>Developer mode</strong>.</li>
+            <li>Click <strong>Load unpacked</strong>.</li>
+            <li>Select the extracted TubeLM folder, not the ZIP file.</li>
+            <li>Pin TubeLM from the puzzle-piece extensions menu.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>3. Use on YouTube</h3>
+          <ol>
+            <li>Open <a href="https://www.youtube.com/">YouTube</a>.</li>
+            <li>Go to a channel, playlist, search results page, feed, or Shorts page.</li>
+            <li>Select videos with the TubeLM checkboxes.</li>
+            <li>Open TubeLM and click <strong>Copy URLs</strong>.</li>
+            <li>Paste the links into <a href="https://notebooklm.google.com/">NotebookLM</a> as sources.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>Troubleshooting</h3>
+          <ul>
+            <li>If Chrome cannot load it, select the folder that contains <code>manifest.json</code>.</li>
+            <li>If checkboxes are missing, reload the YouTube tab.</li>
+            <li>If Chrome shows a developer-mode message, that is normal for unpacked extensions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="language" id="russian" lang="ru">
+      <h2>Русский: установка для новичков</h2>
+      <p class="intro">TubeLM устанавливается как распакованное расширение Chrome: скачайте ZIP с GitHub, распакуйте архив, загрузите папку в Chrome и используйте расширение на YouTube.</p>
+      <div class="guide-grid">
+        <div class="guide-block">
+          <h3>1. Скачайте и распакуйте</h3>
+          <ol>
+            <li>Откройте <a href="https://github.com/bakhtiersizhaev/urltube">страницу TubeLM на GitHub</a>.</li>
+            <li>Нажмите <strong>Code</strong>, затем <strong>Download ZIP</strong>, или используйте <a href="https://github.com/bakhtiersizhaev/urltube/archive/refs/heads/main.zip">прямую ссылку на ZIP</a>.</li>
+            <li>Найдите файл <code>urltube-main.zip</code> в папке загрузок.</li>
+            <li>Распакуйте ZIP-архив.</li>
+            <li>Откройте распакованную папку и проверьте, что внутри есть <code>manifest.json</code>.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>2. Загрузите в Chrome</h3>
+          <ol>
+            <li>Откройте Chrome и перейдите на <code>chrome://extensions</code>.</li>
+            <li>Включите <strong>Режим разработчика</strong>.</li>
+            <li>Нажмите <strong>Загрузить распакованное</strong>.</li>
+            <li>Выберите распакованную папку TubeLM, не ZIP-файл.</li>
+            <li>Закрепите TubeLM через иконку пазла в панели расширений.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>3. Используйте на YouTube</h3>
+          <ol>
+            <li>Откройте <a href="https://www.youtube.com/">YouTube</a>.</li>
+            <li>Перейдите на канал, плейлист, страницу поиска, ленту или Shorts.</li>
+            <li>Отметьте нужные видео чекбоксами TubeLM.</li>
+            <li>Откройте TubeLM и нажмите <strong>Copy URLs</strong>.</li>
+            <li>Вставьте ссылки в <a href="https://notebooklm.google.com/">NotebookLM</a> как источники.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>Если не работает</h3>
+          <ul>
+            <li>Если Chrome не загружает расширение, выберите папку с <code>manifest.json</code>.</li>
+            <li>Если чекбоксы не появились, перезагрузите вкладку YouTube.</li>
+            <li>Если Chrome показывает сообщение про режим разработчика, это нормально для распакованных расширений.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="language" id="chinese" lang="zh">
+      <h2>中文：新手安装教程</h2>
+      <p class="intro">TubeLM 作为已解压的 Chrome 扩展安装：从 GitHub 下载 ZIP，解压文件夹，在 Chrome 中加载文件夹，然后在 YouTube 上选择视频链接。</p>
+      <div class="guide-grid">
+        <div class="guide-block">
+          <h3>1. 下载并解压</h3>
+          <ol>
+            <li>打开 <a href="https://github.com/bakhtiersizhaev/urltube">TubeLM GitHub 页面</a>。</li>
+            <li>点击 <strong>Code</strong>，再点击 <strong>Download ZIP</strong>，也可以使用 <a href="https://github.com/bakhtiersizhaev/urltube/archive/refs/heads/main.zip">ZIP 直链</a>。</li>
+            <li>在下载文件夹中找到 <code>urltube-main.zip</code>。</li>
+            <li>解压 ZIP 文件。</li>
+            <li>打开解压后的文件夹，确认里面有 <code>manifest.json</code>。</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>2. 在 Chrome 中加载</h3>
+          <ol>
+            <li>打开 Chrome，进入 <code>chrome://extensions</code>。</li>
+            <li>开启 <strong>Developer mode</strong>（开发者模式）。</li>
+            <li>点击 <strong>Load unpacked</strong>。</li>
+            <li>选择解压后的 TubeLM 文件夹，不要选择 ZIP 文件。</li>
+            <li>通过拼图图标菜单把 TubeLM 固定到工具栏。</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>3. 在 YouTube 上使用</h3>
+          <ol>
+            <li>打开 <a href="https://www.youtube.com/">YouTube</a>。</li>
+            <li>进入频道、播放列表、搜索结果页、首页推荐流或 Shorts 页面。</li>
+            <li>用 TubeLM 的复选框选择需要的视频。</li>
+            <li>打开 TubeLM，点击 <strong>Copy URLs</strong>。</li>
+            <li>把链接粘贴到 <a href="https://notebooklm.google.com/">NotebookLM</a> 作为 sources。</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>无法使用时</h3>
+          <ul>
+            <li>如果 Chrome 无法加载扩展，请选择包含 <code>manifest.json</code> 的文件夹。</li>
+            <li>如果 YouTube 没有显示复选框，请刷新 YouTube 标签页。</li>
+            <li>如果 Chrome 显示开发者模式提示，这是已解压扩展的正常现象。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="language" id="spanish" lang="es">
+      <h2>Español: instalación para principiantes</h2>
+      <p class="intro">TubeLM se instala como una extensión descomprimida de Chrome: descarga el ZIP desde GitHub, descomprímelo, carga la carpeta en Chrome y úsalo en YouTube.</p>
+      <div class="guide-grid">
+        <div class="guide-block">
+          <h3>1. Descarga y descomprime</h3>
+          <ol>
+            <li>Abre <a href="https://github.com/bakhtiersizhaev/urltube">la página de TubeLM en GitHub</a>.</li>
+            <li>Haz clic en <strong>Code</strong>, luego en <strong>Download ZIP</strong>, o usa el <a href="https://github.com/bakhtiersizhaev/urltube/archive/refs/heads/main.zip">enlace directo al ZIP</a>.</li>
+            <li>Busca <code>urltube-main.zip</code> en Descargas.</li>
+            <li>Descomprime el archivo ZIP.</li>
+            <li>Abre la carpeta extraída y comprueba que contiene <code>manifest.json</code>.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>2. Carga en Chrome</h3>
+          <ol>
+            <li>Abre Chrome y entra en <code>chrome://extensions</code>.</li>
+            <li>Activa <strong>Developer mode</strong> o <strong>Modo de desarrollador</strong>.</li>
+            <li>Haz clic en <strong>Load unpacked</strong> o <strong>Cargar descomprimida</strong>.</li>
+            <li>Selecciona la carpeta TubeLM descomprimida, no el ZIP.</li>
+            <li>Fija TubeLM desde el menú de extensiones con icono de rompecabezas.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>3. Usa en YouTube</h3>
+          <ol>
+            <li>Abre <a href="https://www.youtube.com/">YouTube</a>.</li>
+            <li>Entra en un canal, playlist, resultados de búsqueda, inicio o Shorts.</li>
+            <li>Selecciona videos con los checkboxes de TubeLM.</li>
+            <li>Abre TubeLM y haz clic en <strong>Copy URLs</strong>.</li>
+            <li>Pega los enlaces en <a href="https://notebooklm.google.com/">NotebookLM</a> como fuentes.</li>
+          </ol>
+        </div>
+        <div class="guide-block">
+          <h3>Si algo no funciona</h3>
+          <ul>
+            <li>Si Chrome no puede cargar la extensión, selecciona la carpeta que contiene <code>manifest.json</code>.</li>
+            <li>Si no aparecen checkboxes, recarga la pestaña de YouTube.</li>
+            <li>Si Chrome muestra un aviso de modo desarrollador, es normal para extensiones descomprimidas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="refs" aria-labelledby="refs-title">
+      <h2 id="refs-title">Official references</h2>
+      <p><a href="https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked">Chrome official guide: load an unpacked extension</a></p>
+      <p><a href="https://docs.github.com/en/get-started/start-your-journey/downloading-files-from-github">GitHub official guide: downloading files from GitHub</a></p>
+    </section>
   </main>
 
   <footer class="shell">
