@@ -15,6 +15,8 @@
   |
   <a href="https://notebooklm.google.com/">NotebookLM</a>
   |
+  <a href="https://telelore.vercel.app/">TeleLore</a>
+  |
   <a href="#english">English</a>
   |
   <a href="#russian">Русский</a>
@@ -45,6 +47,11 @@ The main workflow is:
 - Works on channel pages, playlists, search results, home feeds, related videos, and Shorts surfaces.
 - Runs locally in your browser. No backend, no account, no analytics.
 - Built for NotebookLM, AI notes, research workflows, study plans, content curation, and knowledge bases.
+
+## Related NotebookLM Tools
+
+- [TeleLore](https://telelore.vercel.app/) converts Telegram Desktop `result.json` exports into NotebookLM-ready Markdown chunks.
+- TeleLore repository: [github.com/bakhtiersizhaev/telelore](https://github.com/bakhtiersizhaev/telelore).
 
 <h2 id="english">English: Install For Beginners</h2>
 

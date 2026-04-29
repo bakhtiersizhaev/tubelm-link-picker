@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TubeLM Link Picker - Batch Copy YouTube Links for NotebookLM</title>
   <meta name="description" content="TubeLM Link Picker is a Chrome extension that lets beginners download, install, and use a YouTube link picker for NotebookLM in English, Russian, Chinese, and Spanish.">
-  <meta name="keywords" content="NotebookLM, YouTube, Chrome extension, YouTube links, batch copy URLs, install unpacked extension, YouTube Shorts, AI notes, research workflow, LLM tools">
+  <meta name="keywords" content="NotebookLM, YouTube, Chrome extension, YouTube links, batch copy URLs, install unpacked extension, YouTube Shorts, Telegram export to NotebookLM, AI notes, research workflow, LLM tools">
   <meta name="author" content="Bakhtier Sizhaev">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bakhtiersizhaev.github.io/tubelm-link-picker/">
@@ -317,6 +317,38 @@
       font-weight: 800;
     }
 
+    .related-tool {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 48px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .related-tool h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: 0;
+    }
+
+    .related-tool p {
+      margin: 10px 0 0;
+      max-width: 760px;
+      color: #39424e;
+      line-height: 1.55;
+    }
+
+    .related-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
     .language {
       padding: 44px 0;
       border-top: 1px solid var(--line);
@@ -408,8 +440,13 @@
       }
 
       .language-nav,
+      .related-tool,
       .guide-grid {
         grid-template-columns: 1fr;
+      }
+
+      .related-actions {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -425,6 +462,7 @@
       <a href="#russian">Русский</a>
       <a href="#chinese">中文</a>
       <a href="#spanish">Español</a>
+      <a href="https://telelore.vercel.app/">TeleLore</a>
       <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">GitHub</a>
     </nav>
   </header>
@@ -438,6 +476,7 @@
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Download ZIP</a>
           <a class="button" href="https://github.com/bakhtiersizhaev/tubelm-link-picker">View GitHub</a>
+          <a class="button" href="https://telelore.vercel.app/">Telegram to NotebookLM</a>
           <a class="button" href="https://notebooklm.google.com/">Open NotebookLM</a>
         </div>
       </div>
@@ -478,6 +517,17 @@
           <span>newline list</span>
         </div>
       </aside>
+    </section>
+
+    <section class="related-tool" aria-labelledby="related-title">
+      <div>
+        <h2 id="related-title">Also working with Telegram chats?</h2>
+        <p>Use TeleLore to convert Telegram Desktop <code>result.json</code> exports into clean Markdown chunks for NotebookLM. TubeLM handles YouTube links; TeleLore handles Telegram archives.</p>
+      </div>
+      <div class="related-actions" aria-label="Related TeleLore links">
+        <a class="button primary" href="https://telelore.vercel.app/">Open TeleLore</a>
+        <a class="button" href="https://github.com/bakhtiersizhaev/telelore">GitHub</a>
+      </div>
     </section>
 
     <div class="language-nav" aria-label="Language shortcuts">
