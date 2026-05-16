@@ -1,9 +1,9 @@
 # TubeLM - Image Asset Guide for the Chrome Web Store
 
 This document is for **Bakhtier**. It gives the exact Chrome Web Store image
-specs and the repo's current upload assets. Ready-to-upload PNGs live in
-`store-assets/`; regenerate the small promo tile with
-`python scripts/generate-store-assets.py` if you need a fresh copy.
+specs, the repo's current upload assets, and the Photoshop template kit for a
+more polished custom set. Verified minimum upload assets live in
+`store-assets/`. Editable PNG templates live in `cws-asset-templates/`.
 
 All numbers below match the Chrome Web Store Developer Dashboard requirements
 as of May 2026.
@@ -27,7 +27,15 @@ Current upload assets:
 - `store-assets/screenshot-02-search-results.png` — 1280 x 800 second live YouTube search/results capture with TubeLM checkboxes verified in Playwright Chromium (`.tubelm-checkbox` count: 33).
 - `store-assets/promo-small-440x280.png` — required 440 x 280 small promo tile.
 
-`store-assets/README.md` records the screenshot provenance. Do not upload generated mockups as required CWS screenshots.
+Photoshop template kit:
+
+- `cws-asset-templates/00-cws-asset-map-1600x1200.png` — visual map of every asset slot and upload order.
+- `cws-asset-templates/01-screenshot-hero-template-1280x800.png` through `05-screenshot-privacy-local-template-1280x800.png` — five screenshot composition guides.
+- `cws-asset-templates/06-small-promo-tile-440x280.png` — editable small promo tile concept.
+- `cws-asset-templates/07-marquee-promo-tile-1400x560.png` — optional marquee promo concept.
+- `cws-asset-templates/08-optional-video-thumbnail-1280x720.png` — optional YouTube demo thumbnail reference.
+
+`store-assets/README.md` records the verified screenshot provenance. `cws-asset-templates/README.md` explains how to edit the templates. Do not upload generated mockups as required CWS screenshots; replace screenshot placeholders with real product captures before final export.
 
 > Source: Chrome Web Store Developer Dashboard, "Store listing" tab. As of 2025,
 > Google deprecated the large (920x680) and marquee tile is the only large
