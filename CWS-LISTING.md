@@ -3,7 +3,7 @@
 Copy/paste-ready texts for the Chrome Web Store Developer Dashboard at
 <https://chrome.google.com/webstore/devconsole>.
 
-These texts match the current manifest (`version 1.0.0`, MV3) and the privacy
+These texts match the current manifest (`version 1.0.1`, MV3) and the privacy
 policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 
 ---
@@ -220,5 +220,7 @@ Each one is under 132 characters.
 
 ---
 
-> See `CWS-MOCKUP-GUIDE.md` for the image assets you still need to produce
-> (screenshots, promo tiles, optional marquee).
+> See `CWS-MOCKUP-GUIDE.md` for the image assets. The mandatory
+> upload set is already prepared in `store-assets/`:
+> two verified live YouTube screenshots with TubeLM checkboxes and
+> `promo-small-440x280.png`.

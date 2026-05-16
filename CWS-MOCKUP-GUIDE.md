@@ -1,9 +1,9 @@
 # TubeLM - Image Asset Guide for the Chrome Web Store
 
-This document is for **Bakhtier**. You said you will produce the screenshots
-and promo tiles manually - this guide gives you the exact specs, what to put
-in each frame, and a critique of the current SVG icon so you know what to fix
-before exporting.
+This document is for **Bakhtier**. It gives the exact Chrome Web Store image
+specs and the repo's current starter assets. Ready-to-upload starter PNGs live
+in `store-assets/`; regenerate them with `python scripts/generate-store-assets.py`
+if you need a fresh set.
 
 All numbers below match the Chrome Web Store Developer Dashboard requirements
 as of May 2026.
@@ -20,6 +20,13 @@ as of May 2026.
 | Small promotional tile | **required** | 440 x 280 | PNG or JPEG (no transparency) | 16 MB |
 | Marquee promotional tile | optional but recommended for featuring | 1400 x 560 | PNG or JPEG (no transparency) | 16 MB |
 | Privacy policy URL | **required** (already prepared) | n/a | URL | n/a |
+
+Current generated/verified assets:
+
+- `store-assets/screenshot-01-hero.png` — 1280 x 800 live YouTube search capture with TubeLM checkboxes verified in Playwright Chromium.
+- `store-assets/screenshot-02-shorts.png` — 1280 x 800 second live YouTube search capture with TubeLM checkboxes verified in Playwright Chromium.
+- `store-assets/promo-small-440x280.png` — required 440 x 280 small promo tile.
+- `store-assets/screenshot-03-notebooklm.png` — optional copy-to-NotebookLM product-flow visual. Do not upload it as a required CWS screenshot unless you intentionally want to test whether the reviewer accepts a flow visual; prefer replacing it with a live NotebookLM/browser capture.
 
 > Source: Chrome Web Store Developer Dashboard, "Store listing" tab. As of 2025,
 > Google deprecated the large (920x680) and marquee tile is the only large
@@ -343,12 +350,16 @@ Store review forum and the developer documentation:
 
 1. Fix the icon SVG (points 1-5 in section 3).
 2. Re-export the 4 PNGs.
-4. Capture 5 full-bleed screenshots from a real YouTube session. Do not add
-   marketing frames or padding to required screenshot assets.
-5. Build the small promo tile (440x280).
-6. Build the marquee tile (1400x560).
-7. Run all assets through <https://tinypng.com> or `oxipng -o 4` to compress.
-8. Upload everything in the Developer Dashboard.
+4. Use the two verified live YouTube screenshots in `store-assets/`, or replace
+   them with fresh full-bleed screenshots from your own Chrome session. Do not
+   add marketing frames or padding to required screenshot assets.
+5. Use `store-assets/promo-small-440x280.png` as the required small promo tile,
+   or regenerate it with `python scripts/generate-store-assets.py`.
+6. Optional: replace `store-assets/screenshot-03-notebooklm.png` with a live
+   NotebookLM/browser capture before uploading it as an additional screenshot.
+7. Build the marquee tile (1400x560) if you want the optional featuring asset.
+8. Run all assets through <https://tinypng.com> or `oxipng -o 4` to compress.
+9. Upload everything in the Developer Dashboard.
 
 Estimated time if you already have Figma/Affinity templates: **3-4 hours**.
 

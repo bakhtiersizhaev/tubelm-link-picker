@@ -41,6 +41,12 @@ const EXPECTED_RUNTIME_FILES = Object.freeze([
 const RUNTIME_DIRS = Object.freeze(['_locales', 'popup', 'content', 'sidepanel']);
 const EXPECTED_PERMISSIONS = Object.freeze(['activeTab', 'scripting', 'clipboardWrite', 'sidePanel']);
 const EXPECTED_HOST_PERMISSIONS = Object.freeze(['https://*.youtube.com/*']);
+const EXPECTED_STORE_ASSETS = Object.freeze([
+  { path: 'store-assets/screenshot-01-hero.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-02-shorts.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-03-notebooklm.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/promo-small-440x280.png', width: 440, height: 280, maxBytes: 16 * 1024 * 1024 },
+]);
 
 function assertYouTubeHost(hostname) {
   return hostname === 'youtube.com' || hostname.endsWith('.youtube.com');
@@ -83,6 +89,19 @@ function listActualRuntimeDirFiles() {
   }
   files.push('icons/icon-16.png', 'icons/icon-32.png', 'icons/icon-48.png', 'icons/icon-128.png');
   return [...new Set(files)].sort();
+}
+
+function readPngInfo(relativePath) {
+  const filePath = path.join(root, relativePath);
+  const buffer = fs.readFileSync(filePath);
+  const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  assert.deepEqual(buffer.subarray(0, 8), pngSignature, `${relativePath} must be a PNG file`);
+  return {
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+    colorType: buffer.readUInt8(25),
+    bytes: buffer.length,
+  };
 }
 
 function crc32(buffer) {
@@ -186,7 +205,7 @@ function readZipEntries(buffer) {
 
 function assertExactManifest(manifest) {
   assert.equal(manifest.manifest_version, 3, 'manifest_version must be MV3');
-  assert.equal(manifest.version, '1.0.0', 'manifest version must match CWS release');
+  assert.equal(manifest.version, '1.0.1', 'manifest version must match CWS release');
   assert.equal(manifest.default_locale, 'en', 'default_locale must be en');
   assert.deepEqual(manifest.permissions, EXPECTED_PERMISSIONS, 'manifest permissions must match CWS disclosure exactly');
   assert.deepEqual(manifest.host_permissions, EXPECTED_HOST_PERMISSIONS, 'host permissions must stay YouTube-only');
@@ -250,10 +269,21 @@ function main() {
   assertContains(imageGuide, 'Square corners, no padding, full bleed', 'screenshot hard rule');
   assertContains(imageGuide, 'Do not composite required screenshots into marketing frames', 'screenshot hard rule');
   assertContains(imageGuide, 'Marketing composites belong in promotional tiles', 'screenshot vs promo distinction');
+  assertContains(imageGuide, 'store-assets/screenshot-01-hero.png', 'generated screenshot asset list');
+  assertContains(imageGuide, 'store-assets/promo-small-440x280.png', 'generated promo asset list');
   assertNotContains(imageGuide, 'Composite each screenshot into the 1280x800 template in Figma', 'outdated screenshot production step');
   assertNotContains(imageGuide, 'synthetic mockup for screenshot #1', 'required screenshots must not be synthetic mockups');
 
-  const zipPath = path.join(root, 'build', 'tubelm-link-picker-cws-v1.0.0.zip');
+  for (const asset of EXPECTED_STORE_ASSETS) {
+    assert.ok(exists(asset.path), `store asset missing: ${asset.path}`);
+    const info = readPngInfo(asset.path);
+    assert.equal(info.width, asset.width, `${asset.path} width must be ${asset.width}`);
+    assert.equal(info.height, asset.height, `${asset.path} height must be ${asset.height}`);
+    assert.equal(info.colorType, 2, `${asset.path} must be RGB PNG with no alpha transparency`);
+    assert.ok(info.bytes <= asset.maxBytes, `${asset.path} exceeds Chrome Web Store size limit`);
+  }
+
+  const zipPath = path.join(root, 'build', 'tubelm-link-picker-cws-v1.0.1.zip');
   fs.mkdirSync(path.dirname(zipPath), { recursive: true });
   createZip(zipPath, EXPECTED_RUNTIME_FILES);
   const zipBuffer = fs.readFileSync(zipPath);
@@ -263,6 +293,7 @@ function main() {
   console.log(JSON.stringify({
     ok: true,
     runtimeFiles: EXPECTED_RUNTIME_FILES.length,
+    storeAssets: EXPECTED_STORE_ASSETS.map((asset) => asset.path),
     zipPath: path.relative(root, zipPath).replaceAll(path.sep, '/'),
     zipBytes: zipBuffer.length,
     zipSha256: hash,
