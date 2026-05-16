@@ -29,71 +29,64 @@ policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 
 ## 3. Short description (132 chars max)
 
-> Pick YouTube videos and Shorts with checkboxes, then copy clean URLs in one
-> click. Built for NotebookLM and AI research notes.
+> Copy multiple YouTube links at once. Select videos or Shorts, then paste clean URLs into NotebookLM or AI notes.
 
-Character count: 131.
+Character count: 112.
 
 ## 4. Detailed description (up to 16,000 chars)
 
-> **TubeLM Link Picker** turns YouTube into a multi-select source for your AI
-> research notebooks. Open any YouTube page - a channel, a playlist, search
-> results, or the Shorts grid - and a small checkbox appears on every video
-> card. Tick the videos you want, click **Copy**, and the extension drops a
-> clean newline-separated list of canonical `https://www.youtube.com/watch?v=...`
-> URLs (or `https://www.youtube.com/shorts/...` for Shorts) straight into your
-> clipboard. Paste them into NotebookLM, ChatGPT, Claude, Gemini, Obsidian, or
-> any other tool that accepts a list of sources.
+> **TubeLM Link Picker** is a small Chrome extension for people who collect
+> YouTube videos as sources for NotebookLM, AI research notes, study projects,
+> content planning, or client research. It is useful for YouTube to NotebookLM
+> workflows where you need a clean list of video URLs instead of copying links
+> one by one. If you have ever opened a YouTube search page, channel, playlist,
+> or Shorts grid and thought, "I need to copy several video links, not one by
+> one," TubeLM is built for that workflow.
 >
-> **Why it exists**
+> Instead of copying YouTube URLs manually, cleaning tracking parameters, and
+> pasting links into NotebookLM or another notes tool one at a time, you can
+> select the videos directly on YouTube and copy a clean newline-separated list
+> to your clipboard.
 >
-> NotebookLM lets you turn YouTube videos into chat-ready research notebooks,
-> but you can only add sources one at a time. TubeLM removes that friction: you
-> curate the list visually on YouTube, then bulk-paste into NotebookLM in a few
-> seconds.
+> **When TubeLM helps**
 >
-> **Features**
+> - You need to copy multiple YouTube links at once from search results, a
+>   channel, or a playlist.
+> - You are building a source list for NotebookLM, AI summaries, research notes,
+>   study material, or a content brief.
+> - You want to collect YouTube Shorts links together with regular video links.
+> - You need clean YouTube URLs without extra tracking parameters like `&pp=`,
+>   `&list=`, or `&t=`.
+> - You want a simple way to bulk copy YouTube video links without leaving the
+>   browser or using an external web service.
 >
-> - Works on channel pages, playlists, search results, and the Shorts grid.
-> - Adds a non-intrusive checkbox to each video tile - no overlay covering the
->   thumbnail.
-> - "Select visible" and "Clear" buttons in the popup for fast curation.
-> - Live selection counter shows how many videos are currently picked.
-> - Outputs canonical, tracking-free URLs (no `&pp=`, no `&list=`, no `&t=`).
-> - Handles Shorts as `youtube.com/shorts/<id>` so NotebookLM accepts them.
-> - 100% local: nothing is uploaded, no analytics, no account, no login.
-> - Free and open source under the MIT license.
+> **How it works**
 >
-> **How to use**
+> Open YouTube and browse as usual. TubeLM adds a small checkbox to video cards
+> on supported YouTube pages. Tick the videos or Shorts you want, open the popup
+> or side panel, and press **Copy selection**. The extension copies only the
+> selected links, formatted as one URL per line, ready to paste into NotebookLM,
+> ChatGPT, Claude, Gemini, Obsidian, Notion, a research document, or any tool
+> that accepts a list of links.
 >
-> 1. Install TubeLM and pin it next to your address bar.
-> 2. Go to any YouTube channel, playlist, search results page, or
->    `youtube.com/shorts`.
-> 3. Tick the checkboxes on the videos you want.
-> 4. Click the TubeLM icon and press **Copy selection**.
-> 5. Paste into NotebookLM, your notes app, or any chat with an AI model.
+> **What it does not do**
+>
+> TubeLM does not download videos, create transcripts, read comments, read your
+> YouTube account, or send selected links to a server. It is only a local link
+> picker and clean URL copier for YouTube pages.
 >
 > **Privacy**
 >
-> TubeLM processes the current YouTube page locally so it can find video cards
-> and copy only the URLs you explicitly select. It does not transmit data to the
-> developer, does not use a backend, does not run analytics, and does not sell
-> or share data. Permissions are limited to YouTube pages, the active tab, local
-> script/CSS execution, optional Chrome side panel display, and writing to your
-> clipboard. Full policy:
-> <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
+> Everything happens locally in your browser. TubeLM processes the visible
+> YouTube page only to find video cards and copy the URLs you explicitly select.
+> It does not transmit page content, browsing data, selected links, analytics,
+> or personal information to the developer. There is no account, no backend, no
+> telemetry, and no remote code.
 >
 > **Open source**
 >
 > Source code, issues, and discussions:
 > <https://github.com/bakhtiersizhaev/tubelm-link-picker>
->
-> **Companion project**
->
-> If you also import Telegram chats into NotebookLM, try
-> [TeleLore](https://telelore.vercel.app/) - a free web app by the same author
-> that turns Telegram Desktop `result.json` exports into clean Markdown chunks
-> ready for NotebookLM.
 >
 > Made by Bakhtier Sizhaev. Thanks for using TubeLM - if it saves you time,
 > please star the repository on GitHub.
@@ -198,7 +191,7 @@ Each one is under 132 characters.
 
 | Lang | Short description |
 | --- | --- |
-| `en` | Pick YouTube videos and Shorts with checkboxes, then copy clean URLs in one click. Built for NotebookLM and AI research notes. |
+| `en` | Copy multiple YouTube links at once. Select videos or Shorts, then paste clean URLs into NotebookLM or AI notes. |
 | `ru` | Отмечайте видео и Shorts на YouTube галочками и копируйте чистые ссылки одной кнопкой — для NotebookLM и ИИ-заметок. |
 | `zh_CN` | 在 YouTube 上勾选视频和 Shorts,一键复制干净链接,送入 NotebookLM、AI 笔记与研究流程。 |
 | `hi` | YouTube वीडियो और Shorts चुनें, साफ़ लिंक एक क्लिक में कॉपी करें — NotebookLM, AI नोट्स और रिसर्च के लिए। |
