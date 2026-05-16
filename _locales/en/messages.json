@@ -96,5 +96,9 @@
   "copied": {
     "message": "Copied!",
     "description": "Confirmation shown briefly inside the primary button after a successful copy."
+  },
+  "openSidePanel": {
+    "message": "Open in side panel",
+    "description": "Label of the optional button that pins TubeLM to the Chrome side panel."
   }
 }

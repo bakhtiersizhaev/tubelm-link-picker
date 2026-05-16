@@ -73,5 +73,8 @@
   },
   "copied": {
     "message": "已复制!"
+  },
+  "openSidePanel": {
+    "message": "在侧边栏中打开"
   }
 }
