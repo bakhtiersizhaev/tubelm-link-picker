@@ -4,24 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TubeLM Link Picker - Batch Copy YouTube Links for NotebookLM</title>
-  <meta name="description" content="TubeLM Link Picker is a Chrome extension that lets beginners download, install, and use a YouTube link picker for NotebookLM in English, Russian, Chinese, and Spanish.">
-  <meta name="keywords" content="NotebookLM, YouTube, Chrome extension, YouTube links, batch copy URLs, install unpacked extension, YouTube Shorts, Telegram export to NotebookLM, AI notes, research workflow, LLM tools">
+  <meta name="description" content="TubeLM Link Picker is a Chrome extension for copying multiple YouTube video and Shorts links into NotebookLM, AI notes, and research workflows.">
+  <meta name="keywords" content="NotebookLM, YouTube links, Chrome extension, batch copy YouTube URLs, clean YouTube URLs, YouTube Shorts links, YouTube link picker, AI notes, research workflow, LLM tools, clipboard productivity">
   <meta name="author" content="Bakhtier Sizhaev">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bakhtiersizhaev.github.io/tubelm-link-picker/">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bakhtiersizhaev.github.io/tubelm-link-picker/">
   <meta property="og:title" content="TubeLM Link Picker - YouTube Links for NotebookLM">
-  <meta property="og:description" content="Beginner-friendly multilingual guide: download TubeLM from GitHub, load it in Chrome, pick YouTube videos, and paste clean links into NotebookLM.">
-  <meta property="og:image" content="https://bakhtiersizhaev.github.io/tubelm-link-picker/assets/tubelm-github-banner.svg">
+  <meta property="og:description" content="Select YouTube videos and Shorts, copy clean URLs in bulk, and paste them into NotebookLM or AI research notes.">
+  <meta property="og:image" content="https://bakhtiersizhaev.github.io/tubelm-link-picker/assets/tubelm-github-banner.png">
   <meta property="og:image:alt" content="TubeLM Link Picker product banner">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TubeLM Link Picker - YouTube Links for NotebookLM">
-  <meta name="twitter:description" content="Install TubeLM, select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM.">
-  <meta name="twitter:image" content="https://bakhtiersizhaev.github.io/tubelm-link-picker/assets/tubelm-github-banner.svg">
+  <meta name="twitter:description" content="Copy multiple YouTube links at once for NotebookLM, AI notes, and research workflows.">
+  <meta name="twitter:image" content="https://bakhtiersizhaev.github.io/tubelm-link-picker/assets/tubelm-github-banner.png">
 
   <script type="application/ld+json">
   {
@@ -54,10 +56,13 @@
   <style>
     :root {
       --ink: #121417;
+      --deep: #0b1223;
+      --navy: #10243a;
       --paper: #f4f6f8;
       --muted: #65717e;
       --line: rgba(18, 20, 23, 0.12);
       --accent: #10b981;
+      --mint: #7df8c6;
       --youtube: #ff0033;
       --card: #ffffff;
       --soft: #e8edf2;
@@ -119,13 +124,9 @@
     .mark {
       width: 40px;
       height: 40px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      background: var(--ink);
-      color: #fff;
-      box-shadow: inset 0 -4px 0 var(--youtube);
-      font-size: 13px;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 10px 24px rgba(11, 18, 35, 0.18);
     }
 
     nav {
@@ -193,9 +194,10 @@
     }
 
     .button.primary {
-      background: var(--ink);
+      background: linear-gradient(135deg, var(--ink), var(--deep));
       color: #fff;
       border-color: var(--ink);
+      box-shadow: 0 14px 34px rgba(11, 18, 35, 0.18);
     }
 
     .preview {
@@ -454,7 +456,7 @@
 <body>
   <header class="shell">
     <a class="brand" href="https://github.com/bakhtiersizhaev/tubelm-link-picker" aria-label="TubeLM Link Picker on GitHub">
-      <span class="mark" aria-hidden="true">TL</span>
+      <img class="mark" src="assets/favicon.svg" width="40" height="40" alt="" aria-hidden="true">
       <span>TubeLM</span>
     </a>
     <nav aria-label="Primary navigation">

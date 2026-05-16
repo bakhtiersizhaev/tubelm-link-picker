@@ -204,7 +204,7 @@ function readZipEntries(buffer) {
 
 function assertExactManifest(manifest) {
   assert.equal(manifest.manifest_version, 3, 'manifest_version must be MV3');
-  assert.equal(manifest.version, '1.0.1', 'manifest version must match CWS release');
+  assert.equal(manifest.version, '1.0.2', 'manifest version must match CWS release');
   assert.equal(manifest.default_locale, 'en', 'default_locale must be en');
   assert.deepEqual(manifest.permissions, EXPECTED_PERMISSIONS, 'manifest permissions must match CWS disclosure exactly');
   assert.deepEqual(manifest.host_permissions, EXPECTED_HOST_PERMISSIONS, 'host permissions must stay YouTube-only');
@@ -300,7 +300,7 @@ function main() {
     assert.ok(info.bytes <= asset.maxBytes, `${asset.path} exceeds Chrome Web Store size limit`);
   }
 
-  const zipPath = path.join(root, 'build', 'tubelm-link-picker-cws-v1.0.1.zip');
+  const zipPath = path.join(root, 'build', 'tubelm-link-picker-cws-v1.0.2.zip');
   fs.mkdirSync(path.dirname(zipPath), { recursive: true });
   createZip(zipPath, EXPECTED_RUNTIME_FILES);
   const zipBuffer = fs.readFileSync(zipPath);

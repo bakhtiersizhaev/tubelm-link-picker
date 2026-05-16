@@ -8,7 +8,6 @@ INK = (18, 20, 23)
 MINT = (125, 248, 198)
 PAPER = (244, 246, 248)
 WHITE = (255, 255, 255)
-RED = (255, 0, 51)
 
 
 def font(size, bold=False):
@@ -26,18 +25,9 @@ def rounded(draw, box, radius, fill, outline=None, width=1):
     draw.rounded_rectangle(box, radius, fill=fill, outline=outline, width=width)
 
 
-def draw_tubelm_logo(draw, x, y, size=76):
-    rounded(draw, (x, y, x + size, y + size), 18, INK)
-    draw.rounded_rectangle((x + 16, y + 20, x + size - 16, y + size - 22), 10, outline=MINT, width=5)
-    draw.polygon(
-        [
-            (x + size * 0.45, y + size * 0.38),
-            (x + size * 0.45, y + size * 0.62),
-            (x + size * 0.66, y + size * 0.50),
-        ],
-        fill=WHITE,
-    )
-    draw.ellipse((x + size - 21, y + size - 21, x + size - 11, y + size - 11), fill=RED)
+def paste_tubelm_logo(image, x, y, size=76):
+    icon = Image.open('icons/icon-128.png').convert('RGBA').resize((size, size), Image.Resampling.LANCZOS)
+    image.alpha_composite(icon, (x, y))
 
 
 def promo_tile():
@@ -48,7 +38,7 @@ def promo_tile():
         color = (int(18 - 7 * a), int(20 + 2 * a), int(23 + 17 * a))
         draw.line((0, y, 440, y), fill=color)
 
-    draw_tubelm_logo(draw, 32, 30, 76)
+    paste_tubelm_logo(image, 32, 30, 76)
     draw.text((126, 35), 'TubeLM', fill=WHITE, font=font(34, True))
     draw.text((128, 74), 'Link Picker', fill=MINT, font=font(17, True))
 

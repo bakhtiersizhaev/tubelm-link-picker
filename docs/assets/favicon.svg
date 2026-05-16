@@ -1,6 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="TubeLM">
-  <rect width="64" height="64" rx="14" fill="#121417"/>
-  <rect y="52" width="64" height="12" fill="#ff0033"/>
-  <path d="M24 23h10a9 9 0 0 1 0 18H24a9 9 0 0 1 0-18Z" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
-  <path d="M31 23h9a9 9 0 0 1 0 18h-9a9 9 0 0 1 0-18Z" fill="none" stroke="#7df8c6" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="TubeLM Link Picker">
+  <defs>
+    <linearGradient id="bg" x1="72" y1="36" x2="448" y2="476" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1223"/>
+      <stop offset="0.58" stop-color="#10243A"/>
+      <stop offset="1" stop-color="#07111E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="148" cy="122" r="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7DF8C6" stop-opacity="0.38"/>
+      <stop offset="0.46" stop-color="#10B981" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#bg)"/>
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#glow)"/>
+  <rect x="46" y="46" width="420" height="420" rx="100" fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="144" y="118" width="252" height="184" rx="58" fill="none" stroke="#7DF8C6" stroke-opacity="0.42" stroke-width="28"/>
+    <rect x="104" y="150" width="304" height="222" rx="64" fill="#F8FAFC"/>
+    <rect x="138" y="186" width="236" height="104" rx="34" fill="#1F2937"/>
+    <path d="M246.88 222 L246.88 272 L304.64 247 Z" fill="#F8FAFC" opacity="0.96"/>
+    <rect x="140" y="314" width="139.84" height="14" rx="7" fill="#CBD5E1"/>
+    <rect x="140" y="338" width="103.36000000000001" height="10" rx="5" fill="#E2E8F0"/>
+  </g>
+
+  <g>
+    <rect x="320" y="306" width="72" height="72" rx="20" fill="#7DF8C6"/>
+    <rect x="320" y="306" width="72" height="72" rx="20" fill="none" stroke="#06121F" stroke-opacity="0.28" stroke-width="4"/>
+    <path d="M338 346 L352 360 L378 330" fill="none" stroke="#06121F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g opacity="0.96">
+    <path d="M160 372 C190 404 244 404 274 372" fill="none" stroke="#7DF8C6" stroke-width="18" stroke-linecap="round"/>
+    <path d="M238 372 C268 340 322 340 352 372" fill="none" stroke="#7DF8C6" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <circle cx="398" cy="132" r="18" fill="#FF0033"/>
 </svg>

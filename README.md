@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/tubelm-github-banner.svg" alt="TubeLM Link Picker - batch copy YouTube URLs for NotebookLM" width="100%">
+  <img src="docs/assets/tubelm-github-banner.png" alt="TubeLM Link Picker - batch copy YouTube URLs for NotebookLM" width="100%">
 </p>
 
 <h1 align="center">TubeLM Link Picker</h1>

@@ -95,82 +95,47 @@ Use these exact values so the store assets match the in-extension UI.
 
 ---
 
-## 3. Icon critique (`icons/icon.svg`)
+## 3. Icon system (`icons/icon.svg`)
 
-The existing icon is a 512x512 viewBox with two overlapping rounded rectangles
-(mint stroke `#7df8c6`, weight 36) over a navy gradient, with a small white
-play triangle in the middle. It reads as "two cards stacked" + "play" = "pick
-multiple videos". Conceptually strong.
+The current identity is **Research Graphite + Mint**: a dark graphite squircle,
+a white video/source card, a mint checkbox, a small mint link arc, and one tiny
+red dot as a restrained YouTube cue. It should read as “select video sources,
+copy clean links” rather than as a generic play button.
 
-### What works
+### Source of truth
 
-- Color palette matches the in-extension UI (navy ink + mint accent).
-- The "two stacked rectangles" metaphor maps directly to the single purpose of
-  the extension: select multiple videos.
-- The corner radius (112 on 480 inner = 23%) feels modern and won't get
-  awkwardly cropped by Chrome's own rounded-corner mask.
-- Vector source means you can re-export at any size.
+- `scripts/generate-brand-assets.mjs` is the canonical generator.
+- `icons/icon.svg` is the 512 x 512 master vector for 48/128 px exports and
+  website favicons.
+- `icons/icon-small.svg` is the optically tuned small variant used for 16/32 px
+  exports.
+- `docs/assets/favicon.svg`, `favicon.ico`, `favicon-16.png`, `favicon-32.png`,
+  `apple-touch-icon.png`, `brand-icon-512.webp`, and the GitHub/OG banner are
+  generated from the same visual system.
 
-### What to fix before final export
+### Export workflow
 
-1. **Stroke is too thin for 16-32 px.** Stroke width 36 on a 512 canvas is
-   ~7%. After downscaling to 16 px, the strokes become ~1.1 px - barely
-   visible, blurs on subpixel boundaries. **Bump to 56-64** for the 16/32
-   exports (you can keep the 128 export at 36-44 for elegance).
-2. **The two rectangles overlap, and the overlap region creates an ambiguous
-   blob at 16 px.** Two options:
-   - Increase the offset between them from `(82, 52)` to about `(120, 80)` so
-     they read as two cards even when tiny.
-   - Or ship a separate **small-icon SVG** (a single rectangle with a play
-     triangle, no overlap) used only for 16 and 32 px.
-3. **The play triangle is too small.** `polygon 240,220 332,256 240,292` =
-   ~92 px wide on a 512 canvas (~18%). At 16 px this becomes a 3 px dot.
-   Bring it up to ~26-30% of the canvas, or drop it entirely from the small
-   variant.
-4. **No safe padding.** Chrome renders the 128 icon inside a slightly inset
-   mask. Your art currently goes from 32 to 480 (16 px padding each side on
-   512, or ~4 px on 128). Google recommends **96 x 96 of art inside 128 x 128**
-   (16 px transparent padding each side). Crop the outer `rect` to
-   `x=64 y=64 width=384 height=384` for the 128 export to be safe.
-5. **No transparent background.** Right now the rounded navy rectangle fills
-   the entire canvas; that's fine because the rectangle itself is rounded. But
-   make sure the area **outside** the rounded rectangle is transparent in the
-   exported PNG (this script in this PR already does it via cairosvg - if you
-   re-render manually in Figma/Affinity, double-check the export checkbox
-   "Background: transparent" is on).
-6. **Optional: add a 1 px stroke ring around the rounded rectangle.** On
-   light backgrounds (toolbar in light theme) the navy navy looks great; on
-   dark backgrounds it can disappear. A `#ffffff14` inner stroke fixes it.
+Run:
 
-### A "ready-to-tune" small-icon SVG (drop into `icons/icon-small.svg`)
-
-```xml
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1223"/>
-      <stop offset="100%" stop-color="#10243a"/>
-    </linearGradient>
-  </defs>
-  <rect x="16" y="16" width="96" height="96" rx="22" fill="url(#bg)"/>
-  <rect x="32" y="40" width="64" height="48" rx="14" fill="none" stroke="#7df8c6" stroke-width="9"/>
-  <polygon points="54,52 80,64 54,76" fill="#f5f8ff"/>
-</svg>
+```bash
+npm install
+npm run assets:brand
 ```
 
-Use this for the 16 and 32 px PNGs, keep the existing `icon.svg` for 48/128.
+This renders the master SVG through `sharp` into the runtime extension PNGs and
+website favicon/banner formats. Do not hand-edit the generated PNGs unless you
+also update the generator or document the exception.
 
-### Recommended export workflow
+### Visual checks
 
-1. Open `icons/icon.svg` in Figma / Affinity Designer / Inkscape.
-2. Apply the fixes from points 1-5 above.
-3. Export PNG at 16, 32, 48, 128 - **with transparent background** and
-   **no anti-alias compression** (use PNG-24, not PNG-8).
-4. Replace the four `icons/icon-*.png` files in this repo.
-
-> The script `python3 -c "import cairosvg; cairosvg.svg2png(...)"` is fine for
-> the first pass (this PR uses it), but a hand-tuned 16 px PNG always looks
-> better than an automatic downscale.
+- 16/32 px icons must still show a dark rounded square, bright mint action
+  mark, and readable white card/play shape.
+- 48/128 px icons should show the richer source-card + checkbox + link concept.
+- PNG icon exports must keep transparency outside the rounded square.
+- Do not use literal YouTube, Google, or NotebookLM logos in the icon. A small
+  red dot and generic play triangle are acceptable brand-context cues.
+- If the icon changes, rerun `npm run assets` and then `npm run verify:cws` so
+  store templates, promo tile, favicons, and the upload ZIP stay synchronized.
 
 ---
 

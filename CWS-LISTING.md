@@ -3,7 +3,7 @@
 Copy/paste-ready texts for the Chrome Web Store Developer Dashboard at
 <https://chrome.google.com/webstore/devconsole>.
 
-These texts match the current manifest (`version 1.0.1`, MV3) and the privacy
+These texts match the current manifest (`version 1.0.2`, MV3) and the privacy
 policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 
 ---
@@ -19,6 +19,8 @@ policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 | Translated UI | The popup ships translations for: English (en, default), Russian (ru), Simplified Chinese (zh_CN), Hindi (hi), Spanish (es), French (fr), Arabic (ar, RTL), Bengali (bn), Brazilian Portuguese (pt_BR), Urdu (ur, RTL). Chrome auto-picks the matching `_locales/<lang>/messages.json` based on the user's browser language. |
 | Visibility | Public |
 | Distribution | All regions |
+| Repository description | `Copy multiple YouTube links into NotebookLM and AI research notes.` |
+| Repository topics | `notebooklm`, `youtube`, `chrome-extension`, `browser-extension`, `youtube-links`, `youtube-shorts`, `clean-urls`, `batch-copy`, `research-tool`, `ai-notes`, `llm-tools`, `clipboard`, `productivity` |
 
 ## 2. Single purpose statement
 
@@ -217,3 +219,6 @@ Each one is under 132 characters.
 > upload set is already prepared in `store-assets/`:
 > `screenshot-01-hero.png`, `screenshot-02-search-results.png`, and
 > `promo-small-440x280.png`.
+>
+> Current verified upload package: `build/tubelm-link-picker-cws-v1.0.2.zip`
+> with SHA-256 `056ef7ecb8c6cc205f22a0d7ad1047de23a234e43d3788ef52095d5b2e801406`.

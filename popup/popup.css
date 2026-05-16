@@ -6,10 +6,10 @@
    (Chrome side panel, opt-in via the popup footer button).
 
    Design system (centralised below):
-   - Palette borrows YouTube's neutral surfaces + NotebookLM's restrained
-     indigo accent. YouTube red is reserved for the brand mark only.
+   - Research Graphite + Mint: graphite surfaces, mint selection/check
+     language, and a tiny red dot as a restrained YouTube cue.
    - Spacing follows an 8-pt scale with two intermediate steps (2, 4).
-   - Radii: 8 / 12 / 14 / 999 (pill).
+   - Radii: 8 / 12 / 16 / 999 (pill).
    - Typography: Inter / Google Sans / Roboto fallback chain. Headings sit
      at -0.01em letter-spacing; body at 0.
 
@@ -26,30 +26,32 @@
 
 :root {
   /* ---- color · surface ------------------------------------------------ */
-  --bg: #f7f8fa;                      /* canvas behind the frame */
+  --bg: #f4f6f8;                      /* canvas behind the frame */
   --surface: #ffffff;                 /* every elevated card */
-  --surface-soft: #f1f3f4;            /* ghost button rest */
-  --surface-soft-hover: #e8eaed;      /* ghost button hover */
-  --surface-tint: #f6f5fb;            /* indigo-tinted hover / focus */
+  --surface-soft: #eef3f2;            /* ghost button rest */
+  --surface-soft-hover: #e1ebe8;      /* ghost button hover */
+  --surface-tint: #e9fff6;            /* mint-tinted hover / focus */
 
   /* ---- color · text --------------------------------------------------- */
-  --text: #0f0f0f;                    /* primary copy (YouTube ink) */
-  --text-secondary: #444746;          /* secondary copy */
-  --text-tertiary: #5f6368;           /* eyebrow / muted */
+  --text: #121417;                    /* research graphite ink */
+  --text-secondary: #39424e;          /* secondary copy */
+  --text-tertiary: #65717e;           /* eyebrow / muted */
   --text-on-dark: #ffffff;
   --text-on-dark-soft: rgba(255, 255, 255, 0.72);
 
   /* ---- color · accent ------------------------------------------------- */
-  --accent: #4f46e5;                  /* NotebookLM-ish indigo */
-  --accent-strong: #3730a3;
-  --accent-soft: rgba(79, 70, 229, 0.10);
-  --accent-ring: rgba(79, 70, 229, 0.28);
+  --accent: #10b981;                  /* mint-green action language */
+  --accent-strong: #064e3b;
+  --accent-soft: rgba(16, 185, 129, 0.12);
+  --accent-ring: rgba(125, 248, 198, 0.34);
+  --mint: #7df8c6;
+  --deep: #0b1223;
 
   /* ---- color · brand & status ---------------------------------------- */
-  --youtube: #ff0033;                 /* brand mark accent only */
-  --success: #137333;                 /* "Ready" pill */
-  --success-soft: rgba(19, 115, 51, 0.10);
-  --success-border: rgba(19, 115, 51, 0.24);
+  --youtube: #ff0033;                 /* tiny YouTube cue only */
+  --success: #064e3b;                 /* "Ready" pill */
+  --success-soft: rgba(16, 185, 129, 0.12);
+  --success-border: rgba(16, 185, 129, 0.28);
   --warn: #b06000;                    /* "Open YouTube" pill */
   --warn-soft: rgba(176, 96, 0, 0.10);
   --warn-border: rgba(176, 96, 0, 0.24);
@@ -78,7 +80,7 @@
   /* ---- radii ---------------------------------------------------------- */
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 14px;
+  --radius-lg: 16px;
   --radius-pill: 999px;
 
   /* ---- elevation ------------------------------------------------------ */
@@ -195,29 +197,9 @@ body[data-mode="sidepanel"] .frame {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
-  background: linear-gradient(180deg, #1d1f24 0%, #0f0f12 100%);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--text-on-dark);
+  display: block;
   flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-1);
-}
-
-.logo::after {
-  /* YouTube-red hairline accent at the bottom of the mark */
-  content: "";
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 6px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--youtube);
+  box-shadow: var(--shadow-2);
 }
 
 .name {
@@ -389,7 +371,7 @@ body[data-mode="sidepanel"] .frame {
   width: 100%;
   padding: 14px var(--space-5);
   border-radius: var(--radius-md);
-  background: var(--text);
+  background: linear-gradient(135deg, var(--text) 0%, var(--deep) 100%);
   color: var(--text-on-dark);
   flex-direction: column;
   gap: 3px;
@@ -411,7 +393,7 @@ body[data-mode="sidepanel"] .frame {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #1d1f24;
+  background: var(--deep);
   transform: translateY(-1px);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset,
               0 2px 6px rgba(15, 15, 15, 0.14),
@@ -434,7 +416,7 @@ body[data-mode="sidepanel"] .frame {
 }
 
 .btn-primary.is-copied {
-  background: var(--success);
+  background: linear-gradient(135deg, var(--success) 0%, var(--accent) 100%);
   box-shadow: 0 0 0 3px var(--success-soft),
               0 8px 20px rgba(19, 115, 51, 0.20);
 }

@@ -1,0 +1,41 @@
+{
+  "name": "tubelm-link-picker",
+  "version": "1.0.2",
+  "private": true,
+  "description": "Chrome extension to copy multiple YouTube video and Shorts links into NotebookLM, AI notes, and research workflows.",
+  "type": "module",
+  "homepage": "https://bakhtiersizhaev.github.io/tubelm-link-picker/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bakhtiersizhaev/tubelm-link-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bakhtiersizhaev/tubelm-link-picker/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "notebooklm",
+    "youtube",
+    "chrome-extension",
+    "browser-extension",
+    "youtube-links",
+    "youtube-shorts",
+    "batch-copy",
+    "clean-urls",
+    "research-tool",
+    "ai-notes",
+    "llm-tools",
+    "clipboard",
+    "productivity"
+  ],
+  "scripts": {
+    "assets:brand": "node scripts/generate-brand-assets.mjs",
+    "assets:store": "python scripts/generate-store-assets.py",
+    "assets:cws": "python scripts/generate-cws-template-kit.py",
+    "assets": "npm run assets:brand && npm run assets:store && npm run assets:cws",
+    "verify:cws": "node scripts/verify-cws.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}
