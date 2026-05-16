@@ -1,0 +1,77 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "YouTube ভিডিও আর Shorts বেছে নিন, পরিষ্কার লিংক কপি করুন — NotebookLM, AI নোট ও গবেষণার জন্য।"
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "NotebookLM-এর জন্য YouTube লিংক"
+  },
+  "statusChecking": {
+    "message": "যাচাই হচ্ছে…"
+  },
+  "statusReady": {
+    "message": "প্রস্তুত"
+  },
+  "statusNotYouTube": {
+    "message": "YouTube খুলুন"
+  },
+  "statusUnreachable": {
+    "message": "ট্যাবে পৌঁছানো যাচ্ছে না"
+  },
+  "labelSelected": {
+    "message": "নির্বাচিত"
+  },
+  "noteEmpty": {
+    "message": "পেজে ভিডিও টিক দিন, অথবা «দৃশ্যমান বেছে নিন» দিয়ে একসাথে এক সারি যোগ করুন।"
+  },
+  "noteReady": {
+    "message": "ভিডিও আর Shorts-এর পরিষ্কার লিংক কপি করার জন্য প্রস্তুত।"
+  },
+  "noteOpenYouTube": {
+    "message": "youtube.com খুলুন, তারপর সরাসরি পেজ থেকে ভিডিও বেছে নিন।"
+  },
+  "noteUnreachable": {
+    "message": "YouTube ট্যাবটি রিলোড করে আবার চেষ্টা করুন।"
+  },
+  "copyLabelEmpty": {
+    "message": "নির্বাচন কপি করুন"
+  },
+  "copyLabelCount": {
+    "message": "$count$টি লিংক কপি করুন",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "প্রতি লাইনে এক লিংক, NotebookLM-এর জন্য প্রস্তুত"
+  },
+  "selectVisibleButton": {
+    "message": "দৃশ্যমান বেছে নিন"
+  },
+  "clearButton": {
+    "message": "মুছে ফেলুন"
+  },
+  "thanksLine": {
+    "message": "TubeLM ব্যবহারের জন্য ধন্যবাদ।"
+  },
+  "creditsPrefix": {
+    "message": "দ্বারা"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "কপি হয়েছে!"
+  }
+}

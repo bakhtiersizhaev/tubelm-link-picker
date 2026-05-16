@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "TubeLM Link Picker",
-  "short_name": "TubeLM",
+  "default_locale": "en",
+  "name": "__MSG_appFullName__",
+  "short_name": "__MSG_appShortName__",
   "version": "1.0.0",
-  "description": "Select YouTube videos and Shorts, copy clean URLs, and paste them into NotebookLM or AI research notes.",
+  "description": "__MSG_appDescription__",
   "homepage_url": "https://github.com/bakhtiersizhaev/tubelm-link-picker",
   "permissions": [
     "activeTab",

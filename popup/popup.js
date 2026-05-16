@@ -7,7 +7,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const statNote = document.getElementById('statNote');
     const copyLabel = document.getElementById('copyLabel');
     const copyHint = document.getElementById('copyHint');
-    const hasExtensionApi = typeof chrome !== 'undefined' && chrome.tabs && chrome.runtime;
+    const hasExtensionApi = typeof chrome !== 'undefined' && !!chrome.tabs && !!chrome.runtime;
+    const hasI18n = typeof chrome !== 'undefined' && !!chrome.i18n && typeof chrome.i18n.getMessage === 'function';
+
+    const RTL_LOCALES = new Set(['ar', 'he', 'fa', 'ur']);
+
+    function t(key, substitution) {
+        if (hasI18n) {
+            const msg = substitution !== undefined
+                ? chrome.i18n.getMessage(key, [String(substitution)])
+                : chrome.i18n.getMessage(key);
+            if (msg) return msg;
+        }
+        // Fallback used in file:// preview where chrome.i18n is unavailable:
+        // read the inline default text from the matching data-i18n element.
+        const el = document.querySelector('[data-i18n="' + key + '"]');
+        const fallback = el ? el.textContent : key;
+        if (substitution !== undefined) {
+            return fallback.replace('$1', String(substitution)).replace('$count$', String(substitution));
+        }
+        return fallback;
+    }
+
+    function applyStaticTranslations() {
+        if (!hasI18n) return;
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.dataset.i18n;
+            const value = chrome.i18n.getMessage(key);
+            if (value) el.textContent = value;
+        });
+    }
+
+    function applyLocaleDirection() {
+        const lang = hasI18n ? chrome.i18n.getUILanguage() : (document.documentElement.lang || 'en');
+        const root = lang.split('-')[0].toLowerCase();
+        document.documentElement.lang = lang;
+        document.documentElement.dir = RTL_LOCALES.has(root) ? 'rtl' : 'ltr';
+    }
+
+    function setStatus(intent, key) {
+        tabStatus.dataset.intent = intent;
+        tabStatus.textContent = t(key);
+    }
+
+    function setCount(count) {
+        statCount.textContent = String(count);
+        statCount.dataset.zero = count === 0 ? 'true' : 'false';
+    }
 
     // Helper to query active tab
     async function getActiveTab() {
@@ -62,29 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setBlockedState(reason) {
-        tabStatus.dataset.intent = 'error';
         copySelectedBtn.disabled = true;
         selectAllBtn.disabled = true;
         clearBtn.disabled = true;
-        statCount.textContent = '—';
+        setCount(0);
+        copyLabel.textContent = t('copyLabelEmpty');
+        copyHint.textContent = t('copyHintDefault');
 
         if (reason === 'not_youtube') {
-            tabStatus.textContent = 'Open a YouTube tab';
-            statNote.textContent = 'Open youtube.com, then use TubeLM to pick videos from the page.';
+            setStatus('warn', 'statusNotYouTube');
+            statNote.textContent = t('noteOpenYouTube');
         } else {
-            tabStatus.textContent = 'TubeLM cannot reach this tab';
-            statNote.textContent = 'Reload the tab or try again on a standard YouTube page.';
+            setStatus('warn', 'statusUnreachable');
+            statNote.textContent = t('noteUnreachable');
         }
-    }
-
-    function setPreviewState() {
-        tabStatus.dataset.intent = 'error';
-        tabStatus.textContent = 'Load as extension';
-        copySelectedBtn.disabled = true;
-        selectAllBtn.disabled = true;
-        clearBtn.disabled = true;
-        statCount.textContent = '0';
-        statNote.textContent = 'Install TubeLM from chrome://extensions to use it on YouTube.';
     }
 
     // Update UI based on selection status
@@ -99,24 +136,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof response?.count === 'number') {
             const count = response.count;
 
-            tabStatus.dataset.intent = 'ok';
-            tabStatus.textContent = 'Ready on YouTube';
+            setStatus('ok', 'statusReady');
             selectAllBtn.disabled = false;
             clearBtn.disabled = false;
             copySelectedBtn.disabled = count === 0;
 
-            statCount.textContent = count;
-            statNote.textContent = count === 0
-                ? 'Use on-video checkboxes or “Select visible” to add links.'
-                : 'Ready to copy clean watch and Shorts URLs.';
+            setCount(count);
+            statNote.textContent = count === 0 ? t('noteEmpty') : t('noteReady');
 
-            copyLabel.textContent = count > 0 ? `Copy ${count} ${count === 1 ? 'URL' : 'URLs'}` : 'Copy selection';
-            copyHint.textContent = count > 5 ? 'Newline list for NotebookLM import' : 'Clean YouTube links';
+            copyLabel.textContent = count > 0
+                ? t('copyLabelCount', count)
+                : t('copyLabelEmpty');
+            copyHint.textContent = t('copyHintDefault');
         }
     }
 
+    // Localise static strings and apply text direction before any logic runs.
+    applyLocaleDirection();
+    applyStaticTranslations();
+
     if (!hasExtensionApi) {
-        setPreviewState();
+        // Dev preview (file:// or an unrelated context). Keep the layout populated
+        // with the localised defaults that applyStaticTranslations() already wrote
+        // and leave the action buttons disabled. No misleading "install from
+        // chrome://extensions" copy is shown anywhere.
+        copySelectedBtn.disabled = true;
+        selectAllBtn.disabled = true;
+        clearBtn.disabled = true;
+        setStatus('neutral', 'statusChecking');
         return;
     }
 
@@ -131,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Visual feedback
                 copySelectedBtn.classList.add('copied');
                 const originalLabel = copyLabel.textContent;
-                copyLabel.textContent = 'Copied!';
+                copyLabel.textContent = t('copied');
                 setTimeout(() => {
                     copySelectedBtn.classList.remove('copied');
                     copyLabel.textContent = originalLabel;

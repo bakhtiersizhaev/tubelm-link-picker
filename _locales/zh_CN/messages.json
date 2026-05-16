@@ -1,0 +1,77 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "在 YouTube 上勾选视频和 Shorts,一键复制干净链接,送入 NotebookLM、AI 笔记与研究流程。"
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "把 YouTube 链接送进 NotebookLM"
+  },
+  "statusChecking": {
+    "message": "检查中…"
+  },
+  "statusReady": {
+    "message": "就绪"
+  },
+  "statusNotYouTube": {
+    "message": "请打开 YouTube"
+  },
+  "statusUnreachable": {
+    "message": "无法访问此标签页"
+  },
+  "labelSelected": {
+    "message": "已选"
+  },
+  "noteEmpty": {
+    "message": "在页面上勾选视频,或点击「选择可见项」按行批量添加。"
+  },
+  "noteReady": {
+    "message": "可以复制干净的视频和 Shorts 链接了。"
+  },
+  "noteOpenYouTube": {
+    "message": "请先打开 youtube.com,然后从页面上挑选视频。"
+  },
+  "noteUnreachable": {
+    "message": "请刷新 YouTube 标签页后重试。"
+  },
+  "copyLabelEmpty": {
+    "message": "复制所选"
+  },
+  "copyLabelCount": {
+    "message": "复制 $count$ 条链接",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "按行整理,直接粘进 NotebookLM"
+  },
+  "selectVisibleButton": {
+    "message": "选择可见项"
+  },
+  "clearButton": {
+    "message": "清空"
+  },
+  "thanksLine": {
+    "message": "感谢使用 TubeLM。"
+  },
+  "creditsPrefix": {
+    "message": "作者:"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "已复制!"
+  }
+}

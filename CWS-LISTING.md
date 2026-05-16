@@ -12,10 +12,11 @@ policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 
 | Field | Value |
 | --- | --- |
-| Name | `TubeLM Link Picker` |
-| Short name (in-Chrome) | `TubeLM` |
+| Name | `TubeLM Link Picker` (sourced from `_locales/en/messages.json -> appFullName`) |
+| Short name (in-Chrome) | `TubeLM` (sourced from `_locales/en/messages.json -> appShortName`) |
 | Category | `Productivity` (primary) - secondary: `Workflow & Planning Tools` if available |
-| Language | English (United States) - primary. Add Russian, Chinese, Spanish later via `_locales/`. |
+| Default language | English (United States) |
+| Translated UI | The popup ships translations for: English (en, default), Russian (ru), Simplified Chinese (zh_CN), Hindi (hi), Spanish (es), French (fr), Arabic (ar, RTL), Bengali (bn), Brazilian Portuguese (pt_BR), Urdu (ur, RTL). Chrome auto-picks the matching `_locales/<lang>/messages.json` based on the user's browser language. |
 | Visibility | Public |
 | Distribution | All regions |
 
@@ -163,28 +164,37 @@ Exclude from the `.zip`:
 - `icons/icon.svg` (optional - the source SVG is not used by Chrome at runtime;
   keep it out to reduce the upload size, but it is harmless if shipped)
 
-## 9. Russian translation (для дашборда, если включите ru локаль)
+## 9. Localised store-listing copy (optional, paste per language in dashboard)
 
-**Краткое описание (132):**
+The popup ships localised UI for ten languages out of the box (see section 1).
+The Chrome Web Store also lets you localise the store listing itself — short
+description and detailed description — independently from `_locales/`. Below are
+ready-to-paste short descriptions matching the in-popup tagline for each
+shipped language. You can paste these in the dashboard's "Add language" dialog.
 
-> Выберите видео и Shorts на YouTube галочками и скопируйте чистые ссылки одной
-> кнопкой - готовые для NotebookLM и ИИ-заметок.
+Each one is under 132 characters.
 
-**Подробное описание (фрагмент):**
+| Lang | Short description |
+| --- | --- |
+| `en` | Pick YouTube videos and Shorts with checkboxes, then copy clean URLs in one click. Built for NotebookLM and AI research notes. |
+| `ru` | Отмечайте видео и Shorts на YouTube галочками и копируйте чистые ссылки одной кнопкой — для NotebookLM и ИИ-заметок. |
+| `zh_CN` | 在 YouTube 上勾选视频和 Shorts,一键复制干净链接,送入 NotebookLM、AI 笔记与研究流程。 |
+| `hi` | YouTube वीडियो और Shorts चुनें, साफ़ लिंक एक क्लिक में कॉपी करें — NotebookLM, AI नोट्स और रिसर्च के लिए। |
+| `es` | Marca videos y Shorts de YouTube con casillas y copia enlaces limpios en un clic. Para NotebookLM y notas con IA. |
+| `fr` | Cochez vidéos et Shorts YouTube, puis copiez des liens propres en un clic. Pour NotebookLM et la veille avec l'IA. |
+| `ar` | اختر مقاطع YouTube وShorts بمربعات الاختيار، وانسخ روابطها النظيفة بنقرة واحدة — لـ NotebookLM وملاحظات الذكاء الاصطناعي. |
+| `bn` | চেকবক্স দিয়ে YouTube ভিডিও আর Shorts বেছে নিন, এক ক্লিকে পরিষ্কার লিংক কপি করুন — NotebookLM আর AI গবেষণার জন্য। |
+| `pt_BR` | Marque vídeos e Shorts do YouTube e copie links limpos em um clique. Feito para o NotebookLM e notas com IA. |
+| `ur` | چیک باکسز سے YouTube ویڈیوز اور Shorts منتخب کریں اور ایک کلک میں صاف لنکس کاپی کریں — NotebookLM اور AI نوٹس کے لیے۔ |
 
-> **TubeLM Link Picker** превращает YouTube в источник для ваших ИИ-заметок.
-> Откройте канал, плейлист, поиск или сетку Shorts - на каждом видео появится
-> чекбокс. Отметьте нужные, нажмите **Copy**, и расширение положит в буфер
-> обмена чистые ссылки `https://www.youtube.com/watch?v=...` через перенос
-> строки. Вставьте их в NotebookLM, ChatGPT, Claude, Gemini, Obsidian или любой
-> другой инструмент, который принимает список источников.
+> The in-popup UI (status pills, buttons, helper text) is fully translated for
+> every language above via `_locales/<lang>/messages.json` and uses
+> `chrome.i18n.getMessage()` at runtime. Arabic and Urdu set `dir="rtl"`
+> automatically.
 >
-> **Приватность:** ничего не отправляется на сервер, нет аналитики, нет
-> аккаунта. Расширение работает только на `youtube.com`. Полная политика:
-> <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
->
-> Сделано Bakhtier Sizhaev. Спасибо, что используете TubeLM - если он экономит
-> вам время, поставьте звезду на GitHub.
+> Native-speaker review recommended before publishing for `hi`, `bn`, `ur`,
+> `ar` — these are not the author's native languages and reviewers may want
+> register adjustments.
 
 ---
 

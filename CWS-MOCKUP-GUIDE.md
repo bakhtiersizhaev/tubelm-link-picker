@@ -375,12 +375,64 @@ Estimated time if you already have Figma/Affinity templates: **3-4 hours**.
 
 - `popup/popup.html` + `popup/popup.css` - the real popup, use as the source
   capture for the screenshots.
+- `_locales/<lang>/messages.json` - all UI strings, one file per shipped
+  language (see section 10). When you capture a localised screenshot, set
+  Chrome's UI language via `chrome://settings/languages` before reloading the
+  unpacked extension.
 - `docs/index.html` - the marketing landing page already has a stylized
   "popup preview" component (lines 484-519) that you can screenshot directly
   if you want a synthetic mockup for screenshot #1.
 - `icons/icon.svg` - the master vector source.
 - `docs/privacy.html` - the privacy policy URL for the listing.
-- `CWS-LISTING.md` - all texts for the dashboard.
+- `CWS-LISTING.md` - all texts for the dashboard, including localised short
+  descriptions per language (section 9).
+
+---
+
+## 10. Popup UI is fully localised - capture per language
+
+The popup ships translations for ten languages. Status pill, helper text,
+button labels, copy hint, thanks line, and credits prefix all come from
+`_locales/<lang>/messages.json`. The HTML inline defaults are English so the
+extension still renders correctly if Chrome reports an unsupported locale.
+
+| Folder | Language | Notes |
+| --- | --- | --- |
+| `_locales/en` | English (default) | Source of truth - keys defined with `description` annotations. |
+| `_locales/ru` | Русский | Conversational tone, "Скопировать ($count$)" sidesteps Russian plural agreement. |
+| `_locales/zh_CN` | 简体中文 | Mixed-script copy ("YouTube", "NotebookLM" stay in Latin). |
+| `_locales/hi` | हिन्दी | Devanagari; native review recommended. |
+| `_locales/es` | Español (neutral) | No region-specific vocabulary. |
+| `_locales/fr` | Français | "Veille" used for "research". |
+| `_locales/ar` | العربية | MSA; `dir="rtl"` set automatically by `popup.js`. Native review recommended. |
+| `_locales/bn` | বাংলা | Native review recommended. |
+| `_locales/pt_BR` | Português (BR) | "vídeo" with accent. |
+| `_locales/ur` | اردو | `dir="rtl"` set automatically. Native review recommended. |
+
+### How to capture a localised screenshot
+
+1. `chrome://settings/languages` -> add the target language -> move it to the
+   top of the list (Chrome uses the topmost listed language as the UI
+   language).
+2. Restart Chrome.
+3. Reload the unpacked extension at `chrome://extensions`.
+4. Open YouTube and the popup - status pill, buttons, helper text should
+   render in the chosen language. RTL locales (`ar`, `ur`) should mirror the
+   layout horizontally.
+5. Capture the popup with whatever tool you prefer
+   (DevTools "Capture node screenshot" works well at exactly 336 px wide).
+
+### Best languages to feature in store screenshots
+
+Google's listing accepts up to 5 screenshots per locale. If you only have
+time to localise screenshots for a subset, prioritise the languages you
+expect the highest install rate from: **en, ru, zh_CN, es, pt_BR**. The
+other five share the same layout so the English screenshots are still a
+reasonable fallback if you don't ship a per-language set.
+
+> The translations in `hi`, `bn`, `ur`, `ar` were written by the author with
+> dictionary support, **not** as a native speaker. Please ask a native
+> reviewer before submitting localised store listings in those languages.
 
 ---
 

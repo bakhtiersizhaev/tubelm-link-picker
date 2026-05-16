@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TubeLM Link Picker copies selected YouTube video and Shorts URLs for NotebookLM, AI notes, and research workflows.">
-  <title>TubeLM Link Picker - YouTube links for NotebookLM</title>
+  <title>TubeLM Link Picker</title>
   <link rel="icon" href="../icons/icon-32.png" type="image/png">
   <link rel="stylesheet" href="popup.css">
 </head>
@@ -13,43 +13,45 @@
     <header class="top">
       <div class="brand">
         <div class="logo" aria-hidden="true">TL</div>
-        <div>
-          <h1 class="name" id="appTitle">TubeLM</h1>
-          <p class="tag">YouTube links for NotebookLM</p>
+        <div class="brand-text">
+          <h1 class="name" id="appTitle" data-i18n="appName">TubeLM</h1>
+          <p class="tag" data-i18n="appTagline">YouTube links for NotebookLM</p>
         </div>
       </div>
-      <span class="status" id="tabStatus" aria-live="polite">Checking tab…</span>
+      <span class="status" id="tabStatus" data-intent="neutral" aria-live="polite" data-i18n="statusChecking">Checking…</span>
     </header>
 
     <section class="metric" aria-live="polite">
-      <div>
-        <p class="label">Selected</p>
-        <p class="value" id="statCount">0</p>
+      <div class="metric-stat">
+        <p class="label" data-i18n="labelSelected">Selected</p>
+        <p class="value" id="statCount" data-zero="true">0</p>
       </div>
-      <p class="note" id="statNote">Select videos to build a clean list.</p>
+      <p class="note" id="statNote" data-i18n="noteEmpty">Tick videos on the page, or use Select visible to grab a row at a time.</p>
     </section>
 
     <button id="copySelectedBtn" class="btn primary" type="button" disabled>
-      <span class="btn-label" id="copyLabel">Copy selection</span>
-      <span class="btn-hint" id="copyHint">Newline list for NotebookLM</span>
+      <span class="btn-label" id="copyLabel" data-i18n="copyLabelEmpty">Copy selection</span>
+      <span class="btn-hint" id="copyHint" data-i18n="copyHintDefault">Newline list, ready for NotebookLM</span>
     </button>
 
     <div class="actions">
-      <button id="selectAllBtn" class="btn ghost" type="button">Select visible</button>
-      <button id="clearBtn" class="btn ghost subtle" type="button">Clear</button>
+      <button id="selectAllBtn" class="btn ghost" type="button" data-i18n="selectVisibleButton">Select visible</button>
+      <button id="clearBtn" class="btn ghost subtle" type="button" data-i18n="clearButton">Clear</button>
     </div>
 
-    <p class="footer">Built for channel pages, playlists, search results, and Shorts grids.</p>
-
-    <p class="credits">
-      By
-      <a href="https://github.com/bakhtiersizhaev" target="_blank" rel="noopener noreferrer">Bakhtier Sizhaev</a>
-      <span class="sep" aria-hidden="true">·</span>
-      <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker" target="_blank" rel="noopener noreferrer">★ GitHub</a>
-      <span class="sep" aria-hidden="true">·</span>
-      <a href="https://telelore.vercel.app/" target="_blank" rel="noopener noreferrer">TeleLore</a>
-    </p>
-    <p class="thanks">Thanks for using TubeLM.</p>
+    <section class="about" aria-label="About TubeLM">
+      <p class="thanks" data-i18n="thanksLine">Thanks for using TubeLM.</p>
+      <p class="credits">
+        <span data-i18n="creditsPrefix">By</span>
+        <a href="https://github.com/bakhtiersizhaev" target="_blank" rel="noopener noreferrer">Bakhtier Sizhaev</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a class="star-link" href="https://github.com/bakhtiersizhaev/tubelm-link-picker" target="_blank" rel="noopener noreferrer">
+          <span class="star" aria-hidden="true">★</span><span data-i18n="linkGitHub">GitHub</span>
+        </a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://telelore.vercel.app/" target="_blank" rel="noopener noreferrer">TeleLore</a>
+      </p>
+    </section>
   </main>
   <script src="popup.js"></script>
 </body>

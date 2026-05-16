@@ -1,0 +1,77 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "Отмечайте видео и Shorts на YouTube и копируйте чистые ссылки в NotebookLM, ИИ-заметки и для ресёрча."
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "YouTube-ссылки для NotebookLM"
+  },
+  "statusChecking": {
+    "message": "Проверка…"
+  },
+  "statusReady": {
+    "message": "Готово"
+  },
+  "statusNotYouTube": {
+    "message": "Откройте YouTube"
+  },
+  "statusUnreachable": {
+    "message": "Вкладка недоступна"
+  },
+  "labelSelected": {
+    "message": "Выбрано"
+  },
+  "noteEmpty": {
+    "message": "Отмечайте видео на странице или нажмите «Выделить видимое», чтобы добавить ряд."
+  },
+  "noteReady": {
+    "message": "Можно копировать чистые ссылки на видео и Shorts."
+  },
+  "noteOpenYouTube": {
+    "message": "Откройте youtube.com и выбирайте видео прямо со страницы."
+  },
+  "noteUnreachable": {
+    "message": "Обновите вкладку YouTube и попробуйте ещё раз."
+  },
+  "copyLabelEmpty": {
+    "message": "Скопировать выбранное"
+  },
+  "copyLabelCount": {
+    "message": "Скопировать ($count$)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "Список по строкам, готовый для NotebookLM"
+  },
+  "selectVisibleButton": {
+    "message": "Выделить видимое"
+  },
+  "clearButton": {
+    "message": "Очистить"
+  },
+  "thanksLine": {
+    "message": "Спасибо, что пользуетесь TubeLM."
+  },
+  "creditsPrefix": {
+    "message": "От"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "Скопировано!"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "اختر مقاطع YouTube وShorts، وانسخ روابطها النظيفة إلى NotebookLM وملاحظات الذكاء الاصطناعي والبحث."
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "روابط YouTube لخدمة NotebookLM"
+  },
+  "statusChecking": {
+    "message": "جارٍ التحقّق…"
+  },
+  "statusReady": {
+    "message": "جاهز"
+  },
+  "statusNotYouTube": {
+    "message": "افتح YouTube"
+  },
+  "statusUnreachable": {
+    "message": "تعذّر الوصول إلى علامة التبويب"
+  },
+  "labelSelected": {
+    "message": "المحدَّد"
+  },
+  "noteEmpty": {
+    "message": "اختر مقاطع من الصفحة، أو استخدم «تحديد المرئي» لاختيار صفّ كامل دفعةً واحدة."
+  },
+  "noteReady": {
+    "message": "كل شيء جاهز لنسخ روابط نظيفة لمقاطع الفيديو وShorts."
+  },
+  "noteOpenYouTube": {
+    "message": "افتح youtube.com ثم اختر مقاطع الفيديو مباشرةً من الصفحة."
+  },
+  "noteUnreachable": {
+    "message": "أعد تحميل علامة تبويب YouTube ثم حاول مرة أخرى."
+  },
+  "copyLabelEmpty": {
+    "message": "نسخ المحدَّد"
+  },
+  "copyLabelCount": {
+    "message": "نسخ $count$ من الروابط",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "قائمة بفواصل أسطر، جاهزة لـ NotebookLM"
+  },
+  "selectVisibleButton": {
+    "message": "تحديد المرئي"
+  },
+  "clearButton": {
+    "message": "مسح"
+  },
+  "thanksLine": {
+    "message": "شكرًا لاستخدامك TubeLM."
+  },
+  "creditsPrefix": {
+    "message": "بقلم"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "تم النسخ!"
+  }
+}
