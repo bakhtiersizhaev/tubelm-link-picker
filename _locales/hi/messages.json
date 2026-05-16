@@ -1,0 +1,80 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "YouTube वीडियो और Shorts चुनें, साफ़ लिंक कॉपी करें — NotebookLM, AI नोट्स और रिसर्च के लिए।"
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "NotebookLM के लिए YouTube लिंक"
+  },
+  "statusChecking": {
+    "message": "जाँच हो रही है…"
+  },
+  "statusReady": {
+    "message": "तैयार"
+  },
+  "statusNotYouTube": {
+    "message": "YouTube खोलें"
+  },
+  "statusUnreachable": {
+    "message": "टैब तक पहुँच नहीं"
+  },
+  "labelSelected": {
+    "message": "चुने गए"
+  },
+  "noteEmpty": {
+    "message": "पेज पर वीडियो टिक करें, या एक बार में पूरी पंक्ति लेने के लिए «दिखाई दे रहे चुनें» दबाएँ।"
+  },
+  "noteReady": {
+    "message": "साफ़-सुथरे वीडियो और Shorts लिंक कॉपी करने के लिए तैयार।"
+  },
+  "noteOpenYouTube": {
+    "message": "youtube.com खोलें, फिर पेज से ही वीडियो चुनें।"
+  },
+  "noteUnreachable": {
+    "message": "YouTube टैब को रीलोड करें और फिर कोशिश करें।"
+  },
+  "copyLabelEmpty": {
+    "message": "चयन कॉपी करें"
+  },
+  "copyLabelCount": {
+    "message": "$count$ लिंक कॉपी करें",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "पंक्तियों में सूची, NotebookLM के लिए तैयार"
+  },
+  "selectVisibleButton": {
+    "message": "दिखाई दे रहे चुनें"
+  },
+  "clearButton": {
+    "message": "साफ़ करें"
+  },
+  "thanksLine": {
+    "message": "TubeLM इस्तेमाल करने के लिए धन्यवाद।"
+  },
+  "creditsPrefix": {
+    "message": "बनाया —"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "कॉपी हो गया!"
+  },
+  "openSidePanel": {
+    "message": "साइड पैनल में खोलें"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "Sélectionnez vidéos et Shorts YouTube, puis copiez des liens propres pour NotebookLM, notes IA et veille."
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "Des liens YouTube pour NotebookLM"
+  },
+  "statusChecking": {
+    "message": "Vérification…"
+  },
+  "statusReady": {
+    "message": "Prêt"
+  },
+  "statusNotYouTube": {
+    "message": "Ouvrez YouTube"
+  },
+  "statusUnreachable": {
+    "message": "Onglet inaccessible"
+  },
+  "labelSelected": {
+    "message": "Sélectionnés"
+  },
+  "noteEmpty": {
+    "message": "Cochez des vidéos sur la page, ou utilisez « Sélectionner visibles » pour prendre une ligne entière."
+  },
+  "noteReady": {
+    "message": "Prêt à copier des liens propres pour vidéos et Shorts."
+  },
+  "noteOpenYouTube": {
+    "message": "Ouvrez youtube.com, puis choisissez les vidéos directement depuis la page."
+  },
+  "noteUnreachable": {
+    "message": "Rechargez l'onglet YouTube et réessayez."
+  },
+  "copyLabelEmpty": {
+    "message": "Copier la sélection"
+  },
+  "copyLabelCount": {
+    "message": "Copier $count$ liens",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "Liste par lignes, prête pour NotebookLM"
+  },
+  "selectVisibleButton": {
+    "message": "Sélectionner visibles"
+  },
+  "clearButton": {
+    "message": "Effacer"
+  },
+  "thanksLine": {
+    "message": "Merci d'utiliser TubeLM."
+  },
+  "creditsPrefix": {
+    "message": "Par"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "Copié !"
+  },
+  "openSidePanel": {
+    "message": "Ouvrir dans le volet latéral"
+  }
+}

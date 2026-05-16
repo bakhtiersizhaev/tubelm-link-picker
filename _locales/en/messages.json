@@ -1,0 +1,104 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker",
+    "description": "Full extension name shown in the Chrome Web Store and the toolbar tooltip."
+  },
+  "appShortName": {
+    "message": "TubeLM",
+    "description": "Short product name used under the toolbar icon (max 12 chars recommended)."
+  },
+  "appDescription": {
+    "message": "Select YouTube videos and Shorts, then copy clean watch URLs for NotebookLM, AI notes, and research.",
+    "description": "Chrome Web Store description (max 132 chars)."
+  },
+  "appName": {
+    "message": "TubeLM",
+    "description": "Wordmark shown as the popup heading."
+  },
+  "appTagline": {
+    "message": "YouTube links for NotebookLM",
+    "description": "Subtitle under the popup heading."
+  },
+  "statusChecking": {
+    "message": "Checking…",
+    "description": "Status pill while the popup checks the active tab."
+  },
+  "statusReady": {
+    "message": "Ready",
+    "description": "Status pill when the active tab is YouTube and TubeLM is operating."
+  },
+  "statusNotYouTube": {
+    "message": "Open YouTube",
+    "description": "Status pill when the active tab is not a YouTube page."
+  },
+  "statusUnreachable": {
+    "message": "Tab unreachable",
+    "description": "Status pill when the content script cannot be reached."
+  },
+  "labelSelected": {
+    "message": "Selected",
+    "description": "Label above the selection count in the metric card."
+  },
+  "noteEmpty": {
+    "message": "Tick videos on the page, or use Select visible to add a row at a time.",
+    "description": "Helper note inside the metric card when no videos are selected."
+  },
+  "noteReady": {
+    "message": "Ready to copy clean watch and Shorts URLs.",
+    "description": "Helper note inside the metric card when at least one video is selected."
+  },
+  "noteOpenYouTube": {
+    "message": "Open youtube.com, then pick videos right from the page.",
+    "description": "Helper note when the active tab is not on YouTube."
+  },
+  "noteUnreachable": {
+    "message": "Reload the YouTube tab and try again.",
+    "description": "Helper note when TubeLM cannot reach the content script."
+  },
+  "copyLabelEmpty": {
+    "message": "Copy selection",
+    "description": "Primary button label when nothing is selected."
+  },
+  "copyLabelCount": {
+    "message": "Copy $count$ links",
+    "description": "Primary button label when at least one video is selected.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "Newline list, ready for NotebookLM",
+    "description": "Sub-label under the primary button."
+  },
+  "selectVisibleButton": {
+    "message": "Select visible",
+    "description": "Secondary action button that selects all videos visible in the current viewport."
+  },
+  "clearButton": {
+    "message": "Clear",
+    "description": "Secondary action button that clears the current selection."
+  },
+  "thanksLine": {
+    "message": "Thanks for using TubeLM.",
+    "description": "Friendly thank-you line above the credits row."
+  },
+  "creditsPrefix": {
+    "message": "By",
+    "description": "Word that precedes the author name in the credits row."
+  },
+  "linkGitHub": {
+    "message": "GitHub",
+    "description": "Label of the GitHub repository link in the credits row."
+  },
+  "copied": {
+    "message": "Copied!",
+    "description": "Confirmation shown briefly inside the primary button after a successful copy."
+  },
+  "openSidePanel": {
+    "message": "Open in side panel",
+    "description": "Label of the optional button that pins TubeLM to the Chrome side panel."
+  }
+}

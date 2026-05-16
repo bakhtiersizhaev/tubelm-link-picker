@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy - TubeLM Link Picker</title>
+  <meta name="description" content="Privacy policy for the TubeLM Link Picker Chrome extension. TubeLM does not collect, store, or transmit any personal data.">
+  <meta name="author" content="Bakhtier Sizhaev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --ink: #121417;
+      --paper: #f4f6f8;
+      --muted: #65717e;
+      --line: rgba(18, 20, 23, 0.12);
+      --accent: #10b981;
+      color-scheme: light;
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .shell {
+      width: min(760px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+    a { color: var(--accent); text-underline-offset: 4px; }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .meta {
+      margin: 0 0 32px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    h2 {
+      margin: 36px 0 12px;
+      font-size: 22px;
+      letter-spacing: -0.005em;
+    }
+    p, li { color: #2a323b; }
+    ul { padding-left: 20px; }
+    li + li { margin-top: 6px; }
+    .badge {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <span class="badge">No data collected</span>
+    <h1>TubeLM Link Picker - Privacy Policy</h1>
+    <p class="meta">Last updated: May 2026 · Maintained by Bakhtier Sizhaev</p>
+
+    <p>
+      TubeLM Link Picker ("TubeLM", "the extension") is a free, open-source Chrome
+      extension that helps you select YouTube videos and Shorts on
+      <code>youtube.com</code> and copy clean URLs to your clipboard for pasting into
+      NotebookLM or other research tools.
+    </p>
+
+    <p>
+      This privacy policy explains how the extension handles your data. The short
+      version: <strong>it does not collect, store, or transmit any of your data.</strong>
+    </p>
+
+    <h2>1. What data we collect</h2>
+    <p>
+      <strong>None.</strong> TubeLM does not collect, transmit, or sell any personal
+      information, browsing history, identifiers, authentication tokens, financial
+      information, health information, personal communications, location, web
+      history, or any other category of user data defined by the Chrome Web Store
+      Developer Program Policies.
+    </p>
+
+    <h2>2. How TubeLM works</h2>
+    <ul>
+      <li>The content script runs only on <code>https://*.youtube.com/*</code> pages, where it adds checkbox overlays to video tiles.</li>
+      <li>Your selection is held in memory inside the active YouTube tab while the page is open.</li>
+      <li>When you click "Copy selection", the chosen URLs are written to your local clipboard via the standard <code>navigator.clipboard</code> / <code>chrome.clipboardWrite</code> permission.</li>
+      <li>Nothing is sent to the extension developer or to any third-party server.</li>
+    </ul>
+
+    <h2>3. Permissions justification</h2>
+    <ul>
+      <li><code>activeTab</code> - read the URL and inject the picker into the YouTube tab you are currently viewing.</li>
+      <li><code>scripting</code> - inject the picker UI and read video metadata directly from the YouTube page DOM.</li>
+      <li><code>clipboardWrite</code> - write the list of selected URLs into your clipboard.</li>
+      <li><code>host_permissions: https://*.youtube.com/*</code> - the extension only operates on YouTube domains.</li>
+    </ul>
+
+    <h2>4. Remote code</h2>
+    <p>
+      TubeLM does not download, execute, or interpret remote code. All JavaScript is
+      bundled inside the extension package and reviewable in the public source
+      repository on GitHub. There is no <code>eval()</code>, no remote script
+      loading, no remote configuration, and no auto-update of scripts at runtime.
+    </p>
+
+    <h2>5. Third-party services</h2>
+    <p>
+      TubeLM does not integrate any analytics, telemetry, error tracking, A/B
+      testing, or advertising SDKs. It does not contact any backend service.
+    </p>
+
+    <h2>6. Children</h2>
+    <p>
+      TubeLM is not directed at children under 13 and does not knowingly collect
+      data from anyone. Because no data is collected, no special handling for minors
+      is required.
+    </p>
+
+    <h2>7. Open source</h2>
+    <p>
+      The complete source code is published under the MIT license at
+      <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">github.com/bakhtiersizhaev/tubelm-link-picker</a>.
+      Anyone can audit the codebase and verify the claims in this policy.
+    </p>
+
+    <h2>8. Changes to this policy</h2>
+    <p>
+      If TubeLM ever changes how it handles data, this page will be updated and the
+      "Last updated" date above will change. Material changes will also be reflected
+      in the Chrome Web Store listing.
+    </p>
+
+    <h2>9. Contact</h2>
+    <p>
+      Maintainer: <strong>Bakhtier Sizhaev</strong><br>
+      Open an issue or a discussion on
+      <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/issues">the GitHub repository</a>
+      for any privacy-related questions.
+    </p>
+
+    <a class="back" href="./">&larr; Back to TubeLM</a>
+
+    <footer>
+      &copy; 2026 Bakhtier Sizhaev. TubeLM Link Picker is not affiliated with YouTube,
+      Google, or NotebookLM.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "appFullName": {
+    "message": "TubeLM Link Picker"
+  },
+  "appShortName": {
+    "message": "TubeLM"
+  },
+  "appDescription": {
+    "message": "YouTube ویڈیوز اور Shorts منتخب کریں اور صاف لنکس کاپی کریں — NotebookLM، AI نوٹس اور تحقیق کے لیے۔"
+  },
+  "appName": {
+    "message": "TubeLM"
+  },
+  "appTagline": {
+    "message": "NotebookLM کے لیے YouTube لنکس"
+  },
+  "statusChecking": {
+    "message": "تصدیق ہو رہی ہے…"
+  },
+  "statusReady": {
+    "message": "تیار"
+  },
+  "statusNotYouTube": {
+    "message": "YouTube کھولیں"
+  },
+  "statusUnreachable": {
+    "message": "ٹیب تک رسائی نہیں"
+  },
+  "labelSelected": {
+    "message": "منتخب"
+  },
+  "noteEmpty": {
+    "message": "صفحے پر ویڈیوز پر نشان لگائیں، یا ایک قطار ایک ساتھ شامل کرنے کے لیے «نظر آنے والے منتخب کریں» دبائیں۔"
+  },
+  "noteReady": {
+    "message": "ویڈیوز اور Shorts کے صاف لنکس کاپی کرنے کے لیے تیار۔"
+  },
+  "noteOpenYouTube": {
+    "message": "youtube.com کھولیں، پھر براہِ راست صفحے سے ویڈیوز منتخب کریں۔"
+  },
+  "noteUnreachable": {
+    "message": "YouTube ٹیب کو ری لوڈ کریں اور دوبارہ کوشش کریں۔"
+  },
+  "copyLabelEmpty": {
+    "message": "منتخب کاپی کریں"
+  },
+  "copyLabelCount": {
+    "message": "$count$ لنکس کاپی کریں",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "copyHintDefault": {
+    "message": "لائن وار فہرست، NotebookLM کے لیے تیار"
+  },
+  "selectVisibleButton": {
+    "message": "نظر آنے والے منتخب کریں"
+  },
+  "clearButton": {
+    "message": "صاف کریں"
+  },
+  "thanksLine": {
+    "message": "TubeLM استعمال کرنے کا شکریہ۔"
+  },
+  "creditsPrefix": {
+    "message": "بنایا —"
+  },
+  "linkGitHub": {
+    "message": "GitHub"
+  },
+  "copied": {
+    "message": "کاپی ہو گیا!"
+  },
+  "openSidePanel": {
+    "message": "سائیڈ پینل میں کھولیں"
+  }
+}
