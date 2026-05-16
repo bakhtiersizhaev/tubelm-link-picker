@@ -27,11 +27,17 @@ as of May 2026.
 
 **Hard rules from Google:**
 
-- No transparency on promo tiles (they will appear on white or dark surfaces).
-- No text larger than ~30% of the image area in promo tiles.
+- Required screenshots must be **square-corner, no-padding, full-bleed** 1280 x
+  800 or 640 x 400 images.
 - Screenshots must show the extension actually doing something - not just
   marketing copy on a colored background. Reviewers reject "ad-only"
   screenshots.
+- Do not composite required screenshots into marketing frames with headlines,
+  gutters, shadows, or inset product crops. Marketing composites belong in
+  promotional tiles, not screenshot slots.
+- No transparency on promo tiles (they will appear on white or dark surfaces).
+- Promo tiles should primarily communicate the brand and capability. Keep text
+  minimal so the image still works when shrunk.
 - Your developer name (`Bakhtier Sizhaev`) must be visible in the listing -
   this is filled in via the developer account, not via the images.
 - No fake UI, no fake metrics ("10M users" etc.), no fake awards.
@@ -158,72 +164,49 @@ The Chrome Web Store displays screenshots in a carousel on the listing page
 and the first one is the **only** image most users see in search results
 inside the store. Treat the first screenshot as your real cover.
 
-### Layout grammar (use across all 5)
+### Official screenshot rule
 
-```
-+-------------------------------------------------------------+
-|  [Eyebrow label - 12 px, uppercase, mint]                  |
-|  [Headline - 56-64 px, weight 800, ink color]              |
-|  [Sub-headline - 22 px, weight 500, muted]                 |
-|                                                             |
-|        +------------------------------+                     |
-|        |                              |                     |
-|        |   Real product screenshot    |                     |
-|        |   (YouTube page + popup)     |                     |
-|        |                              |                     |
-|        +------------------------------+                     |
-|                                                             |
-|  [Footer brand strip: TubeLM mark + "by Bakhtier Sizhaev"] |
-+-------------------------------------------------------------+
-```
+Required screenshots are not promo banners. They must be real product views:
 
-- Outer canvas: **1280 x 800**, background `#f4f6f8` (paper) or pure white.
-- Safe inner area: **1120 x 720** (80 px gutter each side).
-- Real screenshot inset: ~1000 x 540, with a 1 px `rgba(18,20,23,0.12)`
-  border and 24-32 px shadow (`0 24px 80px rgba(30,39,50,0.15)`).
-- Tilt: 0 degrees. Do not rotate the product. Chrome reviewers prefer flat,
-  honest captures.
-- Headline copy max 8 words. Sub-headline max 14 words.
+- **Square corners, no padding, full bleed.** Fill the whole 1280 x 800 or
+  640 x 400 canvas with the actual browser/extension experience.
+- Show TubeLM doing the thing users will get: YouTube page, checkboxes,
+  selected videos, popup or side panel, and copied-link flow.
+- Do not add marketing headlines, safe-area gutters, fake shadows, device
+  frames, rotated mockups, or inset screenshots.
+- Do not rely on infographic-only screenshots for the required screenshot
+  slot. A privacy infographic can be useful on the landing page or promo tile,
+  but at least one CWS screenshot should show the real extension UI.
+- Marketing composites belong in promotional tiles, not screenshot slots.
 
-### What each of the 5 frames should show
+### Recommended full-bleed screenshot set
 
-1. **Hero - "Pick videos, copy clean links"**
-   Eyebrow: `Chrome extension for NotebookLM`
-   Headline: `Pick YouTube videos. Copy clean links.`
-   Sub: `Tick the videos you want, paste a clean list anywhere.`
-   Screenshot: a YouTube channel page (e.g. a tech channel with 4-5 visible
-   tiles) where 3 tiles have a green check overlay and the TubeLM popup is
-   open in the top-right showing "Copy 3 URLs" enabled. **This is your cover.**
+Capture these as honest 1280 x 800 screenshots. If the raw capture is larger,
+crop to 16:10 without adding padding.
+
+1. **Hero - pick videos, copy clean links**
+   Capture a YouTube channel/search/results page where 3 video tiles have the
+   TubeLM green selected state and the TubeLM popup is open in the top-right
+   showing the enabled copy action. This is your cover.
 
 2. **Works on Shorts**
-   Eyebrow: `Shorts supported`
-   Headline: `Shorts grid? Same flow.`
-   Sub: `Shorts are exported as youtube.com/shorts/ID so NotebookLM accepts them.`
-   Screenshot: youtube.com/shorts grid view with checkboxes on 5 thumbnails.
+   Capture a YouTube Shorts surface with checkboxes visible on several Shorts
+   cards.
 
 3. **One-click paste into NotebookLM**
-   Eyebrow: `Built for NotebookLM`
-   Headline: `Paste the list straight into NotebookLM.`
-   Sub: `Newline-separated URLs - exactly the format NotebookLM expects.`
-   Screenshot: split capture: TubeLM popup on the left showing "Copy 18
-   URLs", NotebookLM "Add sources" dialog on the right with the URLs pasted
-   in. (You can do this as two side-by-side product crops on one 1280x800
-   canvas.)
+   Capture the real copied-link flow. If you need one image, use a browser view
+   where the TubeLM popup or side panel is visible and a NotebookLM add-sources
+   dialog shows newline-separated YouTube URLs pasted in. Keep it full-bleed;
+   do not add a custom marketing frame.
 
 4. **Privacy-first**
-   Eyebrow: `No tracking, no accounts`
-   Headline: `Local-only. No data leaves your browser.`
-   Sub: `Runs only on youtube.com. No analytics. Open source under MIT.`
-   Visual: a clean infographic - 4 ticked items in a 2x2 grid:
-   `No backend`, `No telemetry`, `No login`, `Open source`. Background pure
-   white, ticks in `#10b981`. Use small icons (lock, eye-off, github, mit).
+   Capture the extension UI showing local controls plus the public privacy page
+   or GitHub README in the browser. If you use an infographic, reserve it for a
+   promo tile or landing page, not as the only required CWS screenshot.
 
 5. **Curation flow**
-   Eyebrow: `Selection that scales`
-   Headline: `Select visible. Clear. Repeat.`
-   Sub: `Two helper buttons let you build a 50-link list without losing your place.`
-   Screenshot: zoom in on the TubeLM popup with the buttons highlighted (a
-   thin dashed `#10b981` ring around "Select visible" and "Clear").
+   Capture the TubeLM popup or side panel with "Select visible", "Clear", and
+   the live selected count visible while YouTube video cards are in the page.
 
 ### Capture tips
 
@@ -360,8 +343,8 @@ Store review forum and the developer documentation:
 
 1. Fix the icon SVG (points 1-5 in section 3).
 2. Re-export the 4 PNGs.
-3. Capture 5 screenshots from a real YouTube session.
-4. Composite each screenshot into the 1280x800 template in Figma.
+4. Capture 5 full-bleed screenshots from a real YouTube session. Do not add
+   marketing frames or padding to required screenshot assets.
 5. Build the small promo tile (440x280).
 6. Build the marquee tile (1400x560).
 7. Run all assets through <https://tinypng.com> or `oxipng -o 4` to compress.
@@ -380,8 +363,9 @@ Estimated time if you already have Figma/Affinity templates: **3-4 hours**.
   Chrome's UI language via `chrome://settings/languages` before reloading the
   unpacked extension.
 - `docs/index.html` - the marketing landing page already has a stylized
-  "popup preview" component (lines 484-519) that you can screenshot directly
-  if you want a synthetic mockup for screenshot #1.
+  "popup preview" component (lines 484-519). Use it for promotional tiles,
+  the repository README, or landing-page visuals — not as a required CWS
+  screenshot, which must be a real full-bleed product capture.
 - `icons/icon.svg` - the master vector source.
 - `docs/privacy.html` - the privacy policy URL for the listing.
 - `CWS-LISTING.md` - all texts for the dashboard, including localised short

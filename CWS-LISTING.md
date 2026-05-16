@@ -75,10 +75,13 @@ Character count: 131.
 >
 > **Privacy**
 >
-> TubeLM does not collect, store, or transmit any data. It runs entirely in
-> your browser, only on `youtube.com`. Permissions are limited to the active
-> YouTube tab, script injection inside that tab, and writing to your clipboard.
-> Full policy: <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
+> TubeLM processes the current YouTube page locally so it can find video cards
+> and copy only the URLs you explicitly select. It does not transmit data to the
+> developer, does not use a backend, does not run analytics, and does not sell
+> or share data. Permissions are limited to YouTube pages, the active tab, local
+> script/CSS execution, optional Chrome side panel display, and writing to your
+> clipboard. Full policy:
+> <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 >
 > **Open source**
 >
@@ -105,17 +108,29 @@ permission. Paste these into the "Privacy practices" tab.
 
 | Permission | Justification |
 | --- | --- |
-| `activeTab` | Read the URL of the YouTube tab the user is on and inject the picker UI into that tab only when the user clicks the extension. |
-| `scripting` | Inject the content script that draws checkboxes on YouTube video tiles and reads video IDs from the page DOM. |
+| `activeTab` | Read/check the currently active tab so the popup and side panel can confirm the user is on YouTube and communicate with the local picker UI. |
+| `scripting` | Support fallback injection of the local content script/CSS if a YouTube tab was opened before the extension was ready. The main content script is declared in the manifest and runs only on matching YouTube pages. |
 | `clipboardWrite` | Write the user-selected list of YouTube URLs into the clipboard when the user presses "Copy selection". |
+| `sidePanel` | Open the same local TubeLM controls in Chrome's side panel so users can keep the picker visible while selecting YouTube videos. |
 | `host_permissions: https://*.youtube.com/*` | The extension only works on YouTube. Host permission is restricted to the YouTube domain so the script never runs anywhere else. |
 
 > **Remote code use:** `No, I am not using remote code.`
 >
-> **Data usage disclosures:** select *none* for every category (Personally
-> identifiable information, Health information, Financial and payment
-> information, Authentication information, Personal communications, Location,
-> Web history, User activity, Website content).
+> **Data usage disclosures:** answer the dashboard conservatively and keep it
+> consistent with the privacy policy:
+>
+> - Personally identifiable information: No
+> - Health information: No
+> - Financial and payment information: No
+> - Authentication information: No
+> - Personal communications: No
+> - Location: No
+> - Web history: No
+> - User activity: No
+> - Website content: Yes — processed locally on YouTube pages only, never
+>   transmitted, stored on a server, sold, or shared. This is the visible
+>   YouTube page content needed to identify video cards and copy only the URLs
+>   selected by the user.
 >
 > Then tick all three certification checkboxes:
 > - I do not sell or transfer user data to third parties, except in approved use cases.
@@ -141,20 +156,27 @@ permission. Paste these into the "Privacy practices" tab.
    developers in 2024+).
 3. Verify the contact email - this becomes visible to users in the listing.
 4. Enable two-factor authentication on the Google account.
-5. Upload the signed `.zip` from `tubelm-link-picker/` (everything in the repo
-   root except `docs/`, `LICENSE`, `README.md`, `CWS-*.md`, and `.git*`).
+5. Upload the signed `.zip` built from the explicit allowlist in section 8.
+   Do not zip the whole repo root; local worktrees can contain `.gsd/`,
+   `.bg-shell/`, build artifacts, editor files, and other non-extension files.
 
 > Tip: zip the extension from a clean checkout to avoid shipping editor swap
 > files or `.DS_Store`.
 
 ## 8. What to upload as the package
 
-Include in the `.zip`:
+Include in the `.zip` exactly:
 
 - `manifest.json`
+- `_locales/` (required by `default_locale` and `__MSG_*` manifest strings)
 - `popup/` (popup.html, popup.css, popup.js)
 - `content/` (content.js, styles.css)
+- `sidepanel/` (required by `side_panel.default_path`)
 - `icons/icon-16.png`, `icon-32.png`, `icon-48.png`, `icon-128.png`
+
+Do **not** zip the repository root. Build the package from this explicit
+allowlist so local agent files, docs, source-only assets, and generated
+artifacts cannot slip into the upload.
 
 Exclude from the `.zip`:
 

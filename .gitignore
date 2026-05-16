@@ -1,0 +1,41 @@
+# GSD / agent state
+.gsd/
+.gsd-id
+.mcp.json
+.bg-shell/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# Dependencies / caches / build outputs
+node_modules/
+.next/
+dist/
+build/
+coverage/
+.cache/
+tmp/
+__pycache__/
+*.pyc
+.venv/
+venv/
+target/
+vendor/
+*.log
+
+# Chrome Web Store generated artifacts
+*.crx
+*.pem
+tubelm-link-picker-cws-*.zip

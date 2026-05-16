@@ -56,10 +56,15 @@
 
     // ================== UTILITIES ==================
 
+    function isYouTubeHost(hostname) {
+        return hostname === 'youtube.com' || hostname.endsWith('.youtube.com');
+    }
+
     function isValidVideoUrl(url) {
         if (!url) return false;
         try {
             const u = new URL(url);
+            if (!isYouTubeHost(u.hostname)) return false;
             if (u.pathname === '/watch' && u.searchParams.has('v')) return true;
             if (u.pathname.startsWith('/shorts/') && u.pathname.length > 8) return true;
             return false;
@@ -71,6 +76,7 @@
     function cleanUrl(url) {
         try {
             const u = new URL(url);
+            if (!isYouTubeHost(u.hostname)) return '';
             const v = u.searchParams.get('v');
             if (v) return `https://www.youtube.com/watch?v=${v}`;
             if (u.pathname.startsWith('/shorts/')) {
@@ -79,7 +85,7 @@
             }
             return u.href;
         } catch {
-            return url;
+            return '';
         }
     }
 

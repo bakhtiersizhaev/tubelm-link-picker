@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!url) return false;
     try {
       const u = new URL(url);
-      return u.hostname.includes('youtube.com');
+      return u.hostname === 'youtube.com' || u.hostname.endsWith('.youtube.com');
     } catch {
       return false;
     }

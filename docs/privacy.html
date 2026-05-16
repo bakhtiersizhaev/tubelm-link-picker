@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy - TubeLM Link Picker</title>
-  <meta name="description" content="Privacy policy for the TubeLM Link Picker Chrome extension. TubeLM does not collect, store, or transmit any personal data.">
+  <meta name="description" content="Privacy policy for the TubeLM Link Picker Chrome extension. TubeLM processes selected YouTube URLs locally and does not transmit personal data.">
   <meta name="author" content="Bakhtier Sizhaev">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html">
@@ -87,7 +87,7 @@
 </head>
 <body>
   <main class="shell">
-    <span class="badge">No data collected</span>
+    <span class="badge">Local processing only</span>
     <h1>TubeLM Link Picker - Privacy Policy</h1>
     <p class="meta">Last updated: May 2026 · Maintained by Bakhtier Sizhaev</p>
 
@@ -100,31 +100,41 @@
 
     <p>
       This privacy policy explains how the extension handles your data. The short
-      version: <strong>it does not collect, store, or transmit any of your data.</strong>
+      version: <strong>TubeLM processes website content locally in your browser to
+      identify YouTube video cards and copy only the URLs you explicitly select.
+      It does not transmit, sell, share, or store this data on any server.</strong>
     </p>
 
     <h2>1. What data we collect</h2>
     <p>
-      <strong>None.</strong> TubeLM does not collect, transmit, or sell any personal
-      information, browsing history, identifiers, authentication tokens, financial
-      information, health information, personal communications, location, web
-      history, or any other category of user data defined by the Chrome Web Store
-      Developer Program Policies.
+      TubeLM does not collect, transmit, sell, or share personal information,
+      browsing history, identifiers, authentication tokens, financial information,
+      health information, personal communications, location, web history, or any
+      other category of user data with the developer or a third party.
+    </p>
+
+    <p>
+      To provide its single purpose, TubeLM locally reads visible YouTube page
+      content inside your browser, finds video and Shorts cards, stores your
+      selected URLs in tab memory while the page is open, and writes the selected
+      URL list to your clipboard only when you click "Copy selection".
     </p>
 
     <h2>2. How TubeLM works</h2>
     <ul>
       <li>The content script runs only on <code>https://*.youtube.com/*</code> pages, where it adds checkbox overlays to video tiles.</li>
       <li>Your selection is held in memory inside the active YouTube tab while the page is open.</li>
+      <li>The popup and optional Chrome side panel show the same local picker controls and selection count.</li>
       <li>When you click "Copy selection", the chosen URLs are written to your local clipboard via the standard <code>navigator.clipboard</code> / <code>chrome.clipboardWrite</code> permission.</li>
       <li>Nothing is sent to the extension developer or to any third-party server.</li>
     </ul>
 
     <h2>3. Permissions justification</h2>
     <ul>
-      <li><code>activeTab</code> - read the URL and inject the picker into the YouTube tab you are currently viewing.</li>
-      <li><code>scripting</code> - inject the picker UI and read video metadata directly from the YouTube page DOM.</li>
+      <li><code>activeTab</code> - check the active tab so the popup and side panel can confirm you are on YouTube and communicate with the local picker UI.</li>
+      <li><code>scripting</code> - support fallback injection of the local content script and CSS if a YouTube tab was opened before TubeLM was ready.</li>
       <li><code>clipboardWrite</code> - write the list of selected URLs into your clipboard.</li>
+      <li><code>sidePanel</code> - open the same local TubeLM controls in Chrome's side panel for a persistent picker UI.</li>
       <li><code>host_permissions: https://*.youtube.com/*</code> - the extension only operates on YouTube domains.</li>
     </ul>
 
