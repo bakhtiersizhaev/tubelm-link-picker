@@ -222,5 +222,5 @@ Each one is under 132 characters.
 
 > See `CWS-MOCKUP-GUIDE.md` for the image assets. The mandatory
 > upload set is already prepared in `store-assets/`:
-> two verified live YouTube screenshots with TubeLM checkboxes and
+> `screenshot-01-hero.png`, `screenshot-02-search-results.png`, and
 > `promo-small-440x280.png`.

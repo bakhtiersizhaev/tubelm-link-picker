@@ -43,8 +43,7 @@ const EXPECTED_PERMISSIONS = Object.freeze(['activeTab', 'scripting', 'clipboard
 const EXPECTED_HOST_PERMISSIONS = Object.freeze(['https://*.youtube.com/*']);
 const EXPECTED_STORE_ASSETS = Object.freeze([
   { path: 'store-assets/screenshot-01-hero.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
-  { path: 'store-assets/screenshot-02-shorts.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
-  { path: 'store-assets/screenshot-03-notebooklm.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-02-search-results.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
   { path: 'store-assets/promo-small-440x280.png', width: 440, height: 280, maxBytes: 16 * 1024 * 1024 },
 ]);
 
@@ -269,10 +268,28 @@ function main() {
   assertContains(imageGuide, 'Square corners, no padding, full bleed', 'screenshot hard rule');
   assertContains(imageGuide, 'Do not composite required screenshots into marketing frames', 'screenshot hard rule');
   assertContains(imageGuide, 'Marketing composites belong in promotional tiles', 'screenshot vs promo distinction');
-  assertContains(imageGuide, 'store-assets/screenshot-01-hero.png', 'generated screenshot asset list');
-  assertContains(imageGuide, 'store-assets/promo-small-440x280.png', 'generated promo asset list');
+  assertContains(imageGuide, 'store-assets/screenshot-01-hero.png', 'required screenshot asset list');
+  assertContains(imageGuide, 'store-assets/screenshot-02-search-results.png', 'required screenshot asset list');
+  assertContains(imageGuide, 'store-assets/promo-small-440x280.png', 'required promo asset list');
+  assertNotContains(imageGuide, 'store-assets/screenshot-03-notebooklm.png', 'optional mockups must not be listed as upload assets');
   assertNotContains(imageGuide, 'Composite each screenshot into the 1280x800 template in Figma', 'outdated screenshot production step');
   assertNotContains(imageGuide, 'synthetic mockup for screenshot #1', 'required screenshots must not be synthetic mockups');
+
+  const assetsReadme = readText('store-assets/README.md');
+  assertContains(assetsReadme, '.tubelm-checkbox` count was 25', 'store asset capture provenance');
+  assertContains(assetsReadme, '.tubelm-checkbox` count was 33', 'store asset capture provenance');
+  assertContains(assetsReadme, 'Do not upload generated mockups as required CWS screenshots', 'store asset mockup guard');
+
+  const expectedStoreFiles = [...EXPECTED_STORE_ASSETS.map((asset) => asset.path), 'store-assets/README.md'].sort();
+  const actualStoreFiles = fs.readdirSync(path.join(root, 'store-assets'), { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => `store-assets/${entry.name}`)
+    .sort();
+  assert.deepEqual(actualStoreFiles, expectedStoreFiles, 'store-assets must contain only upload-ready assets plus README provenance');
+
+  const assetGenerator = readText('scripts/generate-store-assets.py');
+  assertNotContains(assetGenerator, 'screenshot-01-hero.png', 'asset generator must not overwrite live screenshots');
+  assertNotContains(assetGenerator, 'screenshot-02-search-results.png', 'asset generator must not overwrite live screenshots');
 
   for (const asset of EXPECTED_STORE_ASSETS) {
     assert.ok(exists(asset.path), `store asset missing: ${asset.path}`);
