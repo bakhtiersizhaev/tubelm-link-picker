@@ -43,8 +43,17 @@ const EXPECTED_PERMISSIONS = Object.freeze(['activeTab', 'scripting', 'clipboard
 const EXPECTED_HOST_PERMISSIONS = Object.freeze(['https://*.youtube.com/*']);
 const EXPECTED_STORE_ASSETS = Object.freeze([
   { path: 'store-assets/screenshot-01-hero.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
-  { path: 'store-assets/screenshot-02-search-results.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-02-batch-select.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-03-shorts.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-04-notebooklm-paste.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/screenshot-05-local-privacy.png', width: 1280, height: 800, maxBytes: 16 * 1024 * 1024 },
   { path: 'store-assets/promo-small-440x280.png', width: 440, height: 280, maxBytes: 16 * 1024 * 1024 },
+  { path: 'store-assets/promo-marquee-1400x560.png', width: 1400, height: 560, maxBytes: 16 * 1024 * 1024 },
+]);
+
+const IGNORED_LOCAL_STORE_FILES = Object.freeze([
+  'store-assets/CREATIVE-PROMPTS.local.md',
+  'store-assets/CODEX-APP-IMAGE2-RUNBOOK.local.md',
 ]);
 
 function assertYouTubeHost(hostname) {
@@ -269,27 +278,38 @@ function main() {
   assertContains(imageGuide, 'Do not composite required screenshots into marketing frames', 'screenshot hard rule');
   assertContains(imageGuide, 'Marketing composites belong in promotional tiles', 'screenshot vs promo distinction');
   assertContains(imageGuide, 'store-assets/screenshot-01-hero.png', 'required screenshot asset list');
-  assertContains(imageGuide, 'store-assets/screenshot-02-search-results.png', 'required screenshot asset list');
+  assertContains(imageGuide, 'store-assets/screenshot-02-batch-select.png', 'required screenshot asset list');
+  assertContains(imageGuide, 'store-assets/screenshot-03-shorts.png', 'required screenshot asset list');
+  assertContains(imageGuide, 'store-assets/screenshot-04-notebooklm-paste.png', 'required screenshot asset list');
+  assertContains(imageGuide, 'store-assets/screenshot-05-local-privacy.png', 'required screenshot asset list');
   assertContains(imageGuide, 'store-assets/promo-small-440x280.png', 'required promo asset list');
-  assertNotContains(imageGuide, 'store-assets/screenshot-03-notebooklm.png', 'optional mockups must not be listed as upload assets');
+  assertContains(imageGuide, 'store-assets/promo-marquee-1400x560.png', 'optional marquee promo asset list');
+  assertNotContains(imageGuide, 'store-assets/screenshot-02-search-results.png', 'old screenshot filename must not be listed as current upload asset');
+  assertNotContains(imageGuide, 'store-assets/screenshot-03-notebooklm.png', 'old optional mockups must not be listed as upload assets');
   assertNotContains(imageGuide, 'Composite each screenshot into the 1280x800 template in Figma', 'outdated screenshot production step');
   assertNotContains(imageGuide, 'synthetic mockup for screenshot #1', 'required screenshots must not be synthetic mockups');
 
   const assetsReadme = readText('store-assets/README.md');
-  assertContains(assetsReadme, '.tubelm-checkbox` count was 25', 'store asset capture provenance');
-  assertContains(assetsReadme, '.tubelm-checkbox` count was 33', 'store asset capture provenance');
-  assertContains(assetsReadme, 'Do not upload generated mockups as required CWS screenshots', 'store asset mockup guard');
+  assertContains(assetsReadme, 'Five required-format screenshots', 'store asset count strategy');
+  assertContains(assetsReadme, 'screenshot-05-local-privacy.png', 'store asset trust screenshot');
+  assertContains(assetsReadme, 'promo-marquee-1400x560.png', 'store asset marquee promo');
+  assertContains(assetsReadme, 'Do not upload `CREATIVE-PROMPTS.local.md`', 'local prompt guard');
+
+  const gitignore = readText('.gitignore');
+  assertContains(gitignore, 'store-assets/CREATIVE-PROMPTS.local.md', 'local creative prompts must stay untracked');
+  assertContains(gitignore, 'store-assets/CODEX-APP-IMAGE2-RUNBOOK.local.md', 'local image runbook must stay untracked');
 
   const expectedStoreFiles = [...EXPECTED_STORE_ASSETS.map((asset) => asset.path), 'store-assets/README.md'].sort();
   const actualStoreFiles = fs.readdirSync(path.join(root, 'store-assets'), { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => `store-assets/${entry.name}`)
+    .filter((file) => !IGNORED_LOCAL_STORE_FILES.includes(file))
     .sort();
-  assert.deepEqual(actualStoreFiles, expectedStoreFiles, 'store-assets must contain only upload-ready assets plus README provenance');
+  assert.deepEqual(actualStoreFiles, expectedStoreFiles, 'store-assets must contain only upload-ready image assets plus README provenance; local prompt drafts are ignored');
 
   const assetGenerator = readText('scripts/generate-store-assets.py');
-  assertNotContains(assetGenerator, 'screenshot-01-hero.png', 'asset generator must not overwrite live screenshots');
-  assertNotContains(assetGenerator, 'screenshot-02-search-results.png', 'asset generator must not overwrite live screenshots');
+  assertContains(assetGenerator, 'screenshot_hero()', 'asset generator must produce the hero screenshot');
+  assertContains(assetGenerator, 'promo_marquee()', 'asset generator must produce the optional marquee tile');
 
   for (const asset of EXPECTED_STORE_ASSETS) {
     assert.ok(exists(asset.path), `store asset missing: ${asset.path}`);

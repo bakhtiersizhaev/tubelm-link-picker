@@ -39,3 +39,7 @@ vendor/
 *.crx
 *.pem
 tubelm-link-picker-cws-*.zip
+
+# Local creative prompts / private launch notes
+store-assets/CODEX-APP-IMAGE2-RUNBOOK.local.md
+store-assets/CREATIVE-PROMPTS.local.md

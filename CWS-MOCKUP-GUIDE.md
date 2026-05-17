@@ -1,408 +1,152 @@
-# TubeLM - Image Asset Guide for the Chrome Web Store
+# TubeLM - Chrome Web Store Image Asset Guide
 
-This document is for **Bakhtier**. It gives the exact Chrome Web Store image
-specs, the repo's current upload assets, and the Photoshop template kit for a
-more polished custom set. Verified minimum upload assets live in
-`store-assets/`. Editable PNG templates live in `cws-asset-templates/`.
+This guide is the current source of truth for TubeLM Chrome Web Store visuals.
+It covers the required screenshots, promotional/mockup tiles, upload order, and
+safe editing rules for Bakhtier Sizhaev's first Chrome Web Store submission.
 
-All numbers below match the Chrome Web Store Developer Dashboard requirements
-as of May 2026.
+All dimensions below match the Chrome Web Store Developer Dashboard image
+requirements verified for this project as of 2026-05-17.
 
 ---
 
-## 1. TL;DR - what you need to produce
+## 1. Required and recommended assets
 
-| Asset | Required? | Size (px) | Format | File size limit |
+| Asset | Required? | Size | Format | Current file |
 | --- | --- | --- | --- | --- |
-| Store icon | yes - already shipped at 128 | 128 x 128 | PNG (24-bit, alpha ok) | 1 MB |
-| In-extension icons | yes - shipped 16/32/48/128 | as named | PNG | 1 MB each |
-| Screenshots | **at least 1, up to 5** | 1280 x 800 **or** 640 x 400 | PNG or JPEG | 16 MB each |
-| Small promotional tile | **required** | 440 x 280 | PNG or JPEG (no transparency) | 16 MB |
-| Marquee promotional tile | optional but recommended for featuring | 1400 x 560 | PNG or JPEG (no transparency) | 16 MB |
-| Privacy policy URL | **required** (already prepared) | n/a | URL | n/a |
+| Store icon | yes | 128 x 128 | PNG | `icons/icon-128.png` |
+| Screenshots | at least 1, up to 5 | 1280 x 800 or 640 x 400 | PNG/JPEG | five files in `store-assets/` |
+| Small promotional tile | yes | 440 x 280 | PNG/JPEG, no alpha | `store-assets/promo-small-440x280.png` |
+| Marquee promotional tile | optional, recommended | 1400 x 560 | PNG/JPEG, no alpha | `store-assets/promo-marquee-1400x560.png` |
 
-Current upload assets:
-
-- `store-assets/screenshot-01-hero.png` — 1280 x 800 live YouTube search/results capture with TubeLM checkboxes verified in Playwright Chromium (`.tubelm-checkbox` count: 25).
-- `store-assets/screenshot-02-search-results.png` — 1280 x 800 second live YouTube search/results capture with TubeLM checkboxes verified in Playwright Chromium (`.tubelm-checkbox` count: 33).
-- `store-assets/promo-small-440x280.png` — required 440 x 280 small promo tile.
-
-Photoshop template kit:
-
-- `cws-asset-templates/00-cws-asset-map-1600x1200.png` — visual map of every asset slot and upload order.
-- `cws-asset-templates/01-screenshot-hero-template-1280x800.png` through `05-screenshot-privacy-local-template-1280x800.png` — five screenshot composition guides.
-- `cws-asset-templates/06-small-promo-tile-440x280.png` — editable small promo tile concept.
-- `cws-asset-templates/07-marquee-promo-tile-1400x560.png` — optional marquee promo concept.
-- `cws-asset-templates/08-optional-video-thumbnail-1280x720.png` — optional YouTube demo thumbnail reference.
-
-`store-assets/README.md` records the verified screenshot provenance. `cws-asset-templates/README.md` explains how to edit the templates. Do not upload generated mockups as required CWS screenshots; replace screenshot placeholders with real product captures before final export.
-
-> Source: Chrome Web Store Developer Dashboard, "Store listing" tab. As of 2025,
-> Google deprecated the large (920x680) and marquee tile is the only large
-> promo asset. The "small tile" is still mandatory.
-
-**Hard rules from Google:**
-
-- Required screenshots must be **square-corner, no-padding, full-bleed** 1280 x
-  800 or 640 x 400 images.
-- Screenshots must show the extension actually doing something - not just
-  marketing copy on a colored background. Reviewers reject "ad-only"
-  screenshots.
-- Do not composite required screenshots into marketing frames with headlines,
-  gutters, shadows, or inset product crops. Marketing composites belong in
-  promotional tiles, not screenshot slots.
-- No transparency on promo tiles (they will appear on white or dark surfaces).
-- Promo tiles should primarily communicate the brand and capability. Keep text
-  minimal so the image still works when shrunk.
-- Your developer name (`Bakhtier Sizhaev`) must be visible in the listing -
-  this is filled in via the developer account, not via the images.
-- No fake UI, no fake metrics ("10M users" etc.), no fake awards.
+Use the full 5-screenshot set. Google recommends up to the maximum allowed five
+when they demonstrate real capabilities, and the first screenshot is the main
+conversion image in the listing carousel.
 
 ---
 
-## 2. Brand kit (extracted from the existing repo)
+## 2. Current upload set and purpose of each image
 
-Use these exact values so the store assets match the in-extension UI.
+Upload in this order:
 
-### Colors
+1. `store-assets/screenshot-01-hero.png` — **Core promise.** Shows YouTube video cards with TubeLM checkmarks and the popup ready to copy selected links.
+2. `store-assets/screenshot-02-batch-select.png` — **Batch workflow.** Shows multiple selected search-result rows and the `Select visible` / copy workflow.
+3. `store-assets/screenshot-03-shorts.png` — **Shorts support.** Shows vertical Shorts-style cards with selected states and the side panel workflow.
+4. `store-assets/screenshot-04-notebooklm-paste.png` — **Destination handoff.** Shows clean newline YouTube URLs ready to paste into NotebookLM or AI research notes.
+5. `store-assets/screenshot-05-local-privacy.png` — **Trust and privacy.** Explains local processing, user-triggered clipboard write, and no remote code.
+6. `store-assets/promo-small-440x280.png` — **Required small promo tile.** Brand-led search/category tile.
+7. Optional: `store-assets/promo-marquee-1400x560.png` — **Marquee/feature creative.** Larger brand-and-product mockup for potential Chrome Web Store featuring.
 
-| Role | Hex | Where it's used |
-| --- | --- | --- |
-| Ink (primary text / dark surface) | `#121417` | popup background, hero text |
-| Paper | `#f4f6f8` | popup background, landing page |
-| Accent green | `#10b981` | "copy" success state, CTAs |
-| Accent green strong | `#0f8f69` | hover, dark-on-light text |
-| Mint highlight | `#7df8c6` | icon stroke, glow |
-| YouTube red | `#ff0033` | subtle YT cue (icon underline in popup logo) |
-| Muted | `#65717e` | secondary text |
-| Border | `rgba(18, 20, 23, 0.12)` | dividers |
-| Soft panel | `#eef2f4` | secondary buttons |
-
-### Typography
-
-- Primary: **Inter** (system fallback: `SF Pro Display`, `Segoe UI`,
-  `system-ui`).
-- Headlines: weight 800, letter-spacing 0.
-- Body: weight 400-500.
-- Captions in promo tiles: weight 700, all-caps **only** for short eyebrow
-  labels.
-
-### Voice
-
-- Direct and product-led. No emojis. No marketing fluff.
-- Short verbs: "Pick", "Copy", "Paste".
-- Anchor every message to NotebookLM or AI research workflow.
+The current upload set is intentionally English-only for first submission. It
+uses product-faithful image-model compositions corrected with deterministic
+TubeLM UI overlays from the real extension icon, popup, side panel, checkbox
+states, and copy language. There are no cookie banners, no logged-in account
+avatars, no third-party creator thumbnails, and no fake awards or unsupported
+claims.
 
 ---
 
-## 3. Icon system (`icons/icon.svg`)
+## 3. Hard rules from Google and this project
 
-The current identity is **Research Graphite + Mint**: a dark graphite squircle,
-a white video/source card, a mint checkbox, a small mint link arc, and one tiny
-red dot as a restrained YouTube cue. It should read as “select video sources,
-copy clean links” rather than as a generic play button.
+### Required screenshots
 
-### Source of truth
-
-- `scripts/generate-brand-assets.mjs` is the canonical generator.
-- `icons/icon.svg` is the 512 x 512 master vector for 48/128 px exports and
-  website favicons.
-- `icons/icon-small.svg` is the optically tuned small variant used for 16/32 px
-  exports.
-- `docs/assets/favicon.svg`, `favicon.ico`, `favicon-16.png`, `favicon-32.png`,
-  `apple-touch-icon.png`, `brand-icon-512.webp`, and the GitHub/OG banner are
-  generated from the same visual system.
-
-### Export workflow
-
-Run:
-
-```bash
-npm install
-npm run assets:brand
-```
-
-This renders the master SVG through `sharp` into the runtime extension PNGs and
-website favicon/banner formats. Do not hand-edit the generated PNGs unless you
-also update the generator or document the exception.
-
-### Visual checks
-
-- 16/32 px icons must still show a dark rounded square, bright mint action
-  mark, and readable white card/play shape.
-- 48/128 px icons should show the richer source-card + checkbox + link concept.
-- PNG icon exports must keep transparency outside the rounded square.
-- Do not use literal YouTube, Google, or NotebookLM logos in the icon. A small
-  red dot and generic play triangle are acceptable brand-context cues.
-- If the icon changes, rerun `npm run assets` and then `npm run verify:cws` so
-  store templates, promo tile, favicons, and the upload ZIP stay synchronized.
-
----
-
-## 4. Screenshots (1280 x 800)
-
-The Chrome Web Store displays screenshots in a carousel on the listing page
-and the first one is the **only** image most users see in search results
-inside the store. Treat the first screenshot as your real cover.
-
-### Official screenshot rule
-
-Required screenshots are not promo banners. They must be real product views:
-
-- **Square corners, no padding, full bleed.** Fill the whole 1280 x 800 or
-  640 x 400 canvas with the actual browser/extension experience.
-- Show TubeLM doing the thing users will get: YouTube page, checkboxes,
-  selected videos, popup or side panel, and copied-link flow.
-- Do not add marketing headlines, safe-area gutters, fake shadows, device
-  frames, rotated mockups, or inset screenshots.
-- Do not rely on infographic-only screenshots for the required screenshot
-  slot. A privacy infographic can be useful on the landing page or promo tile,
-  but at least one CWS screenshot should show the real extension UI.
+- **Square corners, no padding, full bleed.** Fill the whole 1280 x 800 canvas.
+- Screenshots must show the actual extension experience or a product-faithful browser capture.
+- Show TubeLM doing the thing users install it for: select YouTube videos/Shorts, count selected links, copy clean URLs, paste into research notes.
+- Keep the UI airy. One idea per screenshot.
+- Use English UI for the first listing unless creating separate locale-specific screenshot sets.
+- Avoid cookie consent banners, sign-in prompts, personal avatars, bookmarks bars, and browser clutter.
+- Avoid identifiable third-party creator thumbnails unless you have permission. Neutral demo content is safer.
+- Do not composite required screenshots into marketing frames, device frames, tilted cards, large headline gutters, or rounded mockup frames.
 - Marketing composites belong in promotional tiles, not screenshot slots.
 
-### Recommended full-bleed screenshot set
+### Promotional/mockup tiles
 
-Capture these as honest 1280 x 800 screenshots. If the raw capture is larger,
-crop to 16:10 without adding padding.
-
-1. **Hero - pick videos, copy clean links**
-   Capture a YouTube channel/search/results page where 3 video tiles have the
-   TubeLM green selected state and the TubeLM popup is open in the top-right
-   showing the enabled copy action. This is your cover.
-
-2. **Works on Shorts**
-   Capture a YouTube Shorts surface with checkboxes visible on several Shorts
-   cards.
-
-3. **One-click paste into NotebookLM**
-   Capture the real copied-link flow. If you need one image, use a browser view
-   where the TubeLM popup or side panel is visible and a NotebookLM add-sources
-   dialog shows newline-separated YouTube URLs pasted in. Keep it full-bleed;
-   do not add a custom marketing frame.
-
-4. **Privacy-first**
-   Capture the extension UI showing local controls plus the public privacy page
-   or GitHub README in the browser. If you use an infographic, reserve it for a
-   promo tile or landing page, not as the only required CWS screenshot.
-
-5. **Curation flow**
-   Capture the TubeLM popup or side panel with "Select visible", "Clear", and
-   the live selected count visible while YouTube video cards are in the page.
-
-### Capture tips
-
-- Take real captures on a 16:10 monitor (or 1920x1200 zoomed to 75%) so the
-  YouTube layout matches the 1280x800 export aspect.
-- Hide your YouTube account avatar - either use a fresh logged-out window or
-  blur the top-right corner.
-- Use a neutral channel for the demo (educational / public-domain content).
-  Do **not** use copyrighted thumbnails of specific creators without consent.
-- The cursor should not be in the frame unless you intentionally place it on
-  the "Copy" button.
-
-### File output
-
-- PNG-24, sRGB color profile.
-- No EXIF data.
-- Filename suggestion: `screenshot-01-hero.png` ... `screenshot-05-curation.png`.
-- Keep each file under 4 MB (the 16 MB cap is generous but smaller uploads
-  faster).
+- Small tile: exactly 440 x 280.
+- Marquee tile: exactly 1400 x 560.
+- No alpha/transparency. Export flattened RGB PNG or JPEG.
+- Keep text minimal and readable at 50% size.
+- Do not use YouTube, Google, Chrome, or NotebookLM logos as if TubeLM is official or affiliated.
+- No claims like `#1`, `Editor's Choice`, fake user counts, fake ratings, or guaranteed outcomes.
 
 ---
 
-## 5. Small promotional tile (440 x 280) - **required**
+## 4. Visual system
 
-This appears next to your name in store search results and the "More from
-this developer" section. It is the **second-most-seen** image after the icon.
+TubeLM uses the **Research Graphite + Mint** identity:
 
-### Layout
+| Role | Hex |
+| --- | --- |
+| Ink / dark surface | `#121417` |
+| Paper | `#f4f6f8` |
+| Accent green | `#10b981` |
+| Mint highlight | `#7df8c6` |
+| YouTube-context red cue | `#ff0033` |
+| Muted text | `#65717e` |
 
-```
-+------------------------------------------+
-| [TubeLM icon]   TubeLM                  |
-|                 Link Picker             |
-|                                          |
-|  Pick YouTube videos.                    |
-|  Copy clean links.                       |
-+------------------------------------------+
+Typography should feel like modern product UI: Inter / Segoe UI / system-ui,
+strong 700-800 weight for short headlines, readable body text, no decorative
+font mixing.
+
+Voice: short verbs and concrete workflow language — **Pick**, **Copy**,
+**Paste**, **clean links**, **NotebookLM**, **AI research notes**.
+
+---
+
+## 5. Rebuild commands
+
+Regenerate the deterministic fallback/base assets:
+
+```bash
+npm run assets:store
 ```
 
-- Canvas: **440 x 280**, no transparency.
-- Background: solid `#121417` (ink) or a subtle vertical gradient
-  `#121417 -> #0b1628`.
-- Icon: render `icon-128.png` at 88 x 88 on a 16 px rounded background panel,
-  positioned top-left at (32, 28). Pair it with the wordmark "TubeLM" weight
-  800, 30 px, `#ffffff`, and a subtitle "Link Picker" weight 500, 16 px,
-  `#7df8c6`.
-- Strapline (bottom-left, weight 700, 22 px, `#ffffff`):
-  `Pick YouTube videos. Copy clean links.`
-- Subline (under it, weight 500, 13 px, `#9aa5b1`):
-  `For NotebookLM and AI research notes.`
-- Right side: a small inline product preview (a stylized YouTube tile with a
-  green checkmark, ~150 x 100, with the same shadow as in the docs hero
-  preview).
+Regenerate every script-based visual asset pipeline:
 
-### Hard rules
-
-- Do **not** use text larger than 30% of the canvas area.
-- Do **not** include URLs or hashtags inside the image.
-- Do **not** include browser chrome (no fake Chrome address bars - reviewers
-  flag these as misleading).
-- Save as PNG-24 (preferred) or JPEG quality 90+. No transparency.
-
----
-
-## 6. Marquee promotional tile (1400 x 560) - optional
-
-This is what Google uses if they ever feature TubeLM on the homepage
-collections ("Editor's picks", "New & Notable"). It is optional but it is the
-only way to get featured, so produce one.
-
-### Layout
-
-```
-+------------------------------------------------------------------------------+
-|                                                                              |
-|  [Eyebrow]                                  [Big product mockup -            |
-|   CHROME EXTENSION                            YouTube page with checkboxes   |
-|                                               + TubeLM popup overlay]        |
-|  [Headline]                                                                  |
-|   YouTube links                                                              |
-|   for NotebookLM.                                                            |
-|                                                                              |
-|  [Sub]                                                                       |
-|   Select videos and Shorts on YouTube,                                       |
-|   copy clean URLs in one click.                                              |
-|                                                                              |
-|  [Brand strip]   TubeLM Link Picker - by Bakhtier Sizhaev                    |
-|                                                                              |
-+------------------------------------------------------------------------------+
+```bash
+npm run assets
 ```
 
-- Canvas: **1400 x 560**, no transparency.
-- Background: paper `#f4f6f8`, with a soft radial glow `#7df8c6 @ 6% opacity`
-  centered at (1100, 280).
-- Left column (60% width): copy block.
-- Right column (40% width): product mockup with a strong shadow.
-- Headline: 80 px, weight 800, ink color, max 2 lines.
-- Sub: 22 px, weight 500, color `#39424e`, max 2 lines.
-- Brand strip at bottom-left: 14 px, weight 700, ink color.
-- Optional: place a faint `★` mark next to "by Bakhtier Sizhaev" as a hint
-  toward "open source - star us" - but keep it discreet, no big "Star on
-  GitHub" CTA in the tile itself (Google sometimes rejects external CTAs in
-  marquee tiles).
+The final polished PNGs in `store-assets/` are the curated upload assets for
+submission. They may include image-model backgrounds/compositions plus
+deterministic TubeLM UI overlays, so do not assume `npm run assets:store`
+recreates the final art direction byte-for-byte.
+
+Verify dimensions, PNG modes, CWS ZIP allowlist, privacy/listing invariants:
+
+```bash
+npm run verify:cws
+```
+
+The upload ZIP is not supposed to include `store-assets/`; CWS visuals are
+uploaded separately in the Developer Dashboard.
 
 ---
 
-## 7. Common pitfalls that get listings rejected in 2026
+## 6. Local AI creative prompts
 
-These are the rejection reasons that come up most often in the Chrome Web
-Store review forum and the developer documentation:
+The local prompt file is:
 
-1. **Screenshot doesn't show the actual extension UI.** Make at least the
-   first screenshot a real capture, not a marketing illustration.
-2. **Promo tile has text inside the icon.** Don't put the word "TubeLM" on
-   top of the icon - the icon must read on its own.
-3. **Privacy policy URL returns 404 or shows a generic template.** Use the
-   page in this PR (`docs/privacy.html`) and make sure GitHub Pages is on.
-4. **Permission justifications missing or generic.** Use the exact
-   permission-by-permission justifications from `CWS-LISTING.md`.
-5. **Mismatched name between manifest and listing.** Manifest says
-   `TubeLM Link Picker`; the dashboard "name" field must match exactly.
-6. **Trademark issues.** Do not put a literal YouTube logo in the icon or
-   promo tile. A red dot (`#ff0033`) or a generic play triangle is fine - the
-   YouTube logo itself is trademarked.
-7. **Screenshots show third-party content without consent.** Avoid showing
-   identifiable creators' thumbnails. Use generic / educational content or
-   blur thumbnails.
-8. **Promo tile transparency.** PNG with alpha will be auto-flattened on a
-   background you cannot control. Always flatten yourself.
+```txt
+store-assets/CREATIVE-PROMPTS.local.md
+```
+
+It contains detailed English prompts for regenerating or art-directing each
+screenshot/mockup with an image model. It is intentionally ignored by git and
+must not be uploaded to Chrome Web Store.
 
 ---
 
-## 8. Suggested production order
+## 7. If you manually edit later
 
-1. Fix the icon SVG (points 1-5 in section 3).
-2. Re-export the 4 PNGs.
-4. Use the two verified live YouTube screenshots in `store-assets/`, or replace
-   them with fresh full-bleed screenshots from your own Chrome session. Do not
-   add marketing frames or padding to required screenshot assets.
-5. Use `store-assets/promo-small-440x280.png` as the required small promo tile,
-   or regenerate it with `python scripts/generate-store-assets.py`.
-6. Build the marquee tile (1400x560) if you want the optional featuring asset.
-7. Run all assets through <https://tinypng.com> or `oxipng -o 4` to compress.
-8. Upload everything in the Developer Dashboard.
+Before final submission, check every edited image:
 
-Estimated time if you already have Figma/Affinity templates: **3-4 hours**.
+- required screenshot files are exactly `1280 x 800`;
+- small promo tile is exactly `440 x 280`;
+- marquee tile is exactly `1400 x 560`;
+- all files are PNG or JPEG, RGB/no alpha for promo tiles;
+- no cookie consent, no sign-in popups, no browser personal data;
+- English copy is legible at 50% size;
+- first screenshot immediately communicates: “select multiple YouTube videos and copy clean links.”
 
----
-
-## 9. Files in this repo that already help you
-
-- `popup/popup.html` + `popup/popup.css` - the real popup, use as the source
-  capture for the screenshots.
-- `_locales/<lang>/messages.json` - all UI strings, one file per shipped
-  language (see section 10). When you capture a localised screenshot, set
-  Chrome's UI language via `chrome://settings/languages` before reloading the
-  unpacked extension.
-- `docs/index.html` - the marketing landing page already has a stylized
-  "popup preview" component (lines 484-519). Use it for promotional tiles,
-  the repository README, or landing-page visuals — not as a required CWS
-  screenshot, which must be a real full-bleed product capture.
-- `icons/icon.svg` - the master vector source.
-- `docs/privacy.html` - the privacy policy URL for the listing.
-- `CWS-LISTING.md` - all texts for the dashboard, including localised short
-  descriptions per language (section 9).
-
----
-
-## 10. Popup UI is fully localised - capture per language
-
-The popup ships translations for ten languages. Status pill, helper text,
-button labels, copy hint, thanks line, and credits prefix all come from
-`_locales/<lang>/messages.json`. The HTML inline defaults are English so the
-extension still renders correctly if Chrome reports an unsupported locale.
-
-| Folder | Language | Notes |
-| --- | --- | --- |
-| `_locales/en` | English (default) | Source of truth - keys defined with `description` annotations. |
-| `_locales/ru` | Русский | Conversational tone, "Скопировать ($count$)" sidesteps Russian plural agreement. |
-| `_locales/zh_CN` | 简体中文 | Mixed-script copy ("YouTube", "NotebookLM" stay in Latin). |
-| `_locales/hi` | हिन्दी | Devanagari; native review recommended. |
-| `_locales/es` | Español (neutral) | No region-specific vocabulary. |
-| `_locales/fr` | Français | "Veille" used for "research". |
-| `_locales/ar` | العربية | MSA; `dir="rtl"` set automatically by `popup.js`. Native review recommended. |
-| `_locales/bn` | বাংলা | Native review recommended. |
-| `_locales/pt_BR` | Português (BR) | "vídeo" with accent. |
-| `_locales/ur` | اردو | `dir="rtl"` set automatically. Native review recommended. |
-
-### How to capture a localised screenshot
-
-1. `chrome://settings/languages` -> add the target language -> move it to the
-   top of the list (Chrome uses the topmost listed language as the UI
-   language).
-2. Restart Chrome.
-3. Reload the unpacked extension at `chrome://extensions`.
-4. Open YouTube and the popup - status pill, buttons, helper text should
-   render in the chosen language. RTL locales (`ar`, `ur`) should mirror the
-   layout horizontally.
-5. Capture the popup with whatever tool you prefer
-   (DevTools "Capture node screenshot" works well at exactly 336 px wide).
-
-### Best languages to feature in store screenshots
-
-Google's listing accepts up to 5 screenshots per locale. If you only have
-time to localise screenshots for a subset, prioritise the languages you
-expect the highest install rate from: **en, ru, zh_CN, es, pt_BR**. The
-other five share the same layout so the English screenshots are still a
-reasonable fallback if you don't ship a per-language set.
-
-> The translations in `hi`, `bn`, `ur`, `ar` were written by the author with
-> dictionary support, **not** as a native speaker. Please ask a native
-> reviewer before submitting localised store listings in those languages.
-
----
-
-Made by Bakhtier Sizhaev. When you upload to the store, ping the GitHub repo
-- I'll keep the privacy policy and the listing texts in sync as the extension
-evolves.
+If you replace generated images with live browser captures, keep the same story
+order and filenames so the verifier and docs remain aligned.

@@ -303,10 +303,10 @@ def asset_map():
     items = [
         ('00', 'Store icon', '128 x 128', 'Required, usually comes from the package icon.'),
         ('01', 'Hero screenshot', '1280 x 800', 'Required screenshot slot. Replace with real product capture.'),
-        ('02', 'Shorts screenshot', '1280 x 800', 'Optional screenshot. Show Shorts or second YouTube flow.'),
-        ('03', 'NotebookLM paste flow', '1280 x 800', 'Optional screenshot. Use real browser capture if uploading.'),
-        ('04', 'Side panel flow', '1280 x 800', 'Optional screenshot. Good for showing persistent controls.'),
-        ('05', 'Privacy/local flow', '1280 x 800', 'Optional screenshot or support visual.'),
+        ('02', 'Batch select workflow', '1280 x 800', 'Screenshot 2. Show multi-link selection and Select visible.'),
+        ('03', 'Shorts support', '1280 x 800', 'Screenshot 3. Show selected Shorts and side panel flow.'),
+        ('04', 'NotebookLM paste flow', '1280 x 800', 'Screenshot 4. Show clean URLs pasted as sources.'),
+        ('05', 'Privacy/local flow', '1280 x 800', 'Screenshot 5. Build trust with local-only processing.'),
         ('06', 'Small promo tile', '440 x 280', 'Required promotional image.'),
         ('07', 'Marquee promo tile', '1400 x 560', 'Optional but recommended for featuring.'),
         ('08', 'Video thumbnail', '1280 x 720', 'Optional thumbnail for your YouTube demo video.'),
@@ -328,11 +328,18 @@ def asset_map():
 
 
 def main():
+    for stale in [
+        '02-screenshot-shorts-template-1280x800.png',
+        '03-screenshot-notebooklm-paste-template-1280x800.png',
+        '04-screenshot-side-panel-template-1280x800.png',
+    ]:
+        (OUT / stale).unlink(missing_ok=True)
+
     icon_preview()
     screenshot_template('01-screenshot-hero-template-1280x800.png', '01 Hero: pick videos, copy clean links', 'Replace placeholders with a real YouTube capture + TubeLM popup.', 'hero')
-    screenshot_template('02-screenshot-shorts-template-1280x800.png', '02 Shorts: collect short-form sources', 'Use only after replacing with a real Shorts/browser capture.', 'shorts')
-    screenshot_template('03-screenshot-notebooklm-paste-template-1280x800.png', '03 NotebookLM paste flow', 'Show selected YouTube URLs pasted as sources.', 'notebooklm')
-    screenshot_template('04-screenshot-side-panel-template-1280x800.png', '04 Side panel: keep controls open', 'Show the extension while the user keeps browsing YouTube.', 'sidepanel')
+    screenshot_template('02-screenshot-batch-select-template-1280x800.png', '02 Batch: select visible results', 'Show the multi-link workflow without overloading the screen.', 'search')
+    screenshot_template('03-screenshot-shorts-template-1280x800.png', '03 Shorts: collect short-form sources', 'Show selected Shorts and side panel mode.', 'shorts')
+    screenshot_template('04-screenshot-notebooklm-paste-template-1280x800.png', '04 NotebookLM paste flow', 'Show selected YouTube URLs pasted as sources.', 'notebooklm')
     screenshot_template('05-screenshot-privacy-local-template-1280x800.png', '05 Privacy: local link picking', 'Use for trust messaging, or replace with privacy page capture.', 'privacy')
     small_promo()
     marquee()

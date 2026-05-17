@@ -2,7 +2,7 @@
 
 These PNG files are editable visual templates for Photoshop. They are separate from the already verified upload assets in `store-assets/`.
 
-Official Chrome Web Store image requirements checked on 2026-05-16 from Chrome for Developers:
+Official Chrome Web Store image requirements checked on 2026-05-17 from Chrome for Developers:
 
 - Store icon: `128 x 128` px, required.
 - Screenshots: at least `1`, up to `5`, `1280 x 800` px or `640 x 400` px, PNG/JPEG, square corners, no padding, full bleed.
@@ -16,9 +16,9 @@ Official Chrome Web Store image requirements checked on 2026-05-16 from Chrome f
 | --- | --- | --- | --- | --- | --- |
 | 00 | `00-store-icon-current-128x128.png` | 128 x 128 | Store icon | Required | Use as preview/reference. The real icon is already inside the extension ZIP. |
 | 01 | `01-screenshot-hero-template-1280x800.png` | 1280 x 800 | Screenshot 1 | Required/recommended | Replace the mock YouTube area with a real YouTube screenshot showing TubeLM checkboxes and popup. Remove guide/footer text before final export. |
-| 02 | `02-screenshot-shorts-template-1280x800.png` | 1280 x 800 | Screenshot 2 | Optional but recommended | Replace with a real Shorts or YouTube screenshot. Remove guide/footer text before final export. |
-| 03 | `03-screenshot-notebooklm-paste-template-1280x800.png` | 1280 x 800 | Screenshot 3 | Optional | Replace with a real browser capture showing copied links pasted into NotebookLM or another notes tool. Remove guide/footer text before final export. |
-| 04 | `04-screenshot-side-panel-template-1280x800.png` | 1280 x 800 | Screenshot 4 | Optional | Replace with real capture if you want to show side panel mode. Remove guide/footer text before final export. |
+| 02 | `02-screenshot-batch-select-template-1280x800.png` | 1280 x 800 | Screenshot 2 | Optional but recommended | Use for the batch-selection story or replace with a real search-results/browser screenshot. Remove guide/footer text before final export. |
+| 03 | `03-screenshot-shorts-template-1280x800.png` | 1280 x 800 | Screenshot 3 | Optional but recommended | Use for the Shorts-support story or replace with a real Shorts/browser screenshot. Remove guide/footer text before final export. |
+| 04 | `04-screenshot-notebooklm-paste-template-1280x800.png` | 1280 x 800 | Screenshot 4 | Optional | Replace with a real browser capture showing copied links pasted into NotebookLM or another notes tool. Remove guide/footer text before final export. |
 | 05 | `05-screenshot-privacy-local-template-1280x800.png` | 1280 x 800 | Screenshot 5 | Optional | Use only if it remains a real product/browser capture. Avoid pure marketing infographic as the only screenshot. |
 | 06 | `06-small-promo-tile-440x280.png` | 440 x 280 | Small promo tile | Required | Can be uploaded after text/brand polish. Keep it simple and readable at small size. |
 | 07 | `07-marquee-promo-tile-1400x560.png` | 1400 x 560 | Marquee promo tile | Optional | Recommended if you want the listing to look more complete and feature-ready. |
@@ -57,10 +57,14 @@ Avoid:
 
 ## Existing verified assets
 
-The current minimum upload-ready assets are still in `store-assets/`:
+The current upload-ready asset set is in `store-assets/`:
 
 - `store-assets/screenshot-01-hero.png`
-- `store-assets/screenshot-02-search-results.png`
+- `store-assets/screenshot-02-batch-select.png`
+- `store-assets/screenshot-03-shorts.png`
+- `store-assets/screenshot-04-notebooklm-paste.png`
+- `store-assets/screenshot-05-local-privacy.png`
 - `store-assets/promo-small-440x280.png`
+- `store-assets/promo-marquee-1400x560.png`
 
-Use the templates in this folder if you want to create a more polished custom set before submitting.
+Use the templates in this folder only if you want to create alternative custom artwork before submitting.

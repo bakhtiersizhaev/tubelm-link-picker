@@ -215,10 +215,12 @@ Each one is under 132 characters.
 
 ---
 
-> See `CWS-MOCKUP-GUIDE.md` for the image assets. The mandatory
+> See `CWS-MOCKUP-GUIDE.md` for the image assets. The recommended
 > upload set is already prepared in `store-assets/`:
-> `screenshot-01-hero.png`, `screenshot-02-search-results.png`, and
-> `promo-small-440x280.png`.
+> `screenshot-01-hero.png`, `screenshot-02-batch-select.png`,
+> `screenshot-03-shorts.png`, `screenshot-04-notebooklm-paste.png`,
+> `screenshot-05-local-privacy.png`, `promo-small-440x280.png`, and optional
+> `promo-marquee-1400x560.png`.
 >
 > Current verified upload package: `build/tubelm-link-picker-cws-v1.0.2.zip`
 > with SHA-256 `056ef7ecb8c6cc205f22a0d7ad1047de23a234e43d3788ef52095d5b2e801406`.
