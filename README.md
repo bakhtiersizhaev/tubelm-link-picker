@@ -386,6 +386,16 @@ TubeLM runs locally in your browser. It does not send YouTube links, page data, 
 - [Chrome official guide: load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked)
 - [GitHub official guide: downloading files from GitHub](https://docs.github.com/en/get-started/start-your-journey/downloading-files-from-github)
 
+## License
+
+TubeLM Link Picker is proprietary software by Bakhtier Sizhaev. All rights are reserved.
+
+You may view the public repository for personal evaluation, security review, compatibility review, and educational reading only. Copying, redistribution, modification, rebranding, reskinning, resale, extension-store submission, or derivative products are not allowed without prior written permission from Bakhtier Sizhaev.
+
+Any permitted reference must clearly attribute: **TubeLM Link Picker by Bakhtier Sizhaev**.
+
+See [LICENSE](LICENSE) for the full terms.
+
 ## Disclaimer
 
-TubeLM Link Picker is an independent open-source project. It is not affiliated with Google, YouTube, or NotebookLM.
+TubeLM Link Picker is an independent project. It is not affiliated with Google, YouTube, or NotebookLM.

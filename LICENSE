@@ -1,21 +1,43 @@
-MIT License
+TubeLM Link Picker Proprietary License
 
-Copyright (c) 2026 Bakhtier Sizhaev
+Copyright (c) 2026 Bakhtier Sizhaev. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository, the TubeLM Link Picker browser extension, its source code,
+visual identity, screenshots, promotional assets, documentation, and related
+materials are the proprietary intellectual property of Bakhtier Sizhaev unless
+another file explicitly says otherwise.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+No license is granted to copy, reproduce, modify, merge, publish, distribute,
+sublicense, sell, rebrand, reskin, host, package, submit to an extension store,
+or create derivative products from this project or any substantial part of it
+without prior written permission from Bakhtier Sizhaev.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+You may view the publicly available source code only for personal evaluation,
+security review, compatibility review, and educational reading. This limited
+viewing permission does not allow redistribution, production use, commercial
+use, derivative works, competing products, or removal/alteration of attribution
+notices.
+
+Any permitted reference to this project must clearly attribute:
+
+TubeLM Link Picker by Bakhtier Sizhaev
+https://github.com/bakhtiersizhaev/tubelm-link-picker
+
+The names "TubeLM" and "TubeLM Link Picker", the extension icon, store listing
+assets, product screenshots, and brand presentation may not be used in a way
+that suggests ownership, endorsement, affiliation, or permission without prior
+written approval.
+
+Third-party dependencies remain governed by their own respective licenses. This
+license does not restrict rights granted by those third-party licenses.
+
+Publication of this repository on GitHub or distribution through the Chrome Web
+Store does not waive any rights and does not grant any additional license beyond
+the limited permissions stated above and any mandatory rights required by the
+applicable platform terms.
+
+THE PROJECT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+A PARTICULAR PURPOSE, AND NONINFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY
+LAW, BAKHTIER SIZHAEV SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY ARISING FROM USE, REVIEW, OR INABILITY TO USE THE PROJECT.

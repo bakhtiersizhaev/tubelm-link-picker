@@ -261,7 +261,7 @@ def marquee():
     draw.text((178, 76), 'TubeLM Link Picker', font=font(28, True), fill=INK)
     draw.text((74, 184), 'YouTube links', font=font(82, True), fill=INK)
     draw.text((74, 272), 'for NotebookLM.', font=font(82, True), fill=INK)
-    draw_text(draw, (78, 382), 'Select videos and Shorts on YouTube, then copy clean URLs in one click. Local, simple, open source.', 24, (50, 64, 78), max_width=580)
+    draw_text(draw, (78, 382), 'Select videos and Shorts on YouTube, then copy clean URLs in one click. Local, simple, privacy-first.', 24, (50, 64, 78), max_width=580)
     rounded(draw, (76, 470, 312, 520), 25, INK)
     draw.text((106, 484), 'Copy multiple links', font=font(17, True), fill=WHITE)
     shadow(base, (760, 72, 1324, 486), radius=30, blur=35, offset=(0, 22), color=(0, 0, 0, 60))

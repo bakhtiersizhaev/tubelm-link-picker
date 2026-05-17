@@ -85,15 +85,19 @@ Character count: 112.
 > or personal information to the developer. There is no account, no backend, no
 > telemetry, and no remote code.
 >
-> **Open source**
+> **Source availability**
 >
-> Source code, issues, and discussions:
+> Source code is publicly available for personal evaluation, security review,
+> compatibility review, and educational reading:
 > <https://github.com/bakhtiersizhaev/tubelm-link-picker>
 >
 > Made by Bakhtier Sizhaev. Thanks for using TubeLM - if it saves you time,
-> please star the repository on GitHub.
+> please star the repository on GitHub. TubeLM Link Picker is proprietary
+> software. Copying, redistribution, modification, rebranding, resale,
+> extension-store submission, or derivative products require prior written
+> permission from Bakhtier Sizhaev.
 >
-> _TubeLM Link Picker is an independent open-source project and is not
+> _TubeLM Link Picker is an independent project and is not
 > affiliated with, endorsed by, or sponsored by YouTube, Google, or NotebookLM._
 
 ## 5. Permission justifications (Developer Dashboard)
