@@ -9,9 +9,17 @@
 </p>
 
 <p align="center">
+  <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">
+    <img src="https://img.shields.io/badge/Chrome%20Web%20Store-Install%20TubeLM-1a73e8?logo=googlechrome&logoColor=white" alt="Install TubeLM from the Chrome Web Store">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">Chrome Web Store</a>
+  |
   <a href="https://bakhtiersizhaev.github.io/tubelm-link-picker/">Website</a>
   |
-  <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Download ZIP</a>
+  <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Source ZIP</a>
   |
   <a href="https://notebooklm.google.com/">NotebookLM</a>
   |
@@ -30,6 +38,8 @@
 
 TubeLM Link Picker is a lightweight Chrome extension for collecting YouTube links in bulk.
 
+The official public build is available on the Chrome Web Store: [Install TubeLM Link Picker](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb).
+
 Open a YouTube channel, playlist, search results page, feed, or Shorts grid. TubeLM adds checkboxes to video thumbnails, lets you select the videos you need, and copies a clean newline-separated list of YouTube URLs to your clipboard.
 
 The main workflow is:
@@ -41,6 +51,7 @@ The main workflow is:
 
 ## Features
 
+- Install in one click from the [Chrome Web Store](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb), or inspect/load the source from GitHub.
 - Select multiple YouTube videos and Shorts directly on the page.
 - Copy clean `youtube.com/watch?v=...` and `youtube.com/shorts/...` URLs.
 - Use **Select visible** to grab all loaded videos in the current view.
@@ -55,9 +66,17 @@ The main workflow is:
 
 <h2 id="english">English: Install For Beginners</h2>
 
-This extension is not installed from the Chrome Web Store yet. You install it as an **unpacked extension**. That means you download the project folder, unzip it, and tell Chrome to load that folder.
+The recommended install is the official Chrome Web Store listing. The GitHub ZIP/manual install path is kept below for source review, testing, and development.
 
-### Step 1: Download TubeLM From GitHub
+### Recommended: Install TubeLM From Chrome Web Store
+
+1. Open [TubeLM Link Picker on the Chrome Web Store](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb).
+2. Click **Add to Chrome**.
+3. Confirm **Add extension**.
+4. Pin TubeLM from the puzzle-piece extensions menu.
+5. Open YouTube and start selecting videos.
+
+### Optional Manual Install: Download TubeLM From GitHub
 
 1. Open the project page: [github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker).
 2. Click the green **Code** button near the top of the page.
@@ -120,16 +139,25 @@ Important: Chrome needs the **unpacked folder**, not the ZIP file. If you select
 ### If Something Does Not Work
 
 - If Chrome says it cannot load the extension, make sure you selected the folder with `manifest.json`.
+- If the Chrome Web Store button is unavailable, make sure you are opening it in Chrome or another Chromium browser.
 - If you do not see checkboxes on YouTube, reload the YouTube tab.
 - If the popup says to open a YouTube tab, switch to YouTube and open the popup again.
-- If Chrome shows a developer-mode message, that is normal for unpacked extensions.
+- If Chrome shows a developer-mode message, that is normal only for the manual unpacked install.
 - If you downloaded a new version, remove the old TubeLM card from `chrome://extensions` and load the new unpacked folder again.
 
 <h2 id="russian">Русский: установка для новичков</h2>
 
-Это расширение пока устанавливается не из Chrome Web Store, а как **распакованное расширение**. Это значит: нужно скачать папку проекта с GitHub, распаковать ZIP-архив и показать эту папку Google Chrome.
+Рекомендуемый способ установки — официальная страница TubeLM в Chrome Web Store. Установка через ZIP с GitHub оставлена ниже для проверки исходников, тестов и разработки.
 
-### Шаг 1: скачайте TubeLM с GitHub
+### Рекомендуется: установите TubeLM из Chrome Web Store
+
+1. Откройте [TubeLM Link Picker в Chrome Web Store](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb).
+2. Нажмите **Добавить в Chrome**.
+3. Подтвердите установку расширения.
+4. Закрепите TubeLM через иконку пазла в панели расширений.
+5. Откройте YouTube и начинайте выбирать видео.
+
+### Дополнительно: скачайте TubeLM с GitHub
 
 1. Откройте страницу проекта: [github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker).
 2. Нажмите зелёную кнопку **Code** в верхней части страницы.
@@ -192,16 +220,25 @@ Important: Chrome needs the **unpacked folder**, not the ZIP file. If you select
 ### Если что-то не работает
 
 - Если Chrome пишет, что расширение не загружается, проверьте, что вы выбрали папку с `manifest.json`.
+- Если кнопка Chrome Web Store недоступна, откройте ссылку в Chrome или другом Chromium-браузере.
 - Если на YouTube не появились чекбоксы, перезагрузите вкладку YouTube.
 - Если попап просит открыть YouTube, переключитесь на вкладку YouTube и откройте попап снова.
-- Если Chrome показывает сообщение про режим разработчика, это нормально для распакованных расширений.
+- Если Chrome показывает сообщение про режим разработчика, это нормально только для ручной установки распакованного расширения.
 - Если вы скачали новую версию, удалите старую карточку TubeLM на `chrome://extensions` и загрузите новую распакованную папку.
 
 <h2 id="chinese">中文：新手安装教程</h2>
 
-TubeLM 目前还不是从 Chrome Web Store 安装的扩展。你需要把它作为**已解压的扩展程序**安装：先从 GitHub 下载 ZIP，解压，然后让 Chrome 加载解压后的文件夹。
+推荐安装方式是官方 Chrome Web Store 页面。下面的 GitHub ZIP / 手动安装方式只用于源码查看、测试和开发。
 
-### 第 1 步：从 GitHub 下载 TubeLM
+### 推荐：从 Chrome Web Store 安装 TubeLM
+
+1. 打开 [Chrome Web Store 上的 TubeLM Link Picker](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb)。
+2. 点击 **Add to Chrome**。
+3. 确认安装扩展程序。
+4. 通过拼图图标菜单把 TubeLM 固定到工具栏。
+5. 打开 YouTube，开始选择视频。
+
+### 可选手动安装：从 GitHub 下载 TubeLM
 
 1. 打开项目页面：[github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker)。
 2. 点击页面上方绿色的 **Code** 按钮。
@@ -264,16 +301,25 @@ TubeLM 目前还不是从 Chrome Web Store 安装的扩展。你需要把它作�
 ### 如果无法正常使用
 
 - 如果 Chrome 提示无法加载扩展，请确认你选择的是包含 `manifest.json` 的文件夹。
+- 如果 Chrome Web Store 按钮不可用，请在 Chrome 或其他 Chromium 浏览器中打开链接。
 - 如果 YouTube 页面没有出现复选框，请刷新 YouTube 标签页。
 - 如果弹窗提示需要打开 YouTube 标签页，请切换到 YouTube 后再次打开 TubeLM。
-- 如果 Chrome 显示开发者模式提示，这是已解压扩展的正常现象。
+- 如果 Chrome 显示开发者模式提示，这只对手动安装的已解压扩展是正常现象。
 - 如果你下载了新版本，请先在 `chrome://extensions` 删除旧的 TubeLM，再重新加载新的解压文件夹。
 
 <h2 id="spanish">Español: instalación para principiantes</h2>
 
-Esta extensión todavía no se instala desde Chrome Web Store. Se instala como una **extensión descomprimida**. Eso significa que descargas la carpeta del proyecto, descomprimes el ZIP y le dices a Chrome que cargue esa carpeta.
+La instalación recomendada es la ficha oficial de TubeLM en Chrome Web Store. El método con ZIP de GitHub queda abajo para revisar el código fuente, hacer pruebas o desarrollar.
 
-### Paso 1: descarga TubeLM desde GitHub
+### Recomendado: instala TubeLM desde Chrome Web Store
+
+1. Abre [TubeLM Link Picker en Chrome Web Store](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb).
+2. Haz clic en **Add to Chrome**.
+3. Confirma la instalación de la extensión.
+4. Fija TubeLM desde el menú de extensiones con icono de rompecabezas.
+5. Abre YouTube y empieza a seleccionar videos.
+
+### Opcional: descarga TubeLM desde GitHub
 
 1. Abre la página del proyecto: [github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker).
 2. Haz clic en el botón verde **Code** cerca de la parte superior.
@@ -336,9 +382,10 @@ Importante: Chrome necesita la **carpeta descomprimida**, no el archivo ZIP. Si 
 ### Si algo no funciona
 
 - Si Chrome dice que no puede cargar la extensión, asegúrate de seleccionar la carpeta que contiene `manifest.json`.
+- Si el botón de Chrome Web Store no está disponible, abre el enlace en Chrome u otro navegador Chromium.
 - Si no ves checkboxes en YouTube, recarga la pestaña de YouTube.
 - Si el popup dice que abras una pestaña de YouTube, cambia a YouTube y abre el popup otra vez.
-- Si Chrome muestra un aviso de modo desarrollador, es normal para extensiones descomprimidas.
+- Si Chrome muestra un aviso de modo desarrollador, eso es normal solo para la instalación manual descomprimida.
 - Si descargaste una nueva versión, elimina la tarjeta antigua de TubeLM en `chrome://extensions` y carga de nuevo la carpeta descomprimida.
 
 ## Naming
@@ -378,11 +425,12 @@ TubeLM runs locally in your browser. It does not send YouTube links, page data, 
 - Optional auto-scroll collection mode for long channel and playlist pages.
 - Export selected links as Markdown, CSV, or plain text.
 - Saved selection sets per tab.
-- Chrome Web Store listing assets and screenshots.
+- Post-launch Chrome Web Store polish, screenshots, and release notes.
 - Localization files for the extension popup.
 
 ## References
 
+- [TubeLM Link Picker on the Chrome Web Store](https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb)
 - [Chrome official guide: load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked)
 - [GitHub official guide: downloading files from GitHub](https://docs.github.com/en/get-started/start-your-journey/downloading-files-from-github)
 

@@ -2,6 +2,9 @@
 
 Use these files in the Chrome Web Store Developer Dashboard.
 
+Public listing:
+<https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb>
+
 ## Recommended upload set
 
 Five required-format screenshots give the store carousel a clear, non-repetitive story without overloading the user. Chrome Web Store allows up to five screenshots, and Google's guidance recommends using the maximum when each image explains a real part of the extension experience.

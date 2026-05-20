@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TubeLM Link Picker - Batch Copy YouTube Links for NotebookLM</title>
-  <meta name="description" content="TubeLM Link Picker is a Chrome extension for copying multiple YouTube video and Shorts links into NotebookLM, AI notes, and research workflows.">
+  <meta name="description" content="Install TubeLM Link Picker from the Chrome Web Store to copy multiple YouTube video and Shorts links into NotebookLM, AI notes, and research workflows.">
   <meta name="keywords" content="NotebookLM, YouTube links, Chrome extension, batch copy YouTube URLs, clean YouTube URLs, YouTube Shorts links, YouTube link picker, AI notes, research workflow, LLM tools, clipboard productivity">
   <meta name="author" content="Bakhtier Sizhaev">
   <meta name="robots" content="index, follow">
@@ -33,13 +33,24 @@
     "description": "Chrome extension for selecting YouTube videos and Shorts, copying clean URLs in bulk, and pasting them into NotebookLM or AI research notes.",
     "applicationCategory": "BrowserApplication",
     "operatingSystem": "Chrome, Chromium, Edge, Brave",
-    "url": "https://github.com/bakhtiersizhaev/tubelm-link-picker",
+    "url": "https://bakhtiersizhaev.github.io/tubelm-link-picker/",
     "codeRepository": "https://github.com/bakhtiersizhaev/tubelm-link-picker",
+    "installUrl": "https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb",
     "isAccessibleForFree": true,
+    "sameAs": [
+      "https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb",
+      "https://github.com/bakhtiersizhaev/tubelm-link-picker"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
     "keywords": [
       "NotebookLM",
       "YouTube",
       "Chrome extension",
+      "Chrome Web Store",
       "YouTube links",
       "batch copy URLs",
       "AI notes",
@@ -139,6 +150,11 @@
       font-size: 14px;
     }
 
+    .nav-install {
+      color: #1a73e8;
+      font-weight: 800;
+    }
+
     .hero {
       min-height: 68vh;
       display: grid;
@@ -184,6 +200,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 9px;
       min-height: 46px;
       padding: 0 18px;
       border-radius: 8px;
@@ -198,6 +215,32 @@
       color: #fff;
       border-color: var(--ink);
       box-shadow: 0 14px 34px rgba(11, 18, 35, 0.18);
+    }
+
+    .button.store {
+      background: #1a73e8;
+      color: #fff;
+      border-color: #1a73e8;
+      box-shadow: 0 14px 34px rgba(26, 115, 232, 0.22);
+    }
+
+    .chrome-icon {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      position: relative;
+      border-radius: 999px;
+      background: conic-gradient(#ea4335 0deg 118deg, #fbbc05 118deg 205deg, #34a853 205deg 292deg, #4285f4 292deg 360deg);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+    }
+
+    .chrome-icon::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: #4285f4;
     }
 
     .preview {
@@ -317,6 +360,31 @@
       padding: 18px;
       text-decoration: none;
       font-weight: 800;
+    }
+
+    .store-callout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 24px;
+      border: 1px solid rgba(26, 115, 232, 0.24);
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ffffff, #eef5ff);
+    }
+
+    .store-callout h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: 0;
+    }
+
+    .store-callout p {
+      margin: 10px 0 0;
+      max-width: 760px;
+      color: #39424e;
+      line-height: 1.55;
     }
 
     .related-tool {
@@ -442,6 +510,7 @@
       }
 
       .language-nav,
+      .store-callout,
       .related-tool,
       .guide-grid {
         grid-template-columns: 1fr;
@@ -460,6 +529,7 @@
       <span>TubeLM</span>
     </a>
     <nav aria-label="Primary navigation">
+      <a class="nav-install" href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">Install</a>
       <a href="#english">English</a>
       <a href="#russian">Русский</a>
       <a href="#chinese">中文</a>
@@ -472,12 +542,13 @@
   <main class="shell">
     <section class="hero" aria-labelledby="hero-title">
       <div>
-        <p class="eyebrow">Chrome extension for NotebookLM research</p>
+        <p class="eyebrow">Now live on Chrome Web Store</p>
         <h1 id="hero-title">YouTube links for NotebookLM.</h1>
-        <p class="lede">TubeLM helps you select YouTube videos and Shorts, copy clean URLs in bulk, and paste them into NotebookLM. Full beginner installation guide is available in English, Russian, Chinese, and Spanish.</p>
+        <p class="lede">TubeLM helps you select YouTube videos and Shorts, copy clean URLs in bulk, and paste them into NotebookLM. Install the official extension from Chrome Web Store or review the source on GitHub.</p>
         <div class="actions" aria-label="Project links">
-          <a class="button primary" href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Download ZIP</a>
+          <a class="button store" href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb"><span class="chrome-icon" aria-hidden="true"></span>Install from Chrome Web Store</a>
           <a class="button" href="https://github.com/bakhtiersizhaev/tubelm-link-picker">View GitHub</a>
+          <a class="button" href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Source ZIP</a>
           <a class="button" href="https://telelore.vercel.app/">Telegram to NotebookLM</a>
           <a class="button" href="https://notebooklm.google.com/">Open NotebookLM</a>
         </div>
@@ -521,6 +592,17 @@
       </aside>
     </section>
 
+    <section class="store-callout" aria-labelledby="store-title">
+      <div>
+        <h2 id="store-title">Official Chrome Web Store install</h2>
+        <p>Use the public Chrome Web Store listing for the normal one-click install. The GitHub ZIP remains available for source review and manual developer testing.</p>
+      </div>
+      <div class="related-actions" aria-label="Chrome Web Store install links">
+        <a class="button store" href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb"><span class="chrome-icon" aria-hidden="true"></span>Install TubeLM</a>
+        <a class="button" href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Source ZIP</a>
+      </div>
+    </section>
+
     <section class="related-tool" aria-labelledby="related-title">
       <div>
         <h2 id="related-title">Also working with Telegram chats?</h2>
@@ -541,26 +623,26 @@
 
     <section class="language" id="english" lang="en">
       <h2>English: install for beginners</h2>
-      <p class="intro">Install TubeLM as an unpacked Chrome extension: download the ZIP from GitHub, unzip it, load the extracted folder in Chrome, then use it on YouTube.</p>
+      <p class="intro">Install TubeLM from the Chrome Web Store for the normal one-click setup. Use the GitHub ZIP only when you want to inspect the source or load a development copy.</p>
       <div class="guide-grid">
         <div class="guide-block">
-          <h3>1. Download and unzip</h3>
+          <h3>1. Install from Chrome Web Store</h3>
           <ol>
-            <li>Open <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">the TubeLM GitHub page</a>.</li>
-            <li>Click <strong>Code</strong>, then <strong>Download ZIP</strong>, or use the <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">direct ZIP link</a>.</li>
-            <li>Find <code>tubelm-link-picker-main.zip</code> in Downloads.</li>
-            <li>Extract the ZIP file.</li>
-            <li>Open the extracted folder and make sure it contains <code>manifest.json</code>.</li>
+            <li>Open <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">TubeLM Link Picker on the Chrome Web Store</a>.</li>
+            <li>Click <strong>Add to Chrome</strong>.</li>
+            <li>Confirm <strong>Add extension</strong>.</li>
+            <li>Pin TubeLM from the puzzle-piece extensions menu.</li>
+            <li>Open YouTube and start selecting videos.</li>
           </ol>
         </div>
         <div class="guide-block">
-          <h3>2. Load in Chrome</h3>
+          <h3>2. Optional source install</h3>
           <ol>
+            <li>Open <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">the TubeLM GitHub page</a>.</li>
+            <li>Download the <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">source ZIP</a> and extract it.</li>
             <li>Open Chrome and go to <code>chrome://extensions</code>.</li>
-            <li>Turn on <strong>Developer mode</strong>.</li>
-            <li>Click <strong>Load unpacked</strong>.</li>
-            <li>Select the extracted TubeLM folder, not the ZIP file.</li>
-            <li>Pin TubeLM from the puzzle-piece extensions menu.</li>
+            <li>Turn on <strong>Developer mode</strong>, then click <strong>Load unpacked</strong>.</li>
+            <li>Select the extracted folder that contains <code>manifest.json</code>.</li>
           </ol>
         </div>
         <div class="guide-block">
@@ -576,9 +658,10 @@
         <div class="guide-block">
           <h3>Troubleshooting</h3>
           <ul>
+            <li>If the Chrome Web Store install button is unavailable, open the link in Chrome or another Chromium browser.</li>
             <li>If Chrome cannot load it, select the folder that contains <code>manifest.json</code>.</li>
             <li>If checkboxes are missing, reload the YouTube tab.</li>
-            <li>If Chrome shows a developer-mode message, that is normal for unpacked extensions.</li>
+            <li>If Chrome shows a developer-mode message, that is normal only for the optional source install.</li>
           </ul>
         </div>
       </div>
@@ -586,26 +669,26 @@
 
     <section class="language" id="russian" lang="ru">
       <h2>Русский: установка для новичков</h2>
-      <p class="intro">TubeLM устанавливается как распакованное расширение Chrome: скачайте ZIP с GitHub, распакуйте архив, загрузите папку в Chrome и используйте расширение на YouTube.</p>
+      <p class="intro">Обычная установка TubeLM теперь идет через Chrome Web Store в один клик. ZIP с GitHub нужен только для проверки исходников или ручной developer-установки.</p>
       <div class="guide-grid">
         <div class="guide-block">
-          <h3>1. Скачайте и распакуйте</h3>
+          <h3>1. Установите из Chrome Web Store</h3>
           <ol>
-            <li>Откройте <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">страницу TubeLM на GitHub</a>.</li>
-            <li>Нажмите <strong>Code</strong>, затем <strong>Download ZIP</strong>, или используйте <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">прямую ссылку на ZIP</a>.</li>
-            <li>Найдите файл <code>tubelm-link-picker-main.zip</code> в папке загрузок.</li>
-            <li>Распакуйте ZIP-архив.</li>
-            <li>Откройте распакованную папку и проверьте, что внутри есть <code>manifest.json</code>.</li>
+            <li>Откройте <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">TubeLM Link Picker в Chrome Web Store</a>.</li>
+            <li>Нажмите <strong>Добавить в Chrome</strong>.</li>
+            <li>Подтвердите установку расширения.</li>
+            <li>Закрепите TubeLM через иконку пазла в панели расширений.</li>
+            <li>Откройте YouTube и начинайте выбирать видео.</li>
           </ol>
         </div>
         <div class="guide-block">
-          <h3>2. Загрузите в Chrome</h3>
+          <h3>2. Ручная установка из исходников</h3>
           <ol>
+            <li>Откройте <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">страницу TubeLM на GitHub</a>.</li>
+            <li>Скачайте <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">source ZIP</a> и распакуйте архив.</li>
             <li>Откройте Chrome и перейдите на <code>chrome://extensions</code>.</li>
-            <li>Включите <strong>Режим разработчика</strong>.</li>
-            <li>Нажмите <strong>Загрузить распакованное</strong>.</li>
-            <li>Выберите распакованную папку TubeLM, не ZIP-файл.</li>
-            <li>Закрепите TubeLM через иконку пазла в панели расширений.</li>
+            <li>Включите <strong>Режим разработчика</strong>, затем нажмите <strong>Загрузить распакованное</strong>.</li>
+            <li>Выберите распакованную папку, внутри которой лежит <code>manifest.json</code>.</li>
           </ol>
         </div>
         <div class="guide-block">
@@ -621,9 +704,10 @@
         <div class="guide-block">
           <h3>Если не работает</h3>
           <ul>
+            <li>Если кнопка установки из Chrome Web Store недоступна, откройте ссылку в Chrome или другом Chromium-браузере.</li>
             <li>Если Chrome не загружает расширение, выберите папку с <code>manifest.json</code>.</li>
             <li>Если чекбоксы не появились, перезагрузите вкладку YouTube.</li>
-            <li>Если Chrome показывает сообщение про режим разработчика, это нормально для распакованных расширений.</li>
+            <li>Если Chrome показывает сообщение про режим разработчика, это нормально только для ручной установки из исходников.</li>
           </ul>
         </div>
       </div>
@@ -631,26 +715,26 @@
 
     <section class="language" id="chinese" lang="zh">
       <h2>中文：新手安装教程</h2>
-      <p class="intro">TubeLM 作为已解压的 Chrome 扩展安装：从 GitHub 下载 ZIP，解压文件夹，在 Chrome 中加载文件夹，然后在 YouTube 上选择视频链接。</p>
+      <p class="intro">普通用户建议直接从 Chrome Web Store 一键安装 TubeLM。GitHub ZIP 只适合查看源码、测试或手动开发安装。</p>
       <div class="guide-grid">
         <div class="guide-block">
-          <h3>1. 下载并解压</h3>
+          <h3>1. 从 Chrome Web Store 安装</h3>
           <ol>
-            <li>打开 <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">TubeLM GitHub 页面</a>。</li>
-            <li>点击 <strong>Code</strong>，再点击 <strong>Download ZIP</strong>，也可以使用 <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">ZIP 直链</a>。</li>
-            <li>在下载文件夹中找到 <code>tubelm-link-picker-main.zip</code>。</li>
-            <li>解压 ZIP 文件。</li>
-            <li>打开解压后的文件夹，确认里面有 <code>manifest.json</code>。</li>
+            <li>打开 <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">Chrome Web Store 上的 TubeLM Link Picker</a>。</li>
+            <li>点击 <strong>Add to Chrome</strong>。</li>
+            <li>确认安装扩展程序。</li>
+            <li>通过拼图图标菜单把 TubeLM 固定到工具栏。</li>
+            <li>打开 YouTube，开始选择视频。</li>
           </ol>
         </div>
         <div class="guide-block">
-          <h3>2. 在 Chrome 中加载</h3>
+          <h3>2. 可选：从源码手动安装</h3>
           <ol>
+            <li>打开 <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">TubeLM GitHub 页面</a>。</li>
+            <li>下载 <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">source ZIP</a> 并解压。</li>
             <li>打开 Chrome，进入 <code>chrome://extensions</code>。</li>
-            <li>开启 <strong>Developer mode</strong>（开发者模式）。</li>
-            <li>点击 <strong>Load unpacked</strong>。</li>
-            <li>选择解压后的 TubeLM 文件夹，不要选择 ZIP 文件。</li>
-            <li>通过拼图图标菜单把 TubeLM 固定到工具栏。</li>
+            <li>开启 <strong>Developer mode</strong>（开发者模式），然后点击 <strong>Load unpacked</strong>。</li>
+            <li>选择包含 <code>manifest.json</code> 的解压文件夹。</li>
           </ol>
         </div>
         <div class="guide-block">
@@ -666,9 +750,10 @@
         <div class="guide-block">
           <h3>无法使用时</h3>
           <ul>
+            <li>如果 Chrome Web Store 安装按钮不可用，请在 Chrome 或其他 Chromium 浏览器中打开链接。</li>
             <li>如果 Chrome 无法加载扩展，请选择包含 <code>manifest.json</code> 的文件夹。</li>
             <li>如果 YouTube 没有显示复选框，请刷新 YouTube 标签页。</li>
-            <li>如果 Chrome 显示开发者模式提示，这是已解压扩展的正常现象。</li>
+            <li>如果 Chrome 显示开发者模式提示，这只对源码手动安装是正常现象。</li>
           </ul>
         </div>
       </div>
@@ -676,26 +761,26 @@
 
     <section class="language" id="spanish" lang="es">
       <h2>Español: instalación para principiantes</h2>
-      <p class="intro">TubeLM se instala como una extensión descomprimida de Chrome: descarga el ZIP desde GitHub, descomprímelo, carga la carpeta en Chrome y úsalo en YouTube.</p>
+      <p class="intro">La instalación normal de TubeLM ahora se hace en un clic desde Chrome Web Store. El ZIP de GitHub queda para revisar el código fuente, probar o cargar una copia de desarrollo.</p>
       <div class="guide-grid">
         <div class="guide-block">
-          <h3>1. Descarga y descomprime</h3>
+          <h3>1. Instala desde Chrome Web Store</h3>
           <ol>
-            <li>Abre <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">la página de TubeLM en GitHub</a>.</li>
-            <li>Haz clic en <strong>Code</strong>, luego en <strong>Download ZIP</strong>, o usa el <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">enlace directo al ZIP</a>.</li>
-            <li>Busca <code>tubelm-link-picker-main.zip</code> en Descargas.</li>
-            <li>Descomprime el archivo ZIP.</li>
-            <li>Abre la carpeta extraída y comprueba que contiene <code>manifest.json</code>.</li>
+            <li>Abre <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">TubeLM Link Picker en Chrome Web Store</a>.</li>
+            <li>Haz clic en <strong>Add to Chrome</strong>.</li>
+            <li>Confirma <strong>Add extension</strong>.</li>
+            <li>Fija TubeLM desde el menú de extensiones con icono de rompecabezas.</li>
+            <li>Abre YouTube y empieza a seleccionar videos.</li>
           </ol>
         </div>
         <div class="guide-block">
-          <h3>2. Carga en Chrome</h3>
+          <h3>2. Instalación opcional desde código fuente</h3>
           <ol>
+            <li>Abre <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">la página de TubeLM en GitHub</a>.</li>
+            <li>Descarga el <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">source ZIP</a> y descomprímelo.</li>
             <li>Abre Chrome y entra en <code>chrome://extensions</code>.</li>
-            <li>Activa <strong>Developer mode</strong> o <strong>Modo de desarrollador</strong>.</li>
-            <li>Haz clic en <strong>Load unpacked</strong> o <strong>Cargar descomprimida</strong>.</li>
-            <li>Selecciona la carpeta TubeLM descomprimida, no el ZIP.</li>
-            <li>Fija TubeLM desde el menú de extensiones con icono de rompecabezas.</li>
+            <li>Activa <strong>Developer mode</strong> o <strong>Modo de desarrollador</strong>, luego pulsa <strong>Load unpacked</strong>.</li>
+            <li>Selecciona la carpeta extraída que contiene <code>manifest.json</code>.</li>
           </ol>
         </div>
         <div class="guide-block">
@@ -711,16 +796,18 @@
         <div class="guide-block">
           <h3>Si algo no funciona</h3>
           <ul>
+            <li>Si el botón de Chrome Web Store no está disponible, abre el enlace en Chrome u otro navegador Chromium.</li>
             <li>Si Chrome no puede cargar la extensión, selecciona la carpeta que contiene <code>manifest.json</code>.</li>
             <li>Si no aparecen checkboxes, recarga la pestaña de YouTube.</li>
-            <li>Si Chrome muestra un aviso de modo desarrollador, es normal para extensiones descomprimidas.</li>
+            <li>Si Chrome muestra un aviso de modo desarrollador, eso es normal solo para la instalación opcional desde código fuente.</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section class="refs" aria-labelledby="refs-title">
-      <h2 id="refs-title">Official references</h2>
+      <h2 id="refs-title">Project and official references</h2>
+      <p><a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">TubeLM Link Picker on the Chrome Web Store</a></p>
       <p><a href="https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked">Chrome official guide: load an unpacked extension</a></p>
       <p><a href="https://docs.github.com/en/get-started/start-your-journey/downloading-files-from-github">GitHub official guide: downloading files from GitHub</a></p>
     </section>

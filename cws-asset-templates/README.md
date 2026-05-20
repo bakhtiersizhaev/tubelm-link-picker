@@ -2,6 +2,9 @@
 
 These PNG files are editable visual templates for Photoshop. They are separate from the already verified upload assets in `store-assets/`.
 
+Public listing:
+<https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb>
+
 Official Chrome Web Store image requirements checked on 2026-05-17 from Chrome for Developers:
 
 - Store icon: `128 x 128` px, required.

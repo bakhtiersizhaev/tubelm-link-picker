@@ -6,6 +6,9 @@ Copy/paste-ready texts for the Chrome Web Store Developer Dashboard at
 These texts match the current manifest (`version 1.0.2`, MV3) and the privacy
 policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 
+Public Chrome Web Store listing:
+<https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb>
+
 ---
 
 ## 1. Store listing - basic info
@@ -21,6 +24,7 @@ policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 | Distribution | All regions |
 | Repository description | `Copy multiple YouTube links into NotebookLM and AI research notes.` |
 | Repository topics | `notebooklm`, `youtube`, `chrome-extension`, `browser-extension`, `youtube-links`, `youtube-shorts`, `clean-urls`, `batch-copy`, `research-tool`, `ai-notes`, `llm-tools`, `clipboard`, `productivity` |
+| Public listing URL | `https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb` |
 
 ## 2. Single purpose statement
 
@@ -140,9 +144,10 @@ permission. Paste these into the "Privacy practices" tab.
 
 | Field | Value |
 | --- | --- |
-| Homepage URL | `https://github.com/bakhtiersizhaev/tubelm-link-picker` |
+| Homepage URL | `https://bakhtiersizhaev.github.io/tubelm-link-picker/` |
 | Support URL | `https://github.com/bakhtiersizhaev/tubelm-link-picker/issues` |
 | Privacy Policy URL | `https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html` |
+| Public listing URL | `https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb` |
 
 > Make sure GitHub Pages is enabled in repo settings (Settings -> Pages ->
 > "Deploy from branch" -> `main` / `/docs`) so that `privacy.html` is publicly

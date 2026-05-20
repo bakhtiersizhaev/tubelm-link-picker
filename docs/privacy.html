@@ -69,16 +69,48 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
-    .back {
-      display: inline-block;
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-top: 40px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
       padding: 10px 16px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 8px;
       background: #fff;
       color: var(--ink);
       text-decoration: none;
       font-weight: 700;
+    }
+    .button.store {
+      background: #1a73e8;
+      color: #fff;
+      border-color: #1a73e8;
+      box-shadow: 0 12px 30px rgba(26, 115, 232, 0.2);
+    }
+    .chrome-icon {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      position: relative;
+      border-radius: 999px;
+      background: conic-gradient(#ea4335 0deg 118deg, #fbbc05 118deg 205deg, #34a853 205deg 292deg, #4285f4 292deg 360deg);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+    }
+    .chrome-icon::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: #4285f4;
     }
     footer {
       margin-top: 56px;
@@ -168,6 +200,8 @@
       The source code is publicly available for personal evaluation, security
       review, compatibility review, and educational reading at
       <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker">github.com/bakhtiersizhaev/tubelm-link-picker</a>.
+      The public install page is available on the
+      <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">Chrome Web Store</a>.
       TubeLM Link Picker is proprietary software by Bakhtier Sizhaev. Copying,
       redistribution, modification, rebranding, resale, extension-store
       submission, or derivative products are not allowed without prior written
@@ -189,7 +223,10 @@
       for any privacy-related questions.
     </p>
 
-    <a class="back" href="./">&larr; Back to TubeLM</a>
+    <div class="actions">
+      <a class="button store" href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb"><span class="chrome-icon" aria-hidden="true"></span>Install from Chrome Web Store</a>
+      <a class="button" href="./">&larr; Back to TubeLM</a>
+    </div>
 
     <footer>
       &copy; 2026 Bakhtier Sizhaev. TubeLM Link Picker is not affiliated with YouTube,

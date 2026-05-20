@@ -4,6 +4,9 @@ This guide is the current source of truth for TubeLM Chrome Web Store visuals.
 It covers the required screenshots, promotional/mockup tiles, upload order, and
 safe editing rules for Bakhtier Sizhaev's first Chrome Web Store submission.
 
+Public listing:
+<https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb>
+
 All dimensions below match the Chrome Web Store Developer Dashboard image
 requirements verified for this project as of 2026-05-17.
 
