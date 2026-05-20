@@ -12,6 +12,9 @@
   <a href="https://chromewebstore.google.com/detail/bfbhaomnjgcnijknlhgdldidboijodfa?utm_source=item-share-cb">
     <img src="https://img.shields.io/badge/Chrome%20Web%20Store-Install%20TubeLM-1a73e8?logo=googlechrome&logoColor=white" alt="Install TubeLM from the Chrome Web Store">
   </a>
+  <a href="https://telelore.vercel.app/">
+    <img src="https://img.shields.io/badge/Companion%20Project-TeleLore-2aabee?logo=telegram&logoColor=white" alt="Open TeleLore companion project">
+  </a>
 </p>
 
 <p align="center">
@@ -23,7 +26,7 @@
   |
   <a href="https://notebooklm.google.com/">NotebookLM</a>
   |
-  <a href="https://telelore.vercel.app/">TeleLore</a>
+  <a href="https://telelore.vercel.app/">TeleLore Companion</a>
   |
   <a href="#english">English</a>
   |
@@ -61,7 +64,7 @@ The main workflow is:
 
 ## Related NotebookLM Tools
 
-- [TeleLore](https://telelore.vercel.app/) converts Telegram Desktop `result.json` exports into NotebookLM-ready Markdown chunks.
+- [TeleLore](https://telelore.vercel.app/) is the companion project by the same author: it converts Telegram Desktop `result.json` exports into NotebookLM-ready Markdown chunks.
 - TeleLore repository: [github.com/bakhtiersizhaev/telelore](https://github.com/bakhtiersizhaev/telelore).
 
 <h2 id="english">English: Install For Beginners</h2>
