@@ -10,7 +10,7 @@
 (function () {
     'use strict';
 
-    const SCRIPT_VERSION = 'v8';
+    const SCRIPT_VERSION = 'v9';
     if (window.__tubeLmLinkPickerVersion === SCRIPT_VERSION) {
         console.log('TubeLM Link Picker: already active, skipping duplicate load');
         return;
@@ -32,7 +32,7 @@
     document.getElementById('tubelm-overlay')?.remove();
     document.getElementById('yt-notebook-overlay')?.remove();
 
-    console.log('%c TubeLM Link Picker: Content script loaded (v8) ',
+    console.log('%c TubeLM Link Picker: Content script loaded (v9) ',
         'background: #10b981; color: black; font-size: 14px; padding: 4px;');
 
     // ================== STATE ==================
@@ -89,6 +89,44 @@
         }
     }
 
+    function isAdOrPromotedElement(element) {
+        if (!element) return false;
+
+        const adSelector = [
+            'ytd-ad-slot-renderer',
+            'ytd-display-ad-renderer',
+            'ytd-in-feed-ad-layout-renderer',
+            'ytd-promoted-sparkles-web-renderer',
+            'ytd-promoted-sparkles-text-search-renderer',
+            'ytd-promoted-video-renderer',
+            'ytd-search-pyv-renderer',
+            'ytd-action-companion-ad-renderer',
+            'ytd-companion-slot-renderer',
+            'ytd-player-legacy-desktop-watch-ads-renderer',
+            '.ytd-promoted-sparkles-web-renderer',
+            '.ytd-display-ad-renderer',
+            '.badge-style-type-ad'
+        ].join(',');
+
+        if (element.closest(adSelector)) return true;
+
+        let current = element;
+        while (current && current !== document.body) {
+            const tag = current.tagName || '';
+            if (/(^|-)AD(-|$)|PROMOTED|SPARKLES|COMPANION/.test(tag)) {
+                return true;
+            }
+            current = current.parentElement;
+        }
+
+        const ariaText = [
+            element.getAttribute('aria-label'),
+            element.querySelector('[aria-label*="Ad"], [aria-label*="Sponsored"]')?.getAttribute('aria-label')
+        ].filter(Boolean).join(' ');
+
+        return /\b(ad|sponsored|advertisement)\b/i.test(ariaText);
+    }
+
     function applyCheckboxVisualState(checkbox, isSelected) {
         if (!checkbox) return;
         checkbox.style.background = isSelected ? ACCENT : BASE_BG;
@@ -116,11 +154,13 @@
 
     function findVideoAnchor(card) {
         if (!card) return null;
+        if (isAdOrPromotedElement(card)) return null;
+
         const preferred = card.querySelector('a#thumbnail');
-        if (preferred && isValidVideoUrl(preferred.href)) return preferred;
+        if (preferred && isValidVideoUrl(preferred.href) && !isAdOrPromotedElement(preferred)) return preferred;
 
         const candidates = Array.from(card.querySelectorAll('a[href]'))
-            .filter(a => isValidVideoUrl(a.href));
+            .filter(a => isValidVideoUrl(a.href) && !isAdOrPromotedElement(a));
         if (candidates.length === 0) return null;
 
         const rich = candidates.find(a => a.querySelector('ytd-thumbnail, yt-image, img'));
@@ -264,6 +304,8 @@
     function scanForVideos() {
         const cardSelectors = [
             'yt-lockup-view-model',
+            'ytd-playlist-video-renderer',
+            'ytd-playlist-panel-video-renderer',
             'ytd-rich-item-renderer',
             'ytd-grid-video-renderer',
             'ytd-video-renderer',

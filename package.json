@@ -1,6 +1,6 @@
 {
   "name": "tubelm-link-picker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Chrome extension to copy multiple YouTube video and Shorts links into NotebookLM, AI notes, and research workflows.",
   "type": "module",

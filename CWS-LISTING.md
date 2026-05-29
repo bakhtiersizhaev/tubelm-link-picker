@@ -3,7 +3,7 @@
 Copy/paste-ready texts for the Chrome Web Store Developer Dashboard at
 <https://chrome.google.com/webstore/devconsole>.
 
-These texts match the current manifest (`version 1.0.2`, MV3) and the privacy
+These texts match the current manifest (`version 1.0.3`, MV3) and the privacy
 policy at <https://bakhtiersizhaev.github.io/tubelm-link-picker/privacy.html>.
 
 Public Chrome Web Store listing:
@@ -231,5 +231,5 @@ Each one is under 132 characters.
 > `screenshot-05-local-privacy.png`, `promo-small-440x280.png`, and optional
 > `promo-marquee-1400x560.png`.
 >
-> Current verified upload package: `build/tubelm-link-picker-cws-v1.0.2.zip`
-> with SHA-256 `056ef7ecb8c6cc205f22a0d7ad1047de23a234e43d3788ef52095d5b2e801406`.
+> Current verified upload package: `build/tubelm-link-picker-cws-v1.0.3.zip`
+> with SHA-256 `016fe4f9918306a3f65429872768cc304422e4abc5b45e202b7a02e65814aed3`.
