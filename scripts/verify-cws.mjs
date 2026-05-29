@@ -213,7 +213,7 @@ function readZipEntries(buffer) {
 
 function assertExactManifest(manifest) {
   assert.equal(manifest.manifest_version, 3, 'manifest_version must be MV3');
-  assert.equal(manifest.version, '1.0.2', 'manifest version must match CWS release');
+  assert.equal(manifest.version, '1.0.3', 'manifest version must match CWS release');
   assert.equal(manifest.default_locale, 'en', 'default_locale must be en');
   assert.deepEqual(manifest.permissions, EXPECTED_PERMISSIONS, 'manifest permissions must match CWS disclosure exactly');
   assert.deepEqual(manifest.host_permissions, EXPECTED_HOST_PERMISSIONS, 'host permissions must stay YouTube-only');
@@ -258,6 +258,11 @@ function main() {
 
   assertCodePattern('popup/popup.js', /hostname === 'youtube\.com'[^\n]+hostname\.endsWith\('\.youtube\.com'\)/s, 'strict YouTube hostname check');
   assertCodePattern('content/content.js', /isYouTubeHost\(u\.hostname\)/, 'content script host validation');
+  assertCodePattern('content/content.js', /ytd-playlist-video-renderer/, 'playlist page video rows are selectable');
+  assertCodePattern('content/content.js', /ytd-playlist-panel-video-renderer/, 'watch page playlist panel rows are selectable');
+  assertCodePattern('content/content.js', /function isAdOrPromotedElement/, 'ad and promoted cards are filtered');
+  assertCodePattern('content/content.js', /ytd-promoted-video-renderer/, 'promoted video renderer is ignored');
+  assertCodePattern('content/content.js', /ytd-ad-slot-renderer/, 'ad slot renderer is ignored');
   assertNotContains(readText('popup/popup.js'), "hostname.includes('youtube.com')", 'popup host check');
 
   const listing = readText('CWS-LISTING.md');
@@ -320,7 +325,7 @@ function main() {
     assert.ok(info.bytes <= asset.maxBytes, `${asset.path} exceeds Chrome Web Store size limit`);
   }
 
-  const zipPath = path.join(root, 'build', 'tubelm-link-picker-cws-v1.0.2.zip');
+  const zipPath = path.join(root, 'build', 'tubelm-link-picker-cws-v1.0.3.zip');
   fs.mkdirSync(path.dirname(zipPath), { recursive: true });
   createZip(zipPath, EXPECTED_RUNTIME_FILES);
   const zipBuffer = fs.readFileSync(zipPath);
