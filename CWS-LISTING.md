@@ -232,4 +232,4 @@ Each one is under 132 characters.
 > `promo-marquee-1400x560.png`.
 >
 > Current verified upload package: `build/tubelm-link-picker-cws-v1.0.3.zip`
-> with SHA-256 `016fe4f9918306a3f65429872768cc304422e4abc5b45e202b7a02e65814aed3`.
+> with SHA-256 `0b6ddfb4a663402dc69ef6d520656687cb6427a770a642aa36558f66c67b0523`.
