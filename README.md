@@ -22,7 +22,7 @@
   |
   <a href="https://bakhtiersizhaev.github.io/tubelm-link-picker/">Website</a>
   |
-  <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip">Source ZIP</a>
+  <a href="https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/download/v1.0.3/tubelm-link-picker-cws-v1.0.3.zip">Release ZIP</a>
   |
   <a href="https://notebooklm.google.com/">NotebookLM</a>
   |
@@ -81,16 +81,14 @@ The recommended install is the official Chrome Web Store listing. The GitHub ZIP
 
 ### Optional Manual Install: Download TubeLM From GitHub
 
-1. Open the project page: [github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker).
-2. Click the green **Code** button near the top of the page.
-3. Click **Download ZIP**.
-4. You can also use this direct link: [Download TubeLM ZIP](https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip).
-5. Wait until the ZIP file finishes downloading.
+1. Open the latest release: [TubeLM Link Picker v1.0.3](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/tag/v1.0.3).
+2. Download the release ZIP: [tubelm-link-picker-cws-v1.0.3.zip](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/download/v1.0.3/tubelm-link-picker-cws-v1.0.3.zip).
+3. Wait until the ZIP file finishes downloading.
 
 ### Step 2: Unzip The File
 
 1. Find the downloaded file. It is usually in your **Downloads** folder.
-2. The file name will look like `tubelm-link-picker-main.zip`.
+2. The file name will look like `tubelm-link-picker-cws-v1.0.3.zip`.
 3. Right-click the ZIP file.
 4. Click **Extract All...**, **Unzip**, or **Extract Here**. The exact text depends on your computer.
 5. After extraction, open the new folder.
@@ -162,16 +160,14 @@ Important: Chrome needs the **unpacked folder**, not the ZIP file. If you select
 
 ### Дополнительно: скачайте TubeLM с GitHub
 
-1. Откройте страницу проекта: [github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker).
-2. Нажмите зелёную кнопку **Code** в верхней части страницы.
-3. Нажмите **Download ZIP**.
-4. Можно сразу открыть прямую ссылку: [скачать TubeLM ZIP](https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip).
-5. Дождитесь, пока архив скачается.
+1. Откройте свежий релиз: [TubeLM Link Picker v1.0.3](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/tag/v1.0.3).
+2. Скачайте release ZIP: [tubelm-link-picker-cws-v1.0.3.zip](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/download/v1.0.3/tubelm-link-picker-cws-v1.0.3.zip).
+3. Дождитесь, пока архив скачается.
 
 ### Шаг 2: распакуйте ZIP-архив
 
 1. Найдите скачанный файл. Обычно он лежит в папке **Загрузки**.
-2. Файл будет называться примерно так: `tubelm-link-picker-main.zip`.
+2. Файл будет называться примерно так: `tubelm-link-picker-cws-v1.0.3.zip`.
 3. Нажмите по ZIP-файлу правой кнопкой мыши.
 4. Выберите **Извлечь все...**, **Распаковать** или похожий пункт.
 5. После распаковки откройте новую папку.
@@ -243,16 +239,14 @@ Important: Chrome needs the **unpacked folder**, not the ZIP file. If you select
 
 ### 可选手动安装：从 GitHub 下载 TubeLM
 
-1. 打开项目页面：[github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker)。
-2. 点击页面上方绿色的 **Code** 按钮。
-3. 点击 **Download ZIP**。
-4. 也可以直接点击这里下载：[Download TubeLM ZIP](https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip)。
-5. 等待 ZIP 文件下载完成。
+1. 打开最新版本：[TubeLM Link Picker v1.0.3](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/tag/v1.0.3)。
+2. 下载 release ZIP：[tubelm-link-picker-cws-v1.0.3.zip](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/download/v1.0.3/tubelm-link-picker-cws-v1.0.3.zip)。
+3. 等待 ZIP 文件下载完成。
 
 ### 第 2 步：解压 ZIP 文件
 
 1. 找到下载好的文件。通常在 **Downloads** 文件夹里。
-2. 文件名大概是 `tubelm-link-picker-main.zip`。
+2. 文件名大概是 `tubelm-link-picker-cws-v1.0.3.zip`。
 3. 右键点击这个 ZIP 文件。
 4. 选择 **Extract All...**、**Unzip**、**解压到当前文件夹** 或类似选项。
 5. 解压后，打开新生成的文件夹。
@@ -324,16 +318,14 @@ La instalación recomendada es la ficha oficial de TubeLM en Chrome Web Store. E
 
 ### Opcional: descarga TubeLM desde GitHub
 
-1. Abre la página del proyecto: [github.com/bakhtiersizhaev/tubelm-link-picker](https://github.com/bakhtiersizhaev/tubelm-link-picker).
-2. Haz clic en el botón verde **Code** cerca de la parte superior.
-3. Haz clic en **Download ZIP**.
-4. También puedes usar este enlace directo: [Descargar TubeLM ZIP](https://github.com/bakhtiersizhaev/tubelm-link-picker/archive/refs/heads/main.zip).
-5. Espera a que termine la descarga.
+1. Abre la versión más reciente: [TubeLM Link Picker v1.0.3](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/tag/v1.0.3).
+2. Descarga el release ZIP: [tubelm-link-picker-cws-v1.0.3.zip](https://github.com/bakhtiersizhaev/tubelm-link-picker/releases/download/v1.0.3/tubelm-link-picker-cws-v1.0.3.zip).
+3. Espera a que termine la descarga.
 
 ### Paso 2: descomprime el archivo
 
 1. Busca el archivo descargado. Normalmente está en la carpeta **Descargas**.
-2. El archivo se llamará algo como `tubelm-link-picker-main.zip`.
+2. El archivo se llamará algo como `tubelm-link-picker-cws-v1.0.3.zip`.
 3. Haz clic derecho sobre el ZIP.
 4. Elige **Extraer todo...**, **Descomprimir** o una opción similar.
 5. Después de extraerlo, abre la nueva carpeta.
